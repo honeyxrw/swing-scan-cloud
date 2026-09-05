@@ -1,0 +1,9633 @@
+{
+ "date": "20260904",
+ "session": "close",
+ "criteria": "账户可买：沪深主板00/60（开户满3年·资产10万以内）· 价格≤20元 · 科技(电子/计算机/通信/传媒)+有色 · 非ST · 成交额≥8000万 · 基本面A/B档且无红旗（资格赛）",
+ "stocks": [
+  {
+   "code": "002602",
+   "name": "世纪华通",
+   "sector": "科技",
+   "close": 15.73,
+   "chg": 7.96,
+   "stage": "B+",
+   "stageName": "B+_鱼头启动",
+   "score": 100,
+   "entry": "4/5",
+   "j": 97.1,
+   "amt20": "15.39亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线；60分钟09-02 11:30金叉 DIF +0.026（贴零轴），现价 15.730 > 60分钟MA20 14.412｜E5放量阳线✅ 09-03 10:30 量比3.5｜红柱扩张✅",
+   "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+   "m60": "60分钟09-02 11:30金叉 DIF +0.026（贴零轴），现价 15.730 > 60分钟MA20 14.412｜E5放量阳线✅ 09-03 10:30 量比3.5｜红柱扩张✅",
+   "ma20": 14.152,
+   "ma10": 14.201,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-03金叉 DIF +0.105（零轴上方·中继，均认可），当前 DIF +0.231 > DEA +0.110"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 15.73 vs MA20 14.152（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 72 D 59 J 97（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 13.51 vs 前40日低点 12.0"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 159.5）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.231 DEA +0.110，柱 +0.241（前3柱 +0.050/-0.024/-0.032）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 85 → 今 97（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.270 vs 实体 1.110，量比 2.5"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 15.73 vs MA10 14.201"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 16.0 低 13.51，现回撤 11%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 13.758｜触发✓CCI 366｜R1✗ R2✓ R3✓ R4✓ R5✓（量比2.1）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 15.56,
+    "pb": 3.39,
+    "mcap": 1159.41,
+    "roe": 21.8,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600601",
+   "name": "方正科技",
+   "sector": "科技",
+   "close": 13.09,
+   "chg": 3.72,
+   "stage": "B+",
+   "stageName": "B+_鱼头启动",
+   "score": 100,
+   "entry": "4/5",
+   "j": 81.5,
+   "amt20": "24.89亿",
+   "gates": "✓✓✗",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线；60分钟09-03 14:00金叉 DIF +0.040（贴零轴），现价 13.090 > 60分钟MA20 12.504｜E5放量阳线✅ 09-03 14:00 量比2.4｜红柱收窄⚠️",
+   "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+   "m60": "60分钟09-03 14:00金叉 DIF +0.040（贴零轴），现价 13.090 > 60分钟MA20 12.504｜E5放量阳线✅ 09-03 14:00 量比2.4｜红柱收窄⚠️",
+   "ma20": 12.482,
+   "ma10": 12.228,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "08-31金叉 DIF +0.180（零轴上方·中继，均认可）；09-03金叉 DIF +0.169（零轴上方·中继，均认可），当前 DIF +0.222 > DEA +0.168"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 13.09 vs MA20 12.482（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 67 D 60 J 82（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 11.08 vs 前40日低点 8.68"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 177.7）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.222 DEA +0.168，柱 +0.109（前3柱 +0.029/-0.009/+0.040）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 82 → 今 82（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.790 vs 实体 0.250，量比 2.8"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 13.09 vs MA10 12.228"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 13.88 低 11.08，现回撤 28%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 12.322｜触发✓CCI 165｜R1✗ R2✓ R3✓ R4✓ R5✓（量比1.4）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 64.07,
+    "pb": 10.66,
+    "mcap": 559.43,
+    "roe": 16.6,
+    "fscore": 24,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002130",
+   "name": "沃尔核材",
+   "sector": "科技",
+   "close": 17.17,
+   "chg": 0.82,
+   "stage": "B+",
+   "stageName": "B+_鱼头启动",
+   "score": 80,
+   "entry": "3/5",
+   "j": 77.8,
+   "amt20": "4.60亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线；60分钟09-04 10:30金叉 DIF -0.002（零轴下方·底部），现价 17.170 > 60分钟MA20 16.944｜E5放量阳线✅ 09-04 10:30 量比2.6｜红柱扩张✅",
+   "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+   "m60": "60分钟09-04 10:30金叉 DIF -0.002（零轴下方·底部），现价 17.170 > 60分钟MA20 16.944｜E5放量阳线✅ 09-04 10:30 量比2.6｜红柱扩张✅",
+   "ma20": 16.905,
+   "ma10": 16.94,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.008 vs DEA -0.064）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 17.17 vs MA20 16.905（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 72 D 69 J 78（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 15.68 vs 前40日低点 14.91"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 107.2）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.008 DEA -0.064，柱 +0.112（前3柱 +0.091/+0.082/+0.137）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 76 → 今 78（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.320 vs 实体 0.100，量比 1.7"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 17.17 vs MA10 16.940"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 17.49 低 15.68，现回撤 18%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✗MA60 17.321｜触发✓CCI 83｜R1✓ R2✓ R3✗ R4✓ R5✓（量比1.5）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 20.86,
+    "pb": 2.61,
+    "mcap": 240.36,
+    "roe": 12.5,
+    "fscore": 28,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002379",
+   "name": "宏桥控股",
+   "sector": "有色",
+   "close": 18.94,
+   "chg": -1.41,
+   "stage": "B+",
+   "stageName": "B+_鱼头启动",
+   "score": 70,
+   "entry": "3/5",
+   "j": 71.2,
+   "amt20": "10.72亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线；60分钟09-03 10:30金叉 DIF +0.056（贴零轴），现价 18.940 > 60分钟MA20 18.744｜E5放量阳线✅ 09-03 10:30 量比3.6｜红柱收窄⚠️",
+   "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+   "m60": "60分钟09-03 10:30金叉 DIF +0.056（贴零轴），现价 18.940 > 60分钟MA20 18.744｜E5放量阳线✅ 09-03 10:30 量比3.6｜红柱收窄⚠️",
+   "ma20": 18.924,
+   "ma10": 18.527,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.029 vs DEA -0.020）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 18.94 vs MA20 18.924（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 59 D 53 J 71（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 17.3 vs 前40日低点 13.61"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 90.9）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.029 DEA -0.020，柱 -0.019（前3柱 -0.077/-0.217/-0.233）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 77 → 今 71（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.060 vs 实体 0.390，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 18.94 vs MA10 18.527"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 21.34 低 17.3，现回撤 59%"
+    }
+   ],
+   "six": "2/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 17.852｜触发✓CCI 103｜R1✓ R2✗ R3✗ R4✗ R5✓（量比1.4）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 10.0,
+    "pb": 4.26,
+    "mcap": 2468.09,
+    "roe": 42.6,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600219",
+   "name": "南山铝业",
+   "sector": "有色",
+   "close": 4.92,
+   "chg": -0.2,
+   "stage": "B+",
+   "stageName": "B+_鱼头启动",
+   "score": 65,
+   "entry": "3/5",
+   "j": 83.7,
+   "amt20": "9.94亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线；60分钟09-03 10:30金叉 DIF +0.020（贴零轴），现价 4.920 > 60分钟MA20 4.896｜E5放量阳线✅ 09-03 10:30 量比2.1｜红柱收窄⚠️",
+   "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+   "m60": "60分钟09-03 10:30金叉 DIF +0.020（贴零轴），现价 4.920 > 60分钟MA20 4.896｜E5放量阳线✅ 09-03 10:30 量比2.1｜红柱收窄⚠️",
+   "ma20": 4.862,
+   "ma10": 4.863,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.074 vs DEA +0.080）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 4.92 vs MA20 4.862（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 68 D 61 J 84（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 4.61 vs 前40日低点 3.89"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 61.5）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.074 DEA +0.080，柱 -0.012（前3柱 -0.014/-0.021/-0.021）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 88 → 今 84（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.050 vs 实体 0.030，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 4.92 vs MA10 4.863"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 5.17 低 4.61，现回撤 45%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 4.539｜触发✗CCI 100｜R1✗ R2✗ R3✓ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 12.97,
+    "pb": 1.13,
+    "mcap": 565.0,
+    "roe": 8.7,
+    "fscore": 27,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002532",
+   "name": "天山铝业",
+   "sector": "有色",
+   "close": 13.13,
+   "chg": -1.35,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 105,
+   "entry": "4/5",
+   "j": 76.9,
+   "amt20": "11.10亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：金叉后动能转弱",
+   "ma20": 13.046,
+   "ma10": 13.001,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-03金叉 DIF +0.128（零轴上方·中继，均认可），当前 DIF +0.127 > DEA +0.122"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 13.13 vs MA20 13.046（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 69 D 65 J 77（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 12.27 vs 前40日低点 10.004"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 77.2）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.127 DEA +0.122，柱 +0.010（前3柱 +0.015/-0.019/-0.000）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 86 → 今 77（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.110 vs 实体 0.270，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 13.13 vs MA10 13.001"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 14.514 低 12.27，现回撤 62%"
+    }
+   ],
+   "six": "5/5",
+   "sixGrade": "极强",
+   "sixDetail": "前置✓MA60 12.305｜触发✗CCI 95｜R1✓ R2✓ R3✓ R4✓ R5✓（量比1.2）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 8.79,
+    "pb": 1.89,
+    "mcap": 607.75,
+    "roe": 21.5,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "601949",
+   "name": "中国出版",
+   "sector": "科技",
+   "close": 5.83,
+   "chg": 10.0,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 105,
+   "entry": "4/5",
+   "j": 90.9,
+   "amt20": "0.77亿",
+   "gates": "✗✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：金叉位置偏高（鱼身非鱼头）",
+   "ma20": 5.261,
+   "ma10": 5.308,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF +0.037（零轴上方·中继，均认可），当前 DIF +0.080 > DEA +0.043"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 5.83 vs MA20 5.261（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 72 D 62 J 91（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 5.04 vs 前40日低点 4.458"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 199.8）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.080 DEA +0.043，柱 +0.075（前3柱 +0.008/+0.007/+0.011）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 58 → 今 91（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.000 vs 实体 0.540，量比 3.1"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 5.83 vs MA10 5.308"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 5.83 低 5.04，现回撤 0%"
+    }
+   ],
+   "six": "5/5",
+   "sixGrade": "极强",
+   "sixDetail": "前置✓MA60 5.067｜触发✓CCI 239｜R1✓ R2✓ R3✓ R4✓ R5✓（量比2.0）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 20.95,
+    "pb": 1.12,
+    "mcap": 111.0,
+    "roe": 5.3,
+    "fscore": 23,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002517",
+   "name": "恺英网络",
+   "sector": "科技",
+   "close": 17.41,
+   "chg": 2.11,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 100,
+   "entry": "4/5",
+   "j": 83.6,
+   "amt20": "10.80亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：无新鲜金叉（近3个交易日）",
+   "ma20": 17.137,
+   "ma10": 16.817,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-04金叉 DIF +0.017（零轴上方·中继，均认可），当前 DIF +0.017 > DEA +0.017"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 17.41 vs MA20 17.137（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 63 D 52 J 84（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 16.14 vs 前40日低点 13.95"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 105.2）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.017 DEA +0.017，柱 +0.000（前3柱 -0.083/-0.135/-0.147）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 78 → 今 84（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.440 vs 实体 0.360，量比 1.6"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 17.41 vs MA10 16.817"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 18.53 低 16.14，现回撤 47%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 16.549｜触发✓CCI 158｜R1✓ R2✓ R3✗ R4✓ R5✓（量比1.6）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 15.62,
+    "pb": 3.55,
+    "mcap": 371.95,
+    "roe": 22.7,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600595",
+   "name": "中孚实业",
+   "sector": "有色",
+   "close": 6.36,
+   "chg": -1.85,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 100,
+   "entry": "4/5",
+   "j": 66.0,
+   "amt20": "7.01亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：金叉位置偏高（鱼身非鱼头）",
+   "ma20": 6.315,
+   "ma10": 6.29,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF -0.031（零轴下方·底部，均认可），当前 DIF -0.008 > DEA -0.025"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 6.36 vs MA20 6.315（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 64 D 63 J 66（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 5.94 vs 前40日低点 5.42"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 102.8）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.008 DEA -0.025，柱 +0.035（前3柱 +0.034/+0.006/+0.007）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 83 → 今 66（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.030 vs 实体 0.140，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 6.36 vs MA10 6.290"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 7.14 低 5.94，现回撤 65%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 6.239｜触发✗CCI 112｜R1✓ R2✓ R3✗ R4✓ R5✓（量比1.6）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 9.13,
+    "pb": 1.39,
+    "mcap": 254.9,
+    "roe": 15.2,
+    "fscore": 28,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002292",
+   "name": "奥飞娱乐",
+   "sector": "科技",
+   "close": 8.48,
+   "chg": 1.31,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 100,
+   "entry": "4/5",
+   "j": 67.0,
+   "amt20": "3.65亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：无新鲜金叉（近3个交易日）",
+   "ma20": 8.247,
+   "ma10": 8.286,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF +0.146（零轴上方·中继，均认可），当前 DIF +0.156 > DEA +0.136"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 8.48 vs MA20 8.247（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 65 D 64 J 67（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 7.65 vs 前40日低点 6.31"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 45.9）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.156 DEA +0.136，柱 +0.040（前3柱 +0.045/+0.067/+0.057）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 73 → 今 67（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.190 vs 实体 0.100，量比 0.7"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 8.48 vs MA10 8.286"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 8.93 低 7.65，现回撤 35%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 7.663｜触发✓CCI 81｜R1✓ R2✓ R3✓ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 59.98,
+    "pb": 4.14,
+    "mcap": 125.39,
+    "roe": 6.9,
+    "fscore": 20,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "603000",
+   "name": "人民网",
+   "sector": "科技",
+   "close": 16.76,
+   "chg": 1.21,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 100,
+   "entry": "4/5",
+   "j": 67.6,
+   "amt20": "2.55亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：无新鲜金叉（近3个交易日）",
+   "ma20": 16.577,
+   "ma10": 16.601,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "08-31金叉 DIF +0.088（零轴上方·中继，均认可），当前 DIF +0.133 > DEA +0.113"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 16.76 vs MA20 16.577（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 66 D 65 J 68（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 15.65 vs 前40日低点 14.117"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 55.7）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.133 DEA +0.113，柱 +0.040（前3柱 +0.049/+0.096/+0.101）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 72 → 今 68（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.380 vs 实体 0.180，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 16.76 vs MA10 16.601"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 17.65 低 15.65，现回撤 44%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 15.998｜触发✓CCI 72｜R1✓ R2✓ R3✓ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 77.5,
+    "pb": 4.94,
+    "mcap": 185.31,
+    "roe": 6.4,
+    "fscore": 19,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "601600",
+   "name": "中国铝业",
+   "sector": "有色",
+   "close": 9.67,
+   "chg": -1.43,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 80,
+   "entry": "3/5",
+   "j": 70.7,
+   "amt20": "18.16亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：金叉位置偏高（鱼身非鱼头）",
+   "ma20": 9.568,
+   "ma10": 9.657,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.114 vs DEA +0.104）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 9.67 vs MA20 9.568（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 72 D 73 J 71"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 9.09 vs 前40日低点 7.663"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 82.1）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.114 DEA +0.104，柱 +0.020（前3柱 +0.037/+0.029/+0.053）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 84 → 今 71（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.010 vs 实体 0.220，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 9.67 vs MA10 9.657"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 10.253 低 9.09，现回撤 50%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 9.169｜触发✗CCI 74｜R1✗ R2✓ R3✓ R4✓ R5✓（量比1.3）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 9.49,
+    "pb": 1.96,
+    "mcap": 1658.89,
+    "roe": 20.7,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000878",
+   "name": "云南铜业",
+   "sector": "有色",
+   "close": 17.35,
+   "chg": -1.98,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 80,
+   "entry": "3/5",
+   "j": 72.9,
+   "amt20": "8.93亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：无新鲜金叉（近3个交易日）",
+   "ma20": 16.847,
+   "ma10": 17.237,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.382 vs DEA +0.306）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 17.35 vs MA20 16.847（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 72 D 71 J 73（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 15.83 vs 前40日低点 14.01"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 35.4）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.382 DEA +0.306，柱 +0.153（前3柱 +0.219/+0.227/+0.253）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 84 → 今 73（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.040 vs 实体 0.610，量比 0.6"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 17.35 vs MA10 17.237"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 18.18 低 15.83，现回撤 35%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 16.358｜触发✗CCI 71｜R1✓ R2✓ R3✓ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 24.34,
+    "pb": 2.21,
+    "mcap": 420.77,
+    "roe": 9.1,
+    "fscore": 27,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600776",
+   "name": "东方通信",
+   "sector": "科技",
+   "close": 13.09,
+   "chg": -2.68,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 80,
+   "entry": "3/5",
+   "j": 53.8,
+   "amt20": "1.95亿",
+   "gates": "✗✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：金叉位置偏高（鱼身非鱼头）",
+   "ma20": 12.855,
+   "ma10": 12.967,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.106 vs DEA +0.045）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 13.09 vs MA20 12.855（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 65 D 70 J 54"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 12.14 vs 前40日低点 11.105"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 209.7）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.106 DEA +0.045，柱 +0.122（前3柱 +0.145/+0.095/+0.124）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 78 → 今 54（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.030 vs 实体 0.370，量比 1.5"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 13.09 vs MA10 12.967"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 13.96 低 12.14，现回撤 48%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✗MA60 12.969｜触发✗CCI 102｜R1✗ R2✓ R3✓ R4✓ R5✓（量比3.3）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 30.06,
+    "pb": 4.08,
+    "mcap": 164.41,
+    "roe": 13.6,
+    "fscore": 25,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002987",
+   "name": "京北方",
+   "sector": "科技",
+   "close": 12.26,
+   "chg": 2.77,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 80,
+   "entry": "3/5",
+   "j": 77.0,
+   "amt20": "2.25亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：金叉位置偏高（鱼身非鱼头）",
+   "ma20": 11.456,
+   "ma10": 11.873,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.328 vs DEA +0.256）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 12.26 vs MA20 11.456（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 77 D 77 J 77"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 10.43 vs 前40日低点 9.22"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 113.4）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.328 DEA +0.256，柱 +0.142（前3柱 +0.136/+0.175/+0.183）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 77 → 今 77（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.370 vs 实体 0.100，量比 1.8"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 12.26 vs MA10 11.873"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 12.63 低 10.43，现回撤 17%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 10.839｜触发✗CCI 110｜R1✗ R2✓ R3✓ R4✓ R5✓（量比1.8）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 41.5,
+    "pb": 4.41,
+    "mcap": 127.56,
+    "roe": 10.6,
+    "fscore": 23,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "603132",
+   "name": "金徽股份",
+   "sector": "有色",
+   "close": 19.74,
+   "chg": -3.24,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 75,
+   "entry": "3/5",
+   "j": 58.6,
+   "amt20": "2.03亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：无新鲜金叉（近3个交易日）",
+   "ma20": 19.123,
+   "ma10": 19.736,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.899 vs DEA +0.883）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 19.74 vs MA20 19.123（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 66 D 70 J 59"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 17.52 vs 前40日低点 13.78"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 40.9）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.899 DEA +0.883，柱 +0.032（前3柱 +0.156/+0.180/+0.220）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 76 → 今 59（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.020 vs 实体 0.900，量比 0.6"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 19.74 vs MA10 19.736"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 21.26 低 17.52，现回撤 41%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✓MA60 16.901｜触发✗CCI 64｜R1✗ R2✓ R3✓ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 27.66,
+    "pb": 6.29,
+    "mcap": 193.06,
+    "roe": 22.7,
+    "fscore": 28,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600551",
+   "name": "时代出版",
+   "sector": "科技",
+   "close": 8.05,
+   "chg": 1.13,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 75,
+   "entry": "3/5",
+   "j": 48.7,
+   "amt20": "2.01亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：无新鲜金叉（近3个交易日）",
+   "ma20": 7.311,
+   "ma10": 7.694,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.356 vs DEA +0.221）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 8.05 vs MA20 7.311（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 60 D 65 J 49"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 6.76 vs 前40日低点 6.47"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 62.9）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.356 DEA +0.221，柱 +0.271（前3柱 +0.336/+0.423/+0.388）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 62 → 今 49（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.450 vs 实体 0.260，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 8.05 vs MA10 7.694"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 9.5 低 6.76，现回撤 53%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✓MA60 6.990｜触发✓CCI 65｜R1✗ R2✓ R3✓ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 13.55,
+    "pb": 0.91,
+    "mcap": 54.58,
+    "roe": 6.7,
+    "fscore": 21,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600654",
+   "name": "中安科",
+   "sector": "科技",
+   "close": 3.26,
+   "chg": 0.93,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 75,
+   "entry": "3/5",
+   "j": 51.9,
+   "amt20": "2.94亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：无新鲜金叉（近3个交易日）",
+   "ma20": 3.084,
+   "ma10": 3.243,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.124 vs DEA +0.100）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 3.26 vs MA20 3.084（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 61 D 66 J 52"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 2.79 vs 前40日低点 2.46"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 37.6）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.124 DEA +0.100，柱 +0.048（前3柱 +0.070/+0.102/+0.125）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 59 → 今 52（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.090 vs 实体 0.010，量比 0.6"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 3.26 vs MA10 3.243"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 3.63 低 2.79，现回撤 44%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✓MA60 2.873｜触发✗CCI 41｜R1✗ R2✓ R3✓ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 93.81,
+    "pb": 4.93,
+    "mcap": 92.76,
+    "roe": 5.3,
+    "fscore": 17,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002237",
+   "name": "恒邦股份",
+   "sector": "有色",
+   "close": 14.96,
+   "chg": -1.64,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 65,
+   "entry": "3/5",
+   "j": 49.1,
+   "amt20": "5.67亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：金叉后动能转弱",
+   "ma20": 14.781,
+   "ma10": 15.126,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.388 vs DEA +0.418）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 14.96 vs MA20 14.781（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 57 D 61 J 49"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 13.52 vs 前40日低点 12.05"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 37.5）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.388 DEA +0.418，柱 -0.061（前3柱 -0.011/+0.006/+0.064）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 54 → 今 49（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.030 vs 实体 0.450，量比 0.6"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 14.96 vs MA10 15.126"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 15.79 低 13.52，现回撤 37%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 13.867｜触发✗CCI 16｜R1✗ R2✗ R3✓ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 21.53,
+    "pb": 1.56,
+    "mcap": 213.92,
+    "roe": 7.2,
+    "fscore": 25,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002716",
+   "name": "湖南白银",
+   "sector": "有色",
+   "close": 11.22,
+   "chg": -3.19,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 65,
+   "entry": "3/5",
+   "j": 56.0,
+   "amt20": "34.70亿",
+   "gates": "✓✓✗",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：金叉位置偏高（鱼身非鱼头）",
+   "ma20": 10.335,
+   "ma10": 11.205,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.722 vs DEA +0.691）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 11.22 vs MA20 10.335（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 63 D 67 J 56"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 8.62 vs 前40日低点 6.71"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 67.7）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.722 DEA +0.691，柱 +0.062（前3柱 +0.115/+0.094/+0.204）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 62 → 今 56（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.020 vs 实体 0.440，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 11.22 vs MA10 11.205"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 12.1 低 8.62，现回撤 25%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 8.866｜触发✗CCI 63｜R1✗ R2✗ R3✓ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 71.0,
+    "pb": 7.79,
+    "mcap": 316.75,
+    "roe": 11.0,
+    "fscore": 24,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600338",
+   "name": "西藏珠峰",
+   "sector": "有色",
+   "close": 13.48,
+   "chg": -3.37,
+   "stage": "A",
+   "stageName": "A_底部观察区",
+   "score": 45,
+   "entry": "2/5",
+   "j": 16.3,
+   "amt20": "5.80亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low、放量阳线",
+   "action": "观察池：不动作，等信号凑齐",
+   "m60": "",
+   "ma20": 13.782,
+   "ma10": 13.893,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.047 vs DEA +0.032）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 13.48 vs MA20 13.782（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 43 D 57 J 16"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 12.92 vs 前40日低点 11.01"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 65.1）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.047 DEA +0.032，柱 +0.030（前3柱 +0.108/+0.127/+0.190）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 52 → 今 16（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.020 vs 实体 0.570，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 13.48 vs MA10 13.893"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 14.49 低 12.92，现回撤 64%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 14.124｜触发✗CCI -28｜R1✗ R2✓ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 21.76,
+    "pb": 2.59,
+    "mcap": 123.24,
+    "roe": 11.9,
+    "fscore": 26,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000969",
+   "name": "安泰科技",
+   "sector": "有色",
+   "close": 17.01,
+   "chg": -2.07,
+   "stage": "A",
+   "stageName": "A_底部观察区",
+   "score": 25,
+   "entry": "1/5",
+   "j": 49.1,
+   "amt20": "3.82亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "观察池：不动作，等信号凑齐",
+   "m60": "",
+   "ma20": 17.119,
+   "ma10": 17.193,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.106 vs DEA -0.238）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 17.01 vs MA20 17.119（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 55 D 58 J 49"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 16.23 vs 前40日低点 14.72"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF -0.106 DEA -0.238，柱 +0.264（前3柱 +0.354/+0.403/+0.456）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 69 → 今 49（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.120 vs 实体 0.470，量比 0.7"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 17.01 vs MA10 17.193"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 18.19 低 16.23，现回撤 60%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 19.204｜触发✓CCI 14｜R1✗ R2✓ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 42.42,
+    "pb": 3.06,
+    "mcap": 178.69,
+    "roe": 7.2,
+    "fscore": 22,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600888",
+   "name": "新疆众和",
+   "sector": "有色",
+   "close": 9.87,
+   "chg": -2.85,
+   "stage": "A",
+   "stageName": "A_底部观察区",
+   "score": 20,
+   "entry": "1/5",
+   "j": -0.3,
+   "amt20": "5.49亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "观察池：不动作，等信号凑齐",
+   "m60": "",
+   "ma20": 10.229,
+   "ma10": 10.338,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.027 vs DEA -0.031）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 9.87 vs MA20 10.229（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 29 D 43 J -0"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 9.73 vs 前40日低点 8.44"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF -0.027 DEA -0.031，柱 +0.008（前3柱 +0.074/+0.115/+0.183）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 18 → 今 -0（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.070 vs 实体 0.330，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 9.87 vs MA10 10.338"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 10.94 低 9.73，现回撤 88%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 11.156｜触发✗CCI -89｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 19.32,
+    "pb": 1.18,
+    "mcap": 153.29,
+    "roe": 6.1,
+    "fscore": 25,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000823",
+   "name": "超声电子",
+   "sector": "科技",
+   "close": 14.49,
+   "chg": -3.27,
+   "stage": "A",
+   "stageName": "A_底部观察区",
+   "score": 20,
+   "entry": "1/5",
+   "j": 29.8,
+   "amt20": "6.43亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "观察池：不动作，等信号凑齐",
+   "m60": "",
+   "ma20": 15.071,
+   "ma10": 15.11,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.084 vs DEA -0.136）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 14.49 vs MA20 15.071（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 48 D 58 J 30"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 14.03 vs 前40日低点 11.6"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF -0.084 DEA -0.136，柱 +0.104（前3柱 +0.228/+0.311/+0.400）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 57 → 今 30（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.320 vs 实体 0.610，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 14.49 vs MA10 15.110"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 16.04 低 14.03，现回撤 77%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 17.061｜触发✗CCI -60｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 38.99,
+    "pb": 1.55,
+    "mcap": 86.21,
+    "roe": 4.0,
+    "fscore": 17,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "601900",
+   "name": "南方传媒",
+   "sector": "科技",
+   "close": 12.45,
+   "chg": 3.32,
+   "stage": "C",
+   "stageName": "C_趋势中",
+   "score": 125,
+   "entry": "5/5",
+   "j": 66.2,
+   "amt20": "1.15亿",
+   "gates": "✗✓✓",
+   "detail": "MACD金叉、站上中轨、KDJ低位金叉、higher_low、放量阳线",
+   "action": "持有者拿住，未上车不追",
+   "m60": "",
+   "ma20": 11.892,
+   "ma10": 11.935,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF +0.120（零轴上方·中继，均认可），当前 DIF +0.156 > DEA +0.122"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 12.45 vs MA20 11.892（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true,
+     "detail": "08-31金叉（前日K 27<35），当前 K 53 D 46 J 66"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 11.46 vs 前40日低点 9.95"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 88.7）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.156 DEA +0.122，柱 +0.069（前3柱 +0.019/+0.015/+0.023）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 47 → 今 66（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.190 vs 实体 0.280，量比 1.4"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 12.45 vs MA10 11.935"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 12.88 低 11.46，现回撤 30%"
+    }
+   ],
+   "six": "5/5",
+   "sixGrade": "极强",
+   "sixDetail": "前置✓MA60 11.388｜触发✓CCI 137｜R1✓ R2✓ R3✓ R4✓ R5✓（量比1.6）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 10.29,
+    "pb": 1.25,
+    "mcap": 109.81,
+    "roe": 12.1,
+    "fscore": 26,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "605577",
+   "name": "龙版传媒",
+   "sector": "科技",
+   "close": 15.55,
+   "chg": 9.97,
+   "stage": "C",
+   "stageName": "C_趋势中",
+   "score": 125,
+   "entry": "5/5",
+   "j": 124.6,
+   "amt20": "1.51亿",
+   "gates": "✗✓✓",
+   "detail": "MACD金叉、站上中轨、KDJ低位金叉、higher_low、放量阳线",
+   "action": "持有者拿住，未上车不追",
+   "m60": "",
+   "ma20": 10.641,
+   "ma10": 11.343,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "08-31金叉 DIF +0.124（零轴上方·中继，均认可），当前 DIF +1.000 > DEA +0.442"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 15.55 vs MA20 10.641（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true,
+     "detail": "08-31金叉（前日K 14<35），当前 K 87 D 68 J 125"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 9.49 vs 前40日低点 8.54"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 86.3）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +1.000 DEA +0.442，柱 +1.116（前3柱 +0.795/+0.494/+0.229）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 124 → 今 125（超买后拐头）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.000 vs 实体 1.330，量比 1.4"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 15.55 vs MA10 11.343"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 15.55 低 9.49，现回撤 0%"
+    }
+   ],
+   "six": "5/5",
+   "sixGrade": "极强",
+   "sixDetail": "前置✓MA60 9.732｜触发✗CCI 214｜R1✓ R2✓ R3✓ R4✓ R5✓（量比2.3）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 37.83,
+    "pb": 1.77,
+    "mcap": 69.11,
+    "roe": 4.7,
+    "fscore": 15,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600490",
+   "name": "鹏欣资源",
+   "sector": "有色",
+   "close": 7.72,
+   "chg": 0.0,
+   "stage": "C",
+   "stageName": "C_趋势中",
+   "score": 50,
+   "entry": "2/5",
+   "j": 45.1,
+   "amt20": "5.57亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low",
+   "action": "持有者拿住，未上车不追",
+   "m60": "",
+   "ma20": 7.478,
+   "ma10": 7.683,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.268 vs DEA +0.266）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 7.72 vs MA20 7.478（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 54 D 59 J 45"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 6.87 vs 前40日低点 5.51"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.268 DEA +0.266，柱 +0.003（前3柱 +0.024/+0.047/+0.090）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 46 → 今 45（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.190 vs 实体 0.120，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 7.72 vs MA10 7.683"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 8.29 低 6.87，现回撤 40%"
+    }
+   ],
+   "six": "2/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 6.777｜触发✗CCI 78｜R1✗ R2✓ R3✓ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 55.35,
+    "pb": 2.69,
+    "mcap": 170.83,
+    "roe": 4.9,
+    "fscore": 19,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002279",
+   "name": "久其软件",
+   "sector": "科技",
+   "close": 7.14,
+   "chg": 1.71,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 100,
+   "entry": "4/5",
+   "j": 101.6,
+   "amt20": "3.82亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 6.794,
+   "ma10": 6.772,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF +0.086（零轴上方·中继，均认可），当前 DIF +0.138 > DEA +0.093"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 7.14 vs MA20 6.794（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 80 D 69 J 102（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 6.14 vs 前40日低点 5.43"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 66.3）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.138 DEA +0.093，柱 +0.091（前3柱 +0.080/+0.079/+0.049）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": true,
+     "detail": "J 前日 102 → 今 102（超买后拐头）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.150 vs 实体 0.040，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 7.14 vs MA10 6.772"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 7.71 低 6.14，现回撤 36%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 6.376｜触发✓CCI 96｜R1✓ R2✓ R3✓ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 64.64,
+    "pb": 4.18,
+    "mcap": 61.56,
+    "roe": 6.5,
+    "fscore": 15,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002152",
+   "name": "广电运通",
+   "sector": "科技",
+   "close": 9.85,
+   "chg": 1.55,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 95,
+   "entry": "4/5",
+   "j": 71.7,
+   "amt20": "2.30亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 9.806,
+   "ma10": 9.77,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF -0.073（零轴下方·底部，均认可），当前 DIF -0.055 > DEA -0.072"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 9.85 vs MA20 9.806（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 68 D 66 J 72（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 9.28 vs 前40日低点 9.13"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 106.9）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.055 DEA -0.072，柱 +0.035（前3柱 +0.022/+0.034/+0.021）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 75 → 今 72（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.200 vs 实体 0.050，量比 1.7"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 9.85 vs MA10 9.770"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 10.45 低 9.28，现回撤 51%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✓MA60 9.886｜触发✗CCI 104｜R1✓ R2✗ R3✗ R4✓ R5✓（量比1.7）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 29.9,
+    "pb": 1.98,
+    "mcap": 244.61,
+    "roe": 6.6,
+    "fscore": 25,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000676",
+   "name": "智度股份",
+   "sector": "科技",
+   "close": 7.1,
+   "chg": 2.01,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 95,
+   "entry": "4/5",
+   "j": 90.8,
+   "amt20": "6.40亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 6.905,
+   "ma10": 6.844,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-04金叉 DIF +0.060（零轴上方·中继，均认可），当前 DIF +0.060 > DEA +0.050"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 7.1 vs MA20 6.905（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 73 D 63 J 91（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 6.34 vs 前40日低点 4.95"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 68.6）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.060 DEA +0.050，柱 +0.021（前3柱 -0.001/-0.009/-0.044）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": true,
+     "detail": "J 前日 91 → 今 91（超买后拐头）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.200 vs 实体 0.030，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 7.1 vs MA10 6.844"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 7.75 低 6.34，现回撤 46%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✓MA60 6.361｜触发✓CCI 131｜R1✓ R2✓ R3✗ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 44.18,
+    "pb": 2.08,
+    "mcap": 89.45,
+    "roe": 4.7,
+    "fscore": 17,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "603890",
+   "name": "春秋电子",
+   "sector": "科技",
+   "close": 19.61,
+   "chg": -0.15,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 85,
+   "entry": "3/5",
+   "j": 79.2,
+   "amt20": "8.69亿",
+   "gates": "✓✓✗",
+   "detail": "站上中轨、KDJ低位金叉、higher_low",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 19.032,
+   "ma10": 18.715,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.208 vs DEA -0.444）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 19.61 vs MA20 19.032（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true,
+     "detail": "08-31金叉（前日K 29<35），当前 K 66 D 60 J 79"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 16.8 vs 前40日低点 16.42"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.208 DEA -0.444，柱 +0.471（前3柱 +0.432/+0.341/+0.187）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": true,
+     "detail": "J 前日 91 → 今 79（超买后拐头）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.330 vs 实体 0.380，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 19.61 vs MA10 18.715"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 22.42 低 16.8，现回撤 50%"
+    }
+   ],
+   "six": "5/5",
+   "sixGrade": "极强",
+   "sixDetail": "前置✗MA60 21.197｜触发✗CCI 100｜R1✓ R2✓ R3✓ R4✓ R5✓（量比1.7）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 37.49,
+    "pb": 3.09,
+    "mcap": 98.84,
+    "roe": 8.2,
+    "fscore": 20,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002600",
+   "name": "领益智造",
+   "sector": "科技",
+   "close": 12.63,
+   "chg": -2.09,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 80,
+   "entry": "3/5",
+   "j": 86.6,
+   "amt20": "12.39亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 12.537,
+   "ma10": 12.5,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.107 vs DEA -0.206）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 12.63 vs MA20 12.537（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 73 D 66 J 87（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 11.73 vs 前40日低点 11.02"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 79.7）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.107 DEA -0.206，柱 +0.199（前3柱 +0.221/+0.191/+0.177）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": true,
+     "detail": "J 前日 103 → 今 87（超买后拐头）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.030 vs 实体 0.420，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 12.63 vs MA10 12.500"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 13.09 低 11.73，现回撤 34%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✗MA60 13.756｜触发✓CCI 75｜R1✓ R2✓ R3✓ R4✗ R5✓（量比1.3）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 48.34,
+    "pb": 3.25,
+    "mcap": 1025.59,
+    "roe": 6.7,
+    "fscore": 24,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "605277",
+   "name": "新亚电子",
+   "sector": "科技",
+   "close": 16.96,
+   "chg": -7.42,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 80,
+   "entry": "3/5",
+   "j": 83.9,
+   "amt20": "1.93亿",
+   "gates": "✗✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 15.865,
+   "ma10": 16.681,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.553 vs DEA +0.282）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 16.96 vs MA20 15.865（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 82 D 80 J 84（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 14.26 vs 前40日低点 12.82"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 89.7）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.553 DEA +0.282，柱 +0.542（前3柱 +0.701/+0.612/+0.583）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": true,
+     "detail": "J 前日 110 → 今 84（超买后拐头）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.250 vs 实体 0.840，量比 1.3"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 16.96 vs MA10 16.681"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 18.32 低 14.26，现回撤 33%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✓MA60 16.134｜触发✓CCI 71｜R1✓ R2✓ R3✓ R4✗ R5✓（量比1.2）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 26.34,
+    "pb": 3.74,
+    "mcap": 65.94,
+    "roe": 14.2,
+    "fscore": 24,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "601609",
+   "name": "金田股份",
+   "sector": "有色",
+   "close": 13.34,
+   "chg": -3.4,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 75,
+   "entry": "3/5",
+   "j": 62.3,
+   "amt20": "9.18亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 12.414,
+   "ma10": 13.39,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.775 vs DEA +0.725）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 13.34 vs MA20 12.414（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 74 D 80 J 62"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 9.94 vs 前40日低点 9.03"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 78.5）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.775 DEA +0.725，柱 +0.099（前3柱 +0.197/+0.220/+0.289）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 81 → 今 62（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.070 vs 实体 0.400，量比 1.2"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 13.34 vs MA10 13.390"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 13.92 低 9.94，现回撤 15%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✓MA60 11.290｜触发✗CCI 62｜R1✗ R2✓ R3✓ R4✗ R5✓（量比1.2）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 28.08,
+    "pb": 2.26,
+    "mcap": 230.6,
+    "roe": 8.0,
+    "fscore": 25,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002171",
+   "name": "楚江新材",
+   "sector": "有色",
+   "close": 10.3,
+   "chg": -1.9,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 75,
+   "entry": "3/5",
+   "j": 81.9,
+   "amt20": "4.86亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 9.929,
+   "ma10": 10.07,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.007 vs DEA -0.105）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 10.3 vs MA20 9.929（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 74 D 70 J 82（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 9.33 vs 前40日低点 8.59"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 143.3）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.007 DEA -0.105，柱 +0.224（前3柱 +0.235/+0.196/+0.230）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": true,
+     "detail": "J 前日 94 → 今 82（超买后拐头）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.130 vs 实体 0.260，量比 1.2"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 10.3 vs MA10 10.070"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 10.69 低 9.33，现回撤 29%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✗MA60 11.107｜触发✗CCI 142｜R1✗ R2✓ R3✓ R4✗ R5✓（量比2.3）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 38.35,
+    "pb": 1.86,
+    "mcap": 167.16,
+    "roe": 4.9,
+    "fscore": 19,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002017",
+   "name": "东信和平",
+   "sector": "科技",
+   "close": 17.06,
+   "chg": 3.58,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 70,
+   "entry": "3/5",
+   "j": 67.8,
+   "amt20": "6.08亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 15.101,
+   "ma10": 16.517,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.803 vs DEA +0.608）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 17.06 vs MA20 15.101（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 73 D 75 J 68"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 12.75 vs 前40日低点 12.21"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 85.9）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.803 DEA +0.608，柱 +0.390（前3柱 +0.409/+0.507/+0.516）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 74 → 今 68（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.890 vs 实体 0.440，量比 1.3"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 17.06 vs MA10 16.517"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 17.95 低 12.75，现回撤 17%"
+    }
+   ],
+   "six": "2/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 14.419｜触发✗CCI 89｜R1✗ R2✗ R3✓ R4✗ R5✓（量比1.3）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 58.68,
+    "pb": 5.43,
+    "mcap": 99.02,
+    "roe": 9.3,
+    "fscore": 20,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000758",
+   "name": "中色股份",
+   "sector": "有色",
+   "close": 6.18,
+   "chg": -1.44,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 50,
+   "entry": "2/5",
+   "j": 31.8,
+   "amt20": "2.03亿",
+   "gates": "✓✓✓",
+   "detail": "站上中轨、higher_low",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 6.176,
+   "ma10": 6.288,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.067 vs DEA +0.057）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 6.18 vs MA20 6.176（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 54 D 65 J 32"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 5.86 vs 前40日低点 5.44"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.067 DEA +0.057，柱 +0.021（前3柱 +0.050/+0.072/+0.099）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 52 → 今 32（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.030 vs 实体 0.120，量比 0.7"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 6.18 vs MA10 6.288"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 6.55 低 5.86，现回撤 54%"
+    }
+   ],
+   "six": "2/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 6.207｜触发✗CCI 13｜R1✗ R2✓ R3✓ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 19.22,
+    "pb": 1.89,
+    "mcap": 122.97,
+    "roe": 9.8,
+    "fscore": 23,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000681",
+   "name": "视觉中国",
+   "sector": "科技",
+   "close": 17.2,
+   "chg": 2.81,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 80,
+   "entry": "3/5",
+   "j": 57.2,
+   "amt20": "4.88亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 17.309,
+   "ma10": 16.819,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF -0.321（零轴下方·底部，均认可），当前 DIF -0.275 > DEA -0.321"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 17.2 vs MA20 17.309（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 46 D 41 J 57（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 16.09 vs 前40日低点 15.296"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 89.5）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.275 DEA -0.321，柱 +0.093（前3柱 +0.043/+0.066/+0.051）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 50 → 今 57（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.610 vs 实体 0.270，量比 1.4"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 17.2 vs MA10 16.819"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 19.27 低 16.09，现回撤 65%"
+    }
+   ],
+   "six": "4/5",
+   "sixGrade": "强",
+   "sixDetail": "前置✗MA60 18.285｜触发✓CCI 63｜R1✓ R2✓ R3✗ R4✓ R5✓（量比1.4）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 85.85,
+    "pb": 3.29,
+    "mcap": 120.5,
+    "roe": 3.8,
+    "fscore": 14,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002027",
+   "name": "分众传媒",
+   "sector": "科技",
+   "close": 4.88,
+   "chg": 2.31,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 70,
+   "entry": "3/5",
+   "j": 38.0,
+   "amt20": "7.50亿",
+   "gates": "✓✓✓",
+   "detail": "KDJ低位金叉、higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 4.961,
+   "ma10": 4.877,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.065 vs DEA -0.053）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 4.88 vs MA20 4.961（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true,
+     "detail": "09-04金叉（前日K 28<35），当前 K 38 D 37 J 38"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 4.76 vs 前40日低点 4.4"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 88.0）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.065 DEA -0.053，柱 -0.024（前3柱 -0.038/-0.032/-0.025）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 9 → 今 38（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.080 vs 实体 0.080，量比 1.4"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 4.88 vs MA10 4.877"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 5.35 低 4.76，现回撤 80%"
+    }
+   ],
+   "six": "2/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 4.946｜触发✓CCI -15｜R1✓ R2✗ R3✗ R4✗ R5✓（量比1.4）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 20.67,
+    "pb": 5.31,
+    "mcap": 704.78,
+    "roe": 25.7,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002555",
+   "name": "三七互娱",
+   "sector": "科技",
+   "close": 18.67,
+   "chg": 2.02,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 55,
+   "entry": "2/5",
+   "j": 80.9,
+   "amt20": "6.30亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 18.743,
+   "ma10": 18.323,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.201 vs DEA -0.182）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 18.67 vs MA20 18.743（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 59 D 47 J 81（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 17.731 vs 前40日低点 17.001"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 122.3）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.201 DEA -0.182，柱 -0.039（前3柱 -0.118/-0.155/-0.161）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 69 → 今 81（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.330 vs 实体 0.330，量比 1.9"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 18.67 vs MA10 18.323"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 20.051 低 17.731，现回撤 60%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✓MA60 18.718｜触发✓CCI 81｜R1✓ R2✓ R3✗ R4✗ R5✓（量比1.9）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 12.65,
+    "pb": 2.98,
+    "mcap": 413.02,
+    "roe": 23.6,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002410",
+   "name": "广联达",
+   "sector": "科技",
+   "close": 8.86,
+   "chg": 3.02,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 55,
+   "entry": "2/5",
+   "j": 63.6,
+   "amt20": "2.25亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 9.012,
+   "ma10": 8.813,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.084 vs DEA -0.047）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 8.86 vs MA20 9.012（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 59 D 56 J 64（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 8.28 vs 前40日低点 7.88"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 107.5）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.084 DEA -0.047，柱 -0.074（前3柱 -0.104/-0.088/-0.072）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 50 → 今 64（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.260 vs 实体 0.180，量比 1.7"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 8.86 vs MA10 8.813"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 9.69 低 8.28，现回撤 59%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✓MA60 8.826｜触发✓CCI 11｜R1✓ R2✓ R3✗ R4✗ R5✓（量比1.7）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ],
+   "fund": {
+    "pe": 39.74,
+    "pb": 2.49,
+    "mcap": 146.36,
+    "roe": 6.3,
+    "fscore": 20,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002402",
+   "name": "和而泰",
+   "sector": "科技",
+   "close": 18.82,
+   "chg": -1.16,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 50,
+   "entry": "2/5",
+   "j": 79.3,
+   "amt20": "4.33亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、KDJ低位金叉",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 19.855,
+   "ma10": 18.932,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF -0.787（零轴下方·底部，均认可），当前 DIF -0.722 > DEA -0.771"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 18.82 vs MA20 19.855（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true,
+     "detail": "08-31金叉（前日K 25<35），当前 K 63 D 54 J 79"
+    },
+    {
+     "key": "higher_low",
+     "on": false,
+     "detail": "近20日低点 17.94 vs 前40日低点 18.92"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.722 DEA -0.771，柱 +0.098（前3柱 +0.098/+0.069/+0.033）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": true,
+     "detail": "J 前日 92 → 今 79（超买后拐头）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.230 vs 实体 0.280，量比 1.4"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 18.82 vs MA10 18.932"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 21.91 低 17.94，现回撤 78%"
+    }
+   ],
+   "six": "2/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 21.892｜触发✓CCI -35｜R1✓ R2✗ R3✗ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 31.63,
+    "pb": 2.4,
+    "mcap": 173.78,
+    "roe": 7.6,
+    "fscore": 22,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "601677",
+   "name": "明泰铝业",
+   "sector": "有色",
+   "close": 16.65,
+   "chg": -1.19,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 45,
+   "entry": "2/5",
+   "j": 51.7,
+   "amt20": "4.20亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 16.776,
+   "ma10": 16.781,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.075 vs DEA +0.088）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 16.65 vs MA20 16.776（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 56 D 58 J 52"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 16.14 vs 前40日低点 14.74"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 51.7）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.075 DEA +0.088，柱 -0.025（前3柱 +0.009/+0.019/+0.050）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 68 → 今 52（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.040 vs 实体 0.300，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 16.65 vs MA10 16.781"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 17.61 低 16.14，现回撤 65%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 16.447｜触发✗CCI -5｜R1✗ R2✓ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 8.53,
+    "pb": 1.02,
+    "mcap": 207.01,
+    "roe": 12.0,
+    "fscore": 28,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "601728",
+   "name": "中国电信",
+   "sector": "科技",
+   "close": 6.38,
+   "chg": -0.31,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 45,
+   "entry": "2/5",
+   "j": 58.0,
+   "amt20": "6.62亿",
+   "gates": "✓✓✓",
+   "detail": "KDJ低位金叉、higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 6.439,
+   "ma10": 6.408,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.057 vs DEA +0.085）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 6.38 vs MA20 6.439（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true,
+     "detail": "09-01金叉（前日K 27<35），当前 K 49 D 44 J 58"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 6.14 vs 前40日低点 5.15"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.057 DEA +0.085，柱 -0.056（前3柱 -0.054/-0.053/-0.064）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 61 → 今 58（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.060 vs 实体 0.030，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 6.38 vs MA10 6.408"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 6.67 低 6.14，现回撤 55%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 6.047｜触发✓CCI -53｜R1✓ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 19.62,
+    "pb": 1.24,
+    "mcap": 5838.16,
+    "roe": 6.3,
+    "fscore": 27,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002236",
+   "name": "大华股份",
+   "sector": "科技",
+   "close": 16.31,
+   "chg": 0.12,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 45,
+   "entry": "2/5",
+   "j": 54.7,
+   "amt20": "5.38亿",
+   "gates": "✓✓✓",
+   "detail": "MACD金叉、higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 16.378,
+   "ma10": 16.307,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF -0.074（零轴下方·底部，均认可），当前 DIF -0.068 > DEA -0.080"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 16.31 vs MA20 16.378（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 57 D 58 J 55"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 15.87 vs 前40日低点 15.81"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.068 DEA -0.080，柱 +0.024（前3柱 +0.028/+0.039/+0.035）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 66 → 今 55（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.140 vs 实体 0.070，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 16.31 vs MA10 16.307"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 16.93 低 15.87，现回撤 58%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 16.487｜触发✓CCI 44｜R1✗ R2✗ R3✗ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 14.16,
+    "pb": 1.36,
+    "mcap": 533.22,
+    "roe": 9.6,
+    "fscore": 27,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000612",
+   "name": "焦作万方",
+   "sector": "有色",
+   "close": 11.03,
+   "chg": -2.22,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 45,
+   "entry": "2/5",
+   "j": 37.3,
+   "amt20": "3.91亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 11.235,
+   "ma10": 11.205,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "08-31金叉 DIF +0.060（零轴上方·中继，均认可），当前 DIF +0.036 < DEA +0.054"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 11.03 vs MA20 11.235（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 49 D 55 J 37"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 10.8 vs 前40日低点 9.48"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 56.8）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.036 DEA +0.054，柱 -0.037（前3柱 -0.007/-0.010/+0.021）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 62 → 今 37（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.030 vs 实体 0.360，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 11.03 vs MA10 11.205"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 12.05 低 10.8，现回撤 82%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 11.007｜触发✗CCI -11｜R1✗ R2✓ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 7.45,
+    "pb": 1.62,
+    "mcap": 131.5,
+    "roe": 21.7,
+    "fscore": 26,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600711",
+   "name": "盛屯矿业",
+   "sector": "有色",
+   "close": 11.52,
+   "chg": -1.29,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 40,
+   "entry": "2/5",
+   "j": 36.1,
+   "amt20": "14.74亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 11.893,
+   "ma10": 11.756,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.097 vs DEA +0.165）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 11.52 vs MA20 11.893（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 47 D 53 J 36"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 11.13 vs 前40日低点 8.91"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 50.0）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.097 DEA +0.165，柱 -0.136（前3柱 -0.115/-0.107/-0.052）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 47 → 今 36（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.220 vs 实体 0.380，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 11.52 vs MA10 11.756"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 13.18 低 11.13，现回撤 81%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 11.383｜触发✓CCI -23｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 13.12,
+    "pb": 1.99,
+    "mcap": 356.04,
+    "roe": 15.2,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "601702",
+   "name": "华峰铝业",
+   "sector": "有色",
+   "close": 15.75,
+   "chg": -1.81,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 40,
+   "entry": "2/5",
+   "j": 52.5,
+   "amt20": "1.65亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 15.832,
+   "ma10": 15.921,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.130 vs DEA +0.167）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 15.75 vs MA20 15.832（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 49 D 47 J 53（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 14.77 vs 前40日低点 13.61"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 60.0）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.130 DEA +0.167，柱 -0.073（前3柱 -0.045/-0.061/-0.001）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 58 → 今 53（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.010 vs 实体 0.410，量比 0.7"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 15.75 vs MA10 15.921"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 17.05 低 14.77，现回撤 57%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 15.292｜触发✗CCI -55｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 13.23,
+    "pb": 2.35,
+    "mcap": 157.27,
+    "roe": 17.8,
+    "fscore": 28,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600366",
+   "name": "宁波韵升",
+   "sector": "有色",
+   "close": 11.25,
+   "chg": -2.0,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 40,
+   "entry": "2/5",
+   "j": 24.2,
+   "amt20": "4.32亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 11.866,
+   "ma10": 11.523,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.250 vs DEA -0.232）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 11.25 vs MA20 11.866（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "09-03金叉（前日K 21<35），当前 K 25 D 26 J 24"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 11.11 vs 前40日低点 10.0"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 65.7）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.250 DEA -0.232，柱 -0.036（前3柱 -0.019/-0.031/+0.010）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 33 → 今 24（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.090 vs 实体 0.310，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 11.25 vs MA10 11.523"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 12.72 低 11.11，现回撤 91%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 12.869｜触发✓CCI -102｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 24.87,
+    "pb": 1.93,
+    "mcap": 123.64,
+    "roe": 7.8,
+    "fscore": 23,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000630",
+   "name": "铜陵有色",
+   "sector": "有色",
+   "close": 6.39,
+   "chg": -1.39,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 25,
+   "entry": "1/5",
+   "j": -2.0,
+   "amt20": "19.61亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 6.592,
+   "ma10": 6.6,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.030 vs DEA +0.063）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 6.39 vs MA20 6.592（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 29 D 44 J -2"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 6.33 vs 前40日低点 5.69"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.030 DEA +0.063，柱 -0.065（前3柱 -0.042/-0.024/+0.010）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 18 → 今 -2（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.020 vs 实体 0.180，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 6.39 vs MA10 6.600"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 7.0 低 6.33，现回撤 91%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 6.501｜触发✗CCI -77｜R1✗ R2✓ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 21.59,
+    "pb": 2.25,
+    "mcap": 856.87,
+    "roe": 10.4,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600497",
+   "name": "驰宏锌锗",
+   "sector": "有色",
+   "close": 9.84,
+   "chg": -2.48,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 25,
+   "entry": "1/5",
+   "j": 4.4,
+   "amt20": "14.83亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 10.211,
+   "ma10": 10.262,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.079 vs DEA +0.118）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 9.84 vs MA20 10.211（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 37 D 53 J 4"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 9.63 vs 前40日低点 8.23"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.079 DEA +0.118，柱 -0.076（前3柱 -0.015/+0.030/+0.083）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 31 → 今 4（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.020 vs 实体 0.340，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 9.84 vs MA10 10.262"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 10.95 低 9.63，现回撤 84%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 10.160｜触发✗CCI -72｜R1✗ R2✓ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 29.29,
+    "pb": 2.79,
+    "mcap": 495.97,
+    "roe": 9.5,
+    "fscore": 27,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600050",
+   "name": "中国联通",
+   "sector": "科技",
+   "close": 4.25,
+   "chg": -0.23,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 25,
+   "entry": "1/5",
+   "j": 19.4,
+   "amt20": "5.27亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 4.287,
+   "ma10": 4.288,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "09-01金叉 DIF -0.008（零轴下方·底部，均认可），当前 DIF -0.013 < DEA -0.010"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 4.25 vs MA20 4.287（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 47 D 61 J 19"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 4.1 vs 前40日低点 3.93"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.013 DEA -0.010，柱 -0.006（前3柱 -0.002/+0.001/+0.002）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 49 → 今 19（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.040 vs 实体 0.010，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 4.25 vs MA10 4.288"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 4.37 低 4.1，现回撤 44%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 4.271｜触发✗CCI -12｜R1✗ R2✓ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 19.21,
+    "pb": 0.78,
+    "mcap": 1328.74,
+    "roe": 4.1,
+    "fscore": 24,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600361",
+   "name": "创新新材",
+   "sector": "有色",
+   "close": 3.63,
+   "chg": -0.82,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 25,
+   "entry": "1/5",
+   "j": -3.8,
+   "amt20": "1.59亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 3.688,
+   "ma10": 3.714,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.001 vs DEA +0.003）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 3.63 vs MA20 3.688（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 29 D 45 J -4"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 3.57 vs 前40日低点 3.35"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF -0.001 DEA +0.003，柱 -0.009（前3柱 +0.000/+0.010/+0.021）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 16 → 今 -4（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.020 vs 实体 0.040，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 3.63 vs MA10 3.714"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 3.83 低 3.57，现回撤 77%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 3.689｜触发✗CCI -58｜R1✗ R2✓ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 16.39,
+    "pb": 1.22,
+    "mcap": 135.5,
+    "roe": 7.4,
+    "fscore": 23,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600363",
+   "name": "联创光电",
+   "sector": "科技",
+   "close": 16.31,
+   "chg": 1.94,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 25,
+   "entry": "1/5",
+   "j": 16.0,
+   "amt20": "8.68亿",
+   "gates": "✓✓✗",
+   "detail": "放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 18.518,
+   "ma10": 17.025,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -2.448 vs DEA -2.581）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 16.31 vs MA20 18.518（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 16 D 17 J 16"
+    },
+    {
+     "key": "higher_low",
+     "on": false,
+     "detail": "近20日低点 15.73 vs 前40日低点 20.5"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 72.9）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -2.448 DEA -2.581，柱 +0.266（前3柱 +0.178/+0.160/+0.127）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 11 → 今 16（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.570 vs 实体 0.350，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 16.31 vs MA10 17.025"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 21.97 低 15.73，现回撤 91%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 26.168｜触发✓CCI -85｜R1✗ R2✗ R3✗ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 19.17,
+    "pb": 1.59,
+    "mcap": 73.54,
+    "roe": 8.3,
+    "fscore": 21,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000795",
+   "name": "英洛华",
+   "sector": "有色",
+   "close": 8.47,
+   "chg": -1.51,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 25,
+   "entry": "1/5",
+   "j": -2.7,
+   "amt20": "1.46亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 8.604,
+   "ma10": 8.696,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.012 vs DEA +0.020）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 8.47 vs MA20 8.604（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 20 D 31 J -3"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 8.26 vs 前40日低点 7.97"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.012 DEA +0.020，柱 -0.017（前3柱 +0.011/+0.027/+0.060）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 13 → 今 -3（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.070 vs 实体 0.150，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 8.47 vs MA10 8.696"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 9.42 低 8.26，现回撤 82%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 8.726｜触发✗CCI -38｜R1✗ R2✓ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 40.25,
+    "pb": 3.58,
+    "mcap": 94.55,
+    "roe": 8.9,
+    "fscore": 20,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "603993",
+   "name": "洛阳钼业",
+   "sector": "有色",
+   "close": 18.48,
+   "chg": -0.7,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 8.3,
+   "amt20": "44.00亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 18.913,
+   "ma10": 18.969,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.069 vs DEA -0.003）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 18.48 vs MA20 18.913（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 30 D 41 J 8"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 17.91 vs 前40日低点 16.41"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.069 DEA -0.003，柱 -0.130（前3柱 -0.097/-0.063/+0.027）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 18 → 今 8（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.110 vs 实体 0.400，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 18.48 vs MA10 18.969"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 21.1 低 17.91，现回撤 82%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 18.870｜触发✗CCI -38｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 14.21,
+    "pb": 4.41,
+    "mcap": 3953.67,
+    "roe": 31.0,
+    "fscore": 30,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000737",
+   "name": "北方铜业",
+   "sector": "有色",
+   "close": 14.35,
+   "chg": -3.56,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 2.7,
+   "amt20": "12.68亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 14.606,
+   "ma10": 15.029,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.341 vs DEA +0.397）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 14.35 vs MA20 14.606（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 40 D 58 J 3"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 13.41 vs 前40日低点 11.49"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.341 DEA +0.397，柱 -0.112（前3柱 +0.007/+0.076/+0.159）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 37 → 今 3（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.000 vs 实体 0.740，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 14.35 vs MA10 15.029"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 15.86 低 13.41，现回撤 62%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 13.780｜触发✗CCI -43｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 16.08,
+    "pb": 3.46,
+    "mcap": 273.33,
+    "roe": 21.5,
+    "fscore": 28,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600531",
+   "name": "豫光金铅",
+   "sector": "有色",
+   "close": 13.08,
+   "chg": -2.9,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 24.0,
+   "amt20": "8.67亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 13.521,
+   "ma10": 13.622,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.158 vs DEA +0.223）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 13.08 vs MA20 13.521（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 43 D 52 J 24"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 12.66 vs 前40日低点 10.58"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.158 DEA +0.223，柱 -0.130（前3柱 -0.060/-0.031/+0.052）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 40 → 今 24（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.030 vs 实体 0.570，量比 0.7"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 13.08 vs MA10 13.622"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 14.7 低 12.66，现回撤 79%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 13.244｜触发✓CCI -73｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 17.18,
+    "pb": 2.24,
+    "mcap": 158.17,
+    "roe": 13.0,
+    "fscore": 28,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "603876",
+   "name": "鼎胜新材",
+   "sector": "有色",
+   "close": 19.82,
+   "chg": -1.98,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": -15.5,
+   "amt20": "5.17亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 22.188,
+   "ma10": 22.054,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.354 vs DEA -0.026）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 19.82 vs MA20 22.188（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 15 D 30 J -16"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 19.62 vs 前40日低点 17.8"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.354 DEA -0.026，柱 -0.656（前3柱 -0.509/-0.316/+0.008）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 -15 → 今 -16（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.120 vs 实体 0.570，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 19.82 vs MA10 22.054"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 24.07 低 19.62，现回撤 96%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 22.818｜触发✓CCI -172｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 22.88,
+    "pb": 2.39,
+    "mcap": 184.18,
+    "roe": 10.4,
+    "fscore": 28,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000725",
+   "name": "京东方Ａ",
+   "sector": "科技",
+   "close": 5.61,
+   "chg": -1.75,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 23.8,
+   "amt20": "85.30亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 5.898,
+   "ma10": 5.81,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.099 vs DEA -0.094）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 5.61 vs MA20 5.898（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 36 D 42 J 24"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 5.53 vs 前40日低点 5.29"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.099 DEA -0.094，柱 -0.011（前3柱 +0.015/+0.037/+0.055）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 47 → 今 24（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.030 vs 实体 0.130，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 5.61 vs MA10 5.810"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 6.48 低 5.53，现回撤 92%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 6.430｜触发✓CCI -118｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 26.45,
+    "pb": 1.56,
+    "mcap": 2078.19,
+    "roe": 5.9,
+    "fscore": 27,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "000060",
+   "name": "中金岭南",
+   "sector": "有色",
+   "close": 6.51,
+   "chg": -1.66,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 5.4,
+   "amt20": "7.93亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 6.676,
+   "ma10": 6.712,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.012 vs DEA +0.020）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 6.51 vs MA20 6.676（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 36 D 51 J 5"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 6.4 vs 前40日低点 5.88"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.012 DEA +0.020，柱 -0.016（前3柱 +0.014/+0.039/+0.079）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 27 → 今 5（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.020 vs 实体 0.160，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 6.51 vs MA10 6.712"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 7.04 低 6.4，现回撤 83%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 6.838｜触发✗CCI -69｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 20.88,
+    "pb": 1.43,
+    "mcap": 289.12,
+    "roe": 6.8,
+    "fscore": 25,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002185",
+   "name": "华天科技",
+   "sector": "科技",
+   "close": 15.57,
+   "chg": -2.81,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": -0.2,
+   "amt20": "39.15亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 17.284,
+   "ma10": 16.569,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "08-31金叉 DIF -0.391（零轴下方·底部，均认可），当前 DIF -0.576 < DEA -0.464"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 15.57 vs MA20 17.284（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "08-31金叉（前日K 29<35），当前 K 14 D 21 J -0"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 15.45 vs 前40日低点 14.7"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.576 DEA -0.464，柱 -0.224（前3柱 -0.157/-0.117/-0.036）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 5 → 今 -0（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.110 vs 实体 0.600，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 15.57 vs MA10 16.569"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 19.22 低 15.45，现回撤 97%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 18.785｜触发✓CCI -143｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 39.92,
+    "pb": 2.72,
+    "mcap": 517.98,
+    "roe": 6.8,
+    "fscore": 24,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "002203",
+   "name": "海亮股份",
+   "sector": "有色",
+   "close": 18.84,
+   "chg": -3.14,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 36.8,
+   "amt20": "4.97亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 19.252,
+   "ma10": 19.377,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.008 vs DEA +0.007）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 18.84 vs MA20 19.252（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 46 D 51 J 37"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 18.01 vs 前40日低点 16.12"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.008 DEA +0.007，柱 +0.002（前3柱 +0.086/+0.090/+0.078）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 54 → 今 37（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.080 vs 实体 0.660，量比 0.7"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 18.84 vs MA10 19.377"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 20.6 低 18.01，现回撤 68%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 20.075｜触发✗CCI -21｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 49.5,
+    "pb": 2.56,
+    "mcap": 431.77,
+    "roe": 5.2,
+    "fscore": 24,
+    "fgrade": "A",
+    "flags": ""
+   }
+  },
+  {
+   "code": "601388",
+   "name": "怡球资源",
+   "sector": "有色",
+   "close": 3.4,
+   "chg": -2.3,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 11.9,
+   "amt20": "1.71亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 3.413,
+   "ma10": 3.495,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.083 vs DEA +0.093）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 3.4 vs MA20 3.413（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 36 D 48 J 12"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 3.24 vs 前40日低点 2.69"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.083 DEA +0.093，柱 -0.020（前3柱 -0.001/+0.009/+0.025）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 36 → 今 12（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.000 vs 实体 0.100，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 3.4 vs MA10 3.495"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 3.76 低 3.24，现回撤 69%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 3.158｜触发✗CCI -8｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 20.45,
+    "pb": 1.59,
+    "mcap": 74.84,
+    "roe": 7.8,
+    "fscore": 21,
+    "fgrade": "B",
+    "flags": ""
+   }
+  },
+  {
+   "code": "600360",
+   "name": "华微电子",
+   "sector": "科技",
+   "close": 9.66,
+   "chg": -2.91,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": -5.7,
+   "amt20": "5.33亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 10.492,
+   "ma10": 10.27,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.303 vs DEA -0.282）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 9.66 vs MA20 10.492（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 15 D 25 J -6"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 9.62 vs 前40日低点 9.0"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.303 DEA -0.282，柱 -0.042（前3柱 +0.020/+0.066/+0.120）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 1 → 今 -6（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.130 vs 实体 0.340，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 9.66 vs MA10 10.270"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 11.27 低 9.62，现回撤 98%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 11.758｜触发✓CCI -163｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ],
+   "fund": {
+    "pe": 50.49,
+    "pb": 2.61,
+    "mcap": 92.76,
+    "roe": 5.2,
+    "fscore": 20,
+    "fgrade": "B",
+    "flags": ""
+   }
+  }
+ ],
+ "etfs": [
+  {
+   "code": "512690",
+   "name": "酒ETF鹏华",
+   "sector": "ETF",
+   "close": 0.434,
+   "chg": 3.09,
+   "stage": "B+",
+   "stageName": "B+_鱼头启动",
+   "score": 90,
+   "entry": "4/5",
+   "j": 74.0,
+   "amt20": "0.05亿",
+   "gates": "✗✓✓",
+   "detail": "站上中轨、KDJ低位金叉、higher_low、放量阳线；60分钟09-04 10:30金叉 DIF +0.001（贴零轴），现价 0.434 > 60分钟MA20 0.426｜E5放量阳线✅ 09-04 10:30 量比5.0｜红柱扩张✅",
+   "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+   "m60": "60分钟09-04 10:30金叉 DIF +0.001（贴零轴），现价 0.434 > 60分钟MA20 0.426｜E5放量阳线✅ 09-04 10:30 量比5.0｜红柱扩张✅",
+   "ma20": 0.43,
+   "ma10": 0.424,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.001 vs DEA -0.001）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 0.434 vs MA20 0.430（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true,
+     "detail": "09-01金叉（前日K 19<35），当前 K 49 D 37 J 74"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 0.417 vs 前40日低点 0.378"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 140.0）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.001 DEA -0.001，柱 -0.000（前3柱 -0.002/-0.003/-0.003）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 39 → 今 74（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.004 vs 实体 0.012，量比 2.2"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 0.434 vs MA10 0.424"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 0.455 低 0.417，现回撤 55%"
+    }
+   ],
+   "six": "2/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 0.419｜触发✓CCI 135｜R1✓ R2✗ R3✗ R4✗ R5✓（量比2.2）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ]
+  },
+  {
+   "code": "512880",
+   "name": "证券ETF国泰",
+   "sector": "ETF",
+   "close": 1.105,
+   "chg": 0.64,
+   "stage": "B",
+   "stageName": "B_上车临近",
+   "score": 85,
+   "entry": "3/5",
+   "j": 79.6,
+   "amt20": "0.19亿",
+   "gates": "✗✓✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "⭐ 观察池置顶：每日核对",
+   "m60": "60分钟未确认鱼头：金叉后动能转弱",
+   "ma20": 1.089,
+   "ma10": 1.095,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.001 vs DEA -0.002）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 1.105 vs MA20 1.089（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 73 D 70 J 80（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 1.056 vs 前40日低点 1.005"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 82.2）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.001 DEA -0.002，柱 +0.006（前3柱 +0.006/+0.007/+0.009）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 75 → 今 80（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.012 vs 实体 0.003，量比 1.3"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 1.105 vs MA10 1.095"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 1.117 低 1.056，现回撤 20%"
+    }
+   ],
+   "six": "5/5",
+   "sixGrade": "极强",
+   "sixDetail": "前置✓MA60 1.104｜触发✗CCI 88｜R1✓ R2✓ R3✓ R4✓ R5✓（量比1.3）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ]
+  },
+  {
+   "code": "510880",
+   "name": "红利ETF华泰柏瑞",
+   "sector": "ETF",
+   "close": 3.438,
+   "chg": 0.06,
+   "stage": "D",
+   "stageName": "D_顶部区",
+   "score": 65,
+   "entry": "3/5",
+   "j": 22.0,
+   "amt20": "0.06亿",
+   "gates": "✗✗✓",
+   "detail": "站上中轨、higher_low、放量阳线",
+   "action": "执行下车清单",
+   "m60": "",
+   "ma20": 3.388,
+   "ma10": 3.448,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.055 vs DEA +0.058）"
+    },
+    {
+     "key": "站上中轨",
+     "on": true,
+     "detail": "收盘 3.438 vs MA20 3.388（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 52 D 67 J 22"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 3.255 vs 前40日低点 2.896"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 41.1）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF +0.055 DEA +0.058，柱 -0.004（前3柱 +0.001/+0.008/+0.018）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 27 → 今 22（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.018 vs 实体 0.003，量比 0.6"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 3.438 vs MA10 3.448"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": false,
+     "detail": "20日高 3.535 低 3.255，现回撤 35%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 3.228｜触发✗CCI 29｜R1✗ R2✗ R3✓ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": true
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "159611",
+   "name": "电力ETF广发",
+   "sector": "ETF",
+   "close": 1.044,
+   "chg": -0.29,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 75,
+   "entry": "3/5",
+   "j": 76.5,
+   "amt20": "0.04亿",
+   "gates": "✗✗✓",
+   "detail": "MACD金叉、higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 1.045,
+   "ma10": 1.042,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "09-01金叉 DIF -0.006（零轴下方·底部，均认可），当前 DIF -0.004 > DEA -0.006"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 1.044 vs MA20 1.045（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 70 D 67 J 77（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 1.02 vs 前40日低点 0.996"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 70.3）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.004 DEA -0.006，柱 +0.003（前3柱 +0.003/+0.002/+0.002）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": true,
+     "detail": "J 前日 95 → 今 77（超买后拐头）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.006 vs 实体 0.003，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": false,
+     "detail": "收盘 1.044 vs MA10 1.042"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 1.074 低 1.02，现回撤 56%"
+    }
+   ],
+   "six": "3/5",
+   "sixGrade": "接近",
+   "sixDetail": "前置✗MA60 1.055｜触发✗CCI 89｜R1✓ R2✓ R3✗ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": false
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": true
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "512010",
+   "name": "医药ETF易方达",
+   "sector": "ETF",
+   "close": 0.38,
+   "chg": 0.26,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 65,
+   "entry": "3/5",
+   "j": 44.1,
+   "amt20": "0.05亿",
+   "gates": "✗✓✓",
+   "detail": "KDJ低位金叉、higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 0.39,
+   "ma10": 0.38,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.000 vs DEA +0.002）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 0.38 vs MA20 0.390（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true,
+     "detail": "09-03金叉（前日K 19<35），当前 K 33 D 27 J 44"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 0.373 vs 前40日低点 0.319"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-04放量阳线（量比 58.4）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.000 DEA +0.002，柱 -0.005（前3柱 -0.006/-0.006/-0.006）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 29 → 今 44（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.002 vs 实体 0.001，量比 0.9"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 0.38 vs MA10 0.380"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 0.412 低 0.373，现回撤 82%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 0.370｜触发✓CCI -48｜R1✓ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "159819",
+   "name": "人工智能ETF易方达",
+   "sector": "ETF",
+   "close": 1.705,
+   "chg": -1.56,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 50,
+   "entry": "2/5",
+   "j": 54.0,
+   "amt20": "0.05亿",
+   "gates": "✗✓✓",
+   "detail": "MACD金叉、higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 1.77,
+   "ma10": 1.727,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": true,
+     "detail": "08-31金叉 DIF -0.044（零轴下方·底部，均认可），当前 DIF -0.039 > DEA -0.042"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 1.705 vs MA20 1.770（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 53 D 52 J 54（K>D 但金叉超5日或非低位）"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 1.648 vs 前40日低点 1.644"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": true,
+     "detail": "DIF -0.039 DEA -0.042，柱 +0.006（前3柱 +0.010/+0.011/+0.011）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 74 → 今 54（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.005 vs 实体 0.045，量比 1.0"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 1.705 vs MA10 1.727"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 1.903 低 1.648，现回撤 78%"
+    }
+   ],
+   "six": "2/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 1.908｜触发✓CCI -54｜R1✓ R2✗ R3✗ R4✓ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": true
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": true
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "518880",
+   "name": "华安黄金ETF",
+   "sector": "ETF",
+   "close": 9.164,
+   "chg": 0.65,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 45,
+   "entry": "2/5",
+   "j": 20.8,
+   "amt20": "0.58亿",
+   "gates": "✓✓✗",
+   "detail": "higher_low、放量阳线",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 9.19,
+   "ma10": 9.296,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF +0.109 vs DEA +0.155）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 9.164 vs MA20 9.190（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 37 D 45 J 21"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 8.833 vs 前40日低点 8.224"
+    },
+    {
+     "key": "放量阳线",
+     "on": true,
+     "detail": "09-03放量阳线（量比 63.0）"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF +0.109 DEA +0.155，柱 -0.093（前3柱 -0.096/-0.086/-0.027）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 5 → 今 21（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.008 vs 实体 0.046，量比 0.7"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 9.164 vs MA10 9.296"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 9.62 低 8.833，现回撤 58%"
+    }
+   ],
+   "six": "1/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 8.753｜触发✓CCI -26｜R1✗ R2✗ R3✗ R4✗ R5✓（量比1.4）",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": true
+    }
+   ]
+  },
+  {
+   "code": "588000",
+   "name": "科创50ETF华夏",
+   "sector": "ETF",
+   "close": 1.668,
+   "chg": -2.06,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 16.0,
+   "amt20": "0.61亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 1.769,
+   "ma10": 1.725,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.041 vs DEA -0.039）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 1.668 vs MA20 1.769（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 31 D 39 J 16"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 1.651 vs 前40日低点 1.635"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.041 DEA -0.039，柱 -0.005（前3柱 +0.001/+0.004/+0.009）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 39 → 今 16（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.012 vs 实体 0.048，量比 1.6"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 1.668 vs MA10 1.725"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 1.899 低 1.651，现回撤 93%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 1.908｜触发✓CCI -107｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "159915",
+   "name": "创业板ETF易方达",
+   "sector": "ETF",
+   "close": 3.305,
+   "chg": -0.75,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 2.7,
+   "amt20": "0.57亿",
+   "gates": "✓✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 3.506,
+   "ma10": 3.408,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.077 vs DEA -0.063）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 3.305 vs MA20 3.506（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 13 D 18 J 3"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 3.285 vs 前40日低点 3.182"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.077 DEA -0.063，柱 -0.029（前3柱 -0.025/-0.019/-0.009）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 5 → 今 3（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.031 vs 实体 0.051，量比 1.3"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 3.305 vs MA10 3.408"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 3.767 低 3.285，现回撤 96%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 3.728｜触发✓CCI -121｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "510300",
+   "name": "沪深300ETF华泰柏瑞",
+   "sector": "ETF",
+   "close": 4.616,
+   "chg": -0.11,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 23.8,
+   "amt20": "0.36亿",
+   "gates": "✓✗✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 4.688,
+   "ma10": 4.649,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "08-31金叉 DIF -0.023（零轴下方·底部，均认可），当前 DIF -0.028 < DEA -0.025"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 4.616 vs MA20 4.688（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 35 D 41 J 24"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 4.587 vs 前40日低点 4.536"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.028 DEA -0.025，柱 -0.007（前3柱 -0.005/-0.001/+0.006）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 35 → 今 24（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": true,
+     "detail": "上影 0.035 vs 实体 0.021，量比 1.3"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 4.616 vs MA10 4.649"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 4.803 低 4.587，现回撤 87%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 4.774｜触发✓CCI -78｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "512480",
+   "name": "半导体ETF国联安",
+   "sector": "ETF",
+   "close": 0.976,
+   "chg": -2.79,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 14.7,
+   "amt20": "0.14亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 1.049,
+   "ma10": 1.022,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.026 vs DEA -0.025）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 0.976 vs MA20 1.049（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 31 D 38 J 15"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 0.966 vs 前40日低点 0.919"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.026 DEA -0.025，柱 -0.004（前3柱 +0.001/+0.004/+0.007）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 38 → 今 15（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.007 vs 实体 0.037，量比 1.5"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 0.976 vs MA10 1.022"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 1.146 低 0.966，现回撤 94%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 1.152｜触发✓CCI -125｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "588710",
+   "name": "UC科创半导体设备ETF",
+   "sector": "ETF",
+   "close": 0.933,
+   "chg": -3.32,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": -3.0,
+   "amt20": "0.11亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 1.04,
+   "ma10": 1.009,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.022 vs DEA -0.012）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 0.933 vs MA20 1.040（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 15 D 24 J -3"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 0.923 vs 前40日低点 0.852"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.022 DEA -0.012，柱 -0.021（前3柱 -0.014/-0.010/-0.004）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 1 → 今 -3（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.010 vs 实体 0.039，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 0.933 vs MA10 1.009"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 1.143 低 0.923，现回撤 95%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 1.092｜触发✓CCI -161｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "515050",
+   "name": "5G通信ETF",
+   "sector": "ETF",
+   "close": 0.987,
+   "chg": -1.69,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 13.3,
+   "amt20": "0.10亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 1.034,
+   "ma10": 1.018,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.016 vs DEA -0.016）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 0.987 vs MA20 1.034（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 31 D 39 J 13"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 0.974 vs 前40日低点 0.86"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.016 DEA -0.016，柱 -0.001（前3柱 +0.004/+0.007/+0.011）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 32 → 今 13（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.013 vs 实体 0.027，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 0.987 vs MA10 1.018"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 1.119 低 0.974，现回撤 91%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 1.125｜触发✓CCI -101｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "159381",
+   "name": "创业板人工智能ETF华夏",
+   "sector": "ETF",
+   "close": 1.131,
+   "chg": -0.53,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 32.4,
+   "amt20": "0.05亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 1.171,
+   "ma10": 1.147,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.014 vs DEA -0.014）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 1.131 vs MA20 1.171（中轨上行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "08-31金叉（前日K 30<35），当前 K 38 D 40 J 32"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 1.103 vs 前40日低点 0.964"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.014 DEA -0.014，柱 -0.002（前3柱 +0.000/+0.003/+0.005）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 42 → 今 32（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.020 vs 实体 0.019，量比 1.1"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 1.131 vs MA10 1.147"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 1.269 低 1.103，现回撤 83%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 1.241｜触发✓CCI -63｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "512760",
+   "name": "芯片ETF华夏",
+   "sector": "ETF",
+   "close": 1.036,
+   "chg": -2.81,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": 14.3,
+   "amt20": "0.04亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 1.114,
+   "ma10": 1.082,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.031 vs DEA -0.029）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 1.036 vs MA20 1.114（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 30 D 38 J 14"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 1.028 vs 前40日低点 0.994"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.031 DEA -0.029，柱 -0.003（前3柱 +0.002/+0.004/+0.007）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 40 → 今 14（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.008 vs 实体 0.038，量比 1.4"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 1.036 vs MA10 1.082"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 1.218 低 1.028，现回撤 96%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✓MA60 1.227｜触发✓CCI -122｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": true
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  },
+  {
+   "code": "516160",
+   "name": "新能源车ETF",
+   "sector": "ETF",
+   "close": 2.349,
+   "chg": -0.89,
+   "stage": "E",
+   "stageName": "E_下跌中继",
+   "score": 20,
+   "entry": "1/5",
+   "j": -1.4,
+   "amt20": "0.01亿",
+   "gates": "✗✓✓",
+   "detail": "higher_low",
+   "action": "冷却池：禁止抄底",
+   "m60": "",
+   "ma20": 2.504,
+   "ma10": 2.44,
+   "entryFlags": [
+    {
+     "key": "MACD金叉",
+     "on": false,
+     "detail": "近5日无金叉（DIF -0.049 vs DEA -0.035）"
+    },
+    {
+     "key": "站上中轨",
+     "on": false,
+     "detail": "收盘 2.349 vs MA20 2.504（中轨走平/下行）"
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false,
+     "detail": "近5日无低位金叉，当前 K 9 D 14 J -1"
+    },
+    {
+     "key": "higher_low",
+     "on": true,
+     "detail": "近20日低点 2.338 vs 前40日低点 2.273"
+    },
+    {
+     "key": "放量阳线",
+     "on": false,
+     "detail": "近2日无放量阳线"
+    }
+   ],
+   "exitFlags": [
+    {
+     "key": "MACD高位死叉或红柱连缩",
+     "on": false,
+     "detail": "DIF -0.049 DEA -0.035，柱 -0.029（前3柱 -0.026/-0.023/-0.013）"
+    },
+    {
+     "key": "J值超买拐头",
+     "on": false,
+     "detail": "J 前日 -2 → 今 -1（未超买）"
+    },
+    {
+     "key": "放量长上影或吞没",
+     "on": false,
+     "detail": "上影 0.018 vs 实体 0.028，量比 0.8"
+    },
+    {
+     "key": "破MA10",
+     "on": true,
+     "detail": "收盘 2.349 vs MA10 2.440"
+    },
+    {
+     "key": "高点回撤过半",
+     "on": true,
+     "detail": "20日高 2.642 低 2.338，现回撤 96%"
+    }
+   ],
+   "six": "0/5",
+   "sixGrade": "不足",
+   "sixDetail": "前置✗MA60 2.615｜触发✓CCI -135｜R1✗ R2✗ R3✗ R4✗ R5✗",
+   "sixFlags": [
+    {
+     "key": "MA60不逆势",
+     "on": false
+    },
+    {
+     "key": "CCI触底拐头",
+     "on": true
+    },
+    {
+     "key": "KDJ低位金叉",
+     "on": false
+    },
+    {
+     "key": "SAR转红维持",
+     "on": false
+    },
+    {
+     "key": "站上中轨",
+     "on": false
+    },
+    {
+     "key": "MACD金叉",
+     "on": false
+    },
+    {
+     "key": "放量确认",
+     "on": false
+    }
+   ]
+  }
+ ],
+ "recommendations": {
+  "date": "20260904",
+  "generated": "09:08",
+  "session": "close",
+  "note": "每日收盘后自动生成：趋势中=五信号共振确认的C阶段；启动刚突破=60分钟鱼头B+或当日放量突破20日新高；精选=两组之外的强信号，按「趋势强·弹性好·贴近上车」综合评分排序；不足20只由B/A阶段观察补足。三组严格去重，目标共20只。仅供个人研究，不构成投资建议。",
+  "trend": [
+   {
+    "code": "605577",
+    "name": "龙版传媒",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 15.55,
+    "chg": 9.97,
+    "stage": "C",
+    "stageName": "C_趋势中",
+    "score": 125,
+    "entry": "5/5",
+    "six": "5/5",
+    "sixGrade": "极强",
+    "j": 124.6,
+    "amt20": "1.51亿",
+    "ma20": 10.641,
+    "ma10": 11.343,
+    "detail": "MACD金叉、站上中轨、KDJ低位金叉、higher_low、放量阳线",
+    "reason": "放量突破20日新高、五信号共振·趋势确认、六联5/5 极强",
+    "action": "持有者拿住，未上车不追",
+    "m60": ""
+   },
+   {
+    "code": "601900",
+    "name": "南方传媒",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 12.45,
+    "chg": 3.32,
+    "stage": "C",
+    "stageName": "C_趋势中",
+    "score": 125,
+    "entry": "5/5",
+    "six": "5/5",
+    "sixGrade": "极强",
+    "j": 66.2,
+    "amt20": "1.15亿",
+    "ma20": 11.892,
+    "ma10": 11.935,
+    "detail": "MACD金叉、站上中轨、KDJ低位金叉、higher_low、放量阳线",
+    "reason": "五信号共振·趋势确认、六联5/5 极强",
+    "action": "持有者拿住，未上车不追",
+    "m60": ""
+   },
+   {
+    "code": "600490",
+    "name": "鹏欣资源",
+    "sector": "有色",
+    "is_etf": false,
+    "close": 7.72,
+    "chg": 0.0,
+    "stage": "C",
+    "stageName": "C_趋势中",
+    "score": 50,
+    "entry": "2/5",
+    "six": "2/5",
+    "sixGrade": "不足",
+    "j": 45.1,
+    "amt20": "5.57亿",
+    "ma20": 7.478,
+    "ma10": 7.683,
+    "detail": "站上中轨、higher_low",
+    "reason": "五信号共振·趋势确认",
+    "action": "持有者拿住，未上车不追",
+    "m60": ""
+   }
+  ],
+  "breakout": [
+   {
+    "code": "002602",
+    "name": "世纪华通",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 15.73,
+    "chg": 7.96,
+    "stage": "B+",
+    "stageName": "B+_鱼头启动",
+    "score": 100,
+    "entry": "4/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 97.1,
+    "amt20": "15.39亿",
+    "ma20": 14.152,
+    "ma10": 14.201,
+    "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+    "reason": "60分钟鱼头刚启动、放量突破20日新高、六联4/5 强",
+    "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+    "m60": "60分钟09-02 11:30金叉 DIF +0.026（贴零轴），现价 15."
+   },
+   {
+    "code": "600601",
+    "name": "方正科技",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 13.09,
+    "chg": 3.72,
+    "stage": "B+",
+    "stageName": "B+_鱼头启动",
+    "score": 100,
+    "entry": "4/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 81.5,
+    "amt20": "24.89亿",
+    "ma20": 12.482,
+    "ma10": 12.228,
+    "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+    "reason": "60分钟鱼头刚启动、六联4/5 强",
+    "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+    "m60": "60分钟09-03 14:00金叉 DIF +0.040（贴零轴），现价 13."
+   },
+   {
+    "code": "512690",
+    "name": "酒ETF鹏华",
+    "sector": "ETF",
+    "is_etf": true,
+    "close": 0.434,
+    "chg": 3.09,
+    "stage": "B+",
+    "stageName": "B+_鱼头启动",
+    "score": 90,
+    "entry": "4/5",
+    "six": "2/5",
+    "sixGrade": "不足",
+    "j": 74.0,
+    "amt20": "0.05亿",
+    "ma20": 0.43,
+    "ma10": 0.424,
+    "detail": "站上中轨、KDJ低位金叉、higher_low、放量阳线",
+    "reason": "60分钟鱼头刚启动",
+    "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+    "m60": "60分钟09-04 10:30金叉 DIF +0.001（贴零轴），现价 0.4"
+   },
+   {
+    "code": "002130",
+    "name": "沃尔核材",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 17.17,
+    "chg": 0.82,
+    "stage": "B+",
+    "stageName": "B+_鱼头启动",
+    "score": 80,
+    "entry": "3/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 77.8,
+    "amt20": "4.60亿",
+    "ma20": 16.905,
+    "ma10": 16.94,
+    "detail": "站上中轨、higher_low、放量阳线",
+    "reason": "60分钟鱼头刚启动、六联4/5 强",
+    "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+    "m60": "60分钟09-04 10:30金叉 DIF -0.002（零轴下方·底部），现价"
+   },
+   {
+    "code": "002379",
+    "name": "宏桥控股",
+    "sector": "有色",
+    "is_etf": false,
+    "close": 18.94,
+    "chg": -1.41,
+    "stage": "B+",
+    "stageName": "B+_鱼头启动",
+    "score": 70,
+    "entry": "3/5",
+    "six": "2/5",
+    "sixGrade": "不足",
+    "j": 71.2,
+    "amt20": "10.72亿",
+    "ma20": 18.924,
+    "ma10": 18.527,
+    "detail": "站上中轨、higher_low、放量阳线",
+    "reason": "60分钟鱼头刚启动",
+    "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+    "m60": "60分钟09-03 10:30金叉 DIF +0.056（贴零轴），现价 18."
+   },
+   {
+    "code": "600219",
+    "name": "南山铝业",
+    "sector": "有色",
+    "is_etf": false,
+    "close": 4.92,
+    "chg": -0.2,
+    "stage": "B+",
+    "stageName": "B+_鱼头启动",
+    "score": 65,
+    "entry": "3/5",
+    "six": "1/5",
+    "sixGrade": "不足",
+    "j": 83.7,
+    "amt20": "9.94亿",
+    "ma20": 4.862,
+    "ma10": 4.863,
+    "detail": "站上中轨、higher_low、放量阳线",
+    "reason": "60分钟鱼头刚启动",
+    "action": "🚀 鱼头启动：60分钟趋势已起，可贴60分钟MA20试探首仓（半仓内）",
+    "m60": "60分钟09-03 10:30金叉 DIF +0.020（贴零轴），现价 4.9"
+   },
+   {
+    "code": "601949",
+    "name": "中国出版",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 5.83,
+    "chg": 10.0,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 105,
+    "entry": "4/5",
+    "six": "5/5",
+    "sixGrade": "极强",
+    "j": 90.9,
+    "amt20": "0.77亿",
+    "ma20": 5.261,
+    "ma10": 5.308,
+    "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+    "reason": "放量突破20日新高、⭐B阶段·上车临近、六联5/5 极强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   }
+  ],
+  "picks": [
+   {
+    "code": "002532",
+    "name": "天山铝业",
+    "sector": "有色",
+    "is_etf": false,
+    "close": 13.13,
+    "chg": -1.35,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 105,
+    "entry": "4/5",
+    "six": "5/5",
+    "sixGrade": "极强",
+    "j": 76.9,
+    "amt20": "11.10亿",
+    "ma20": 13.046,
+    "ma10": 13.001,
+    "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合23.1=趋势5/5+弹性3.7%+B贴近上车·乖离+0.6%｜⭐B阶段·上车临近、六联5/5 极强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   },
+   {
+    "code": "512880",
+    "name": "证券ETF国泰",
+    "sector": "ETF",
+    "is_etf": true,
+    "close": 1.105,
+    "chg": 0.64,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 85,
+    "entry": "3/5",
+    "six": "5/5",
+    "sixGrade": "极强",
+    "j": 79.6,
+    "amt20": "0.19亿",
+    "ma20": 1.089,
+    "ma10": 1.095,
+    "detail": "站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合20.71=趋势5/5+弹性1.4%+B贴近上车·乖离+1.4%｜⭐B阶段·上车临近、六联5/5 极强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   },
+   {
+    "code": "002517",
+    "name": "恺英网络",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 17.41,
+    "chg": 2.11,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 100,
+    "entry": "4/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 83.6,
+    "amt20": "10.80亿",
+    "ma20": 17.137,
+    "ma10": 16.817,
+    "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合20.06=趋势4/5+弹性3.7%+B贴近上车·乖离+1.6%｜⭐B阶段·上车临近、六联4/5 强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   },
+   {
+    "code": "002292",
+    "name": "奥飞娱乐",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 8.48,
+    "chg": 1.31,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 100,
+    "entry": "4/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 67.0,
+    "amt20": "3.65亿",
+    "ma20": 8.247,
+    "ma10": 8.286,
+    "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合20.06=趋势4/5+弹性3.7%+B贴近上车·乖离+2.8%｜⭐B阶段·上车临近、六联4/5 强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   },
+   {
+    "code": "600595",
+    "name": "中孚实业",
+    "sector": "有色",
+    "is_etf": false,
+    "close": 6.36,
+    "chg": -1.85,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 100,
+    "entry": "4/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 66.0,
+    "amt20": "7.01亿",
+    "ma20": 6.315,
+    "ma10": 6.29,
+    "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合19.87=趋势4/5+弹性3.4%+B贴近上车·乖离+0.7%｜⭐B阶段·上车临近、六联4/5 强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   },
+   {
+    "code": "000878",
+    "name": "云南铜业",
+    "sector": "有色",
+    "is_etf": false,
+    "close": 17.35,
+    "chg": -1.98,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 80,
+    "entry": "3/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 72.9,
+    "amt20": "8.93亿",
+    "ma20": 16.847,
+    "ma10": 17.237,
+    "detail": "站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合19.47=趋势4/5+弹性3.6%+B贴近上车·乖离+3.0%｜⭐B阶段·上车临近、六联4/5 强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   },
+   {
+    "code": "603000",
+    "name": "人民网",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 16.76,
+    "chg": 1.21,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 100,
+    "entry": "4/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 67.6,
+    "amt20": "2.55亿",
+    "ma20": 16.577,
+    "ma10": 16.601,
+    "detail": "MACD金叉、站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合19.4=趋势4/5+弹性2.9%+B贴近上车·乖离+1.1%｜⭐B阶段·上车临近、六联4/5 强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   },
+   {
+    "code": "600776",
+    "name": "东方通信",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 13.09,
+    "chg": -2.68,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 80,
+    "entry": "3/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 53.8,
+    "amt20": "1.95亿",
+    "ma20": 12.855,
+    "ma10": 12.967,
+    "detail": "站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合19.15=趋势4/5+弹性3.2%+B贴近上车·乖离+1.8%｜⭐B阶段·上车临近、六联4/5 强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   },
+   {
+    "code": "601600",
+    "name": "中国铝业",
+    "sector": "有色",
+    "is_etf": false,
+    "close": 9.67,
+    "chg": -1.43,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 80,
+    "entry": "3/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 70.7,
+    "amt20": "18.16亿",
+    "ma20": 9.568,
+    "ma10": 9.657,
+    "detail": "站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合19.03=趋势4/5+弹性3.0%+B贴近上车·乖离+1.1%｜⭐B阶段·上车临近、六联4/5 强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   },
+   {
+    "code": "002987",
+    "name": "京北方",
+    "sector": "科技",
+    "is_etf": false,
+    "close": 12.26,
+    "chg": 2.77,
+    "stage": "B",
+    "stageName": "B_上车临近",
+    "score": 80,
+    "entry": "3/5",
+    "six": "4/5",
+    "sixGrade": "强",
+    "j": 77.0,
+    "amt20": "2.25亿",
+    "ma20": 11.456,
+    "ma10": 11.873,
+    "detail": "站上中轨、higher_low、放量阳线",
+    "reason": "🎯综合17.99=趋势4/5+弹性3.6%+B贴近上车·乖离+7.0%｜⭐B阶段·上车临近、六联4/5 强",
+    "action": "⭐ 观察池置顶：每日核对",
+    "m60": ""
+   }
+  ]
+ },
+ "count": 81
+}

@@ -1,0 +1,81 @@
+# 喵喵波段选股 · 云端自动扫描
+# 由 GitHub Actions 在交易日自动运行，无需本地电脑开机：
+#   11:40（北京时间）午间快照版：今日推荐10只 · 精选1只  --midday
+#   15:15（北京时间）收盘完整版：今日推荐20只
+# 扫描结果提交回本仓库 docs/，Cloudflare Pages 已连接本仓库，
+# 检测到 push 即自动重新发布网页（Git 集成模式，无需 API 令牌）。
+
+name: 每日选股扫描
+
+on:
+  schedule:
+    - cron: '40 3 * * 1-5'   # 北京时间 11:40 · 午间快照（GitHub cron 为 UTC）
+    - cron: '15 7 * * 1-5'   # 北京时间 15:15 · 收盘完整版
+  workflow_dispatch:
+    inputs:
+      session:
+        description: '扫描模式：midday=午间10只 / close=收盘20只'
+        required: false
+        default: 'close'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONIOENCODING: utf-8
+      TZ: Asia/Shanghai
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 运行全市场扫描
+        run: |
+          if [ "${{ github.event.inputs.session }}" = "midday" ] || [ "${{ github.event.schedule }}" = "40 3 * * 1-5" ]; then
+            python scripts/full_market_screener.py --midday
+          else
+            python scripts/full_market_screener.py
+          fi
+
+      - name: 同步结果到站点目录（数据无变化则跳过，避免节假日空提交）
+        id: sync
+        run: |
+          python - <<'EOF'
+          import json, glob, os, shutil
+          pools = sorted(glob.glob('reports/pool_*.json'))
+          assert pools, '未生成 pool 文件'
+          src = json.load(open(pools[-1], encoding='utf-8'))
+          changed = True
+          if os.path.exists('docs/pool.json'):
+              dst = json.load(open('docs/pool.json', encoding='utf-8'))
+              a, b = dst.get('recommendations', {}), src.get('recommendations', {})
+              if a.get('date') == b.get('date') and a.get('session') == b.get('session'):
+                  changed = False
+          if changed:
+              shutil.copy(pools[-1], 'docs/pool.json')
+              shutil.copy(pools[-1], 'docs/swing/pool.json')
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                  f.write('updated=true\n')
+              print('已更新:', pools[-1])
+          else:
+              print('数据未变化（节假日），跳过更新')
+          EOF
+
+      - name: 提交更新（push 后 Cloudflare Pages 自动重新发布）
+        if: steps.sync.outputs.updated == 'true'
+        run: |
+          git config user.name "scan-bot"
+          git config user.email "actions@github.com"
+          git add docs/ reports/
+          git diff --cached --quiet && exit 0
+          git commit -m "扫描更新 $(date '+%F %H:%M') ${SESSION:-close}版"
+          git push
