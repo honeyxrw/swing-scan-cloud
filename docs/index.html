@@ -540,6 +540,9 @@ label.f b{color:var(--text2);font-weight:600}
         <span><i style="background:#4c8dff"></i>MA10</span>
         <span><i style="background:#a78bfa"></i>MA20</span>
         <span><i style="background:#22c074"></i>MA60</span>
+        <span><i style="background:#f5484e"></i>▲B 进场</span>
+        <span><i style="background:#22c074"></i>▼S 离场</span>
+        <span><i style="background:#f5b50a"></i>⚡ 拉升</span>
       </div>
     </div>
     <div class="km-body">
@@ -548,7 +551,7 @@ label.f b{color:var(--text2);font-weight:600}
       <div class="km-no" id="kmNo" style="display:none">⚠️ 日线数据获取失败<br><span style="font-size:11px">请检查网络后点击「🔄 最新」重试</span></div>
     </div>
     <div class="km-foot">
-      <span class="hint">主图叠加 BOLL 通道 + SAR 红绿点 · 副图 成交量 / MACD / KDJ / CCI · 涨红跌绿 · 仅供个人研究，不构成投资建议</span>
+      <span class="hint">主图叠加 BOLL 通道 + SAR 红绿点 + 信号标注（▲B进场 / ▼S离场 / ⚡拉升，悬停K线可看信号明细） · 副图 成交量 / MACD / KDJ / CCI · 涨红跌绿 · 仅供个人研究，不构成投资建议</span>
       <button class="btn ghost sm" onclick="closeKModal()">关闭</button>
     </div>
   </div>
@@ -1786,6 +1789,60 @@ function maSeries(arr, n){
   return out;
 }
 
+/* ===== K线信号识别：进场B / 离场S / 拉升⚡ =====
+ * 与全站指标体系同源（MACD/KDJ/SAR/BOLL/MA20/量能），在完整日K序列上计算，
+ * 避免指标因显示窗口截断而失真（EMA/MA60 类指标尤其敏感）
+ * 进场：MACD金叉（低位标注）· KDJ低位金叉 · SAR翻红 · 收复MA20(BOLL中轨) · CCI回升穿-100 · 放量破20日新高
+ * 离场：MACD死叉（高位标注）· KDJ高位死叉 · SAR翻绿 · 跌破MA20生命线 · CCI跌破+100
+ * 拉升：放量长阳(≥5%) · 放量突破BOLL上轨
+ */
+function fullIndicators(kl){
+  const close=kl.map(k=>k.close), high=kl.map(k=>k.high), low=kl.map(k=>k.low), vols=kl.map(k=>k.vol||0);
+  const macd=calcMACD(close), kdj=calcKDJ(high,low,close,9), cci=calcCCI(high,low,close,14);
+  const boll=calcBOLL(close,20), sar=calcSAR(high,low,close);
+  const volMA5=maSeries(vols,5);
+  return { close, high, low, vols, macd, kdj, cci, boll, sar, volMA5 };
+}
+
+function detectKSignals(kl, F){
+  const n = kl.length, out = new Array(n).fill(null);
+  const {close, high, vols, macd, kdj, cci, boll, sar, volMA5} = F;
+  for(let i=1;i<n;i++){
+    const e=[], x=[], r=[];
+    const chg = (close[i]-close[i-1])/close[i-1]*100;
+    /* --- 进场 --- */
+    if(macd.dif[i-1]<=macd.dea[i-1] && macd.dif[i]>macd.dea[i]) e.push(macd.dif[i]<0 ? 'MACD低位金叉' : 'MACD金叉');
+    if(kdj.k[i-1]<=kdj.d[i-1] && kdj.k[i]>kdj.d[i] && kdj.k[i-1]<40) e.push('KDJ低位金叉');
+    if(!sar.up[i-1] && sar.up[i]) e.push('SAR翻红');
+    if(boll.mid[i-1]!=null && close[i-1]<=boll.mid[i-1] && close[i]>boll.mid[i]) e.push('收复MA20中轨');
+    if(cci[i-1]!=null && cci[i-1]<=-100 && cci[i]!=null && cci[i]>-100) e.push('CCI回升穿-100');
+    if(i>=20){
+      let hh=-Infinity; for(let j=i-20;j<i;j++) if(high[j]>hh) hh=high[j];
+      if(close[i]>hh && volMA5[i-1] && vols[i]>=volMA5[i-1]*1.5) e.push('放量破20日新高');
+    }
+    /* --- 离场 --- */
+    if(macd.dif[i-1]>=macd.dea[i-1] && macd.dif[i]<macd.dea[i]) x.push(macd.dif[i]>0 ? 'MACD高位死叉' : 'MACD死叉');
+    if(kdj.k[i-1]>=kdj.d[i-1] && kdj.k[i]<kdj.d[i] && kdj.k[i-1]>75) x.push('KDJ高位死叉');
+    if(sar.up[i-1] && !sar.up[i]) x.push('SAR翻绿');
+    if(boll.mid[i-1]!=null && close[i-1]>=boll.mid[i-1] && close[i]<boll.mid[i]) x.push('跌破MA20生命线');
+    if(cci[i-1]!=null && cci[i-1]>=100 && cci[i]!=null && cci[i]<100) x.push('CCI跌破+100');
+    /* --- 拉升 --- */
+    const volSurge = volMA5[i-1] && vols[i]>=volMA5[i-1]*2;
+    if(close[i]>kl[i].open && chg>=5 && volSurge) r.push('放量长阳+'+chg.toFixed(1)+'%');
+    if(boll.up[i]!=null && close[i]>boll.up[i] && volMA5[i-1] && vols[i]>=volMA5[i-1]*1.5 && chg>=3) r.push('放量突破BOLL上轨');
+    if(e.length||x.length||r.length) out[i]={e,x,r};
+  }
+  return out;
+}
+
+/* 信号文本（供悬停信息条）：B/S/⚡ 分类拼接 */
+function sigText(s){
+  if(!s) return '';
+  return [ s.e.length ? 'B '+s.e.join('·') : '',
+           s.x.length ? 'S '+s.x.join('·') : '',
+           s.r.length ? '⚡ '+s.r.join('·') : '' ].filter(Boolean).join('  ');
+}
+
 async function showKChart(code, name){
   const mask = $('#kModal');
   if(!mask) return;
@@ -1867,9 +1924,15 @@ function drawKChart(){
   const close = win.map(k=>k.close);
   const high  = win.map(k=>k.high), low = win.map(k=>k.low);
   const opens = win.map(k=>k.open), vols = win.map(k=>k.vol||0);
-  const mas = K_MA.map(([nn])=>maSeries(close, nn));
-  const boll = calcBOLL(close, 20);
-  const sar  = calcSAR(high, low, close);
+  /* 全序列指标计算后按窗口切片：MA60/EMA 类指标不受窗口截断失真；同时在全序列上识别信号 */
+  const FI = fullIndicators(kl);
+  const cut = a=>a.slice(-n);
+  const maF = K_MA.map(([nn])=>maSeries(FI.close, nn));
+  const mas = maF.map(cut);
+  const boll = { up:cut(FI.boll.up), mid:cut(FI.boll.mid), low:cut(FI.boll.low) };
+  const sar  = { sar:cut(FI.sar.sar), up:cut(FI.sar.up) };
+  const winSig = cut(detectKSignals(kl, FI));
+  st.winSig = winSig;
 
   /* 价格范围（含均线/BOLL/SAR 可见值） */
   let hi = Math.max(...high), lo = Math.min(...low);
@@ -1877,7 +1940,8 @@ function drawKChart(){
   [boll.up, boll.low, boll.mid].forEach(bs=>bs.forEach(v=>{ if(v!=null){ if(v>hi) hi=v; if(v<lo) lo=v; } }));
   sar.sar.forEach(v=>{ if(v!=null){ if(v>hi) hi=v; if(v<lo) lo=v; } });
   const padV = (hi-lo)*0.03 || 1;
-  hi += padV; lo = Math.max(0, lo-padV);
+  hi += padV*2;          /* 上方多留：S▼/⚡ 标记空间 */
+  lo = Math.max(0, lo-padV*2.5);  /* 下方多留：B▲ 标记空间 */
   const yPx = v => pMain.y + pMain.h - (v-lo)/(hi-lo)*pMain.h;
 
   ctx.font = '10px "SF Mono",Consolas,monospace';
@@ -1998,6 +2062,42 @@ function drawKChart(){
   ctx.fillStyle = '#fff'; ctx.textAlign = 'left';
   ctx.fillText(lastC.toFixed(2), L+plotW+4, lastY+3);
 
+  /* ===== 信号标注：▲B进场(红) / ▼S离场(绿) / ⚡拉升(金) =====
+   * 密集K线(全部视图)自动缩小标记，避免互相重叠 */
+  const sSmall = xStep < 6;
+  const tri = sSmall ? 3 : 5;   /* 三角形半宽 */
+  for(let i=0;i<n;i++){
+    const s = winSig[i]; if(!s) continue;
+    const x = L + xStep*i + xStep/2;
+    /* B 进场：蜡烛低点下方红色上三角 */
+    if(s.e.length){
+      const y = yPx(win[i].low);
+      ctx.fillStyle = '#f5484e';
+      ctx.beginPath();
+      ctx.moveTo(x, y+4); ctx.lineTo(x-tri, y+4+tri*1.8); ctx.lineTo(x+tri, y+4+tri*1.8);
+      ctx.closePath(); ctx.fill();
+      if(!sSmall){ ctx.font='9px "SF Mono",Consolas,monospace'; ctx.textAlign='center';
+        ctx.fillText('B', x, y+4+tri*1.8+9); }
+    }
+    /* S 离场：蜡烛高点上方绿色下三角 */
+    if(s.x.length){
+      const y = yPx(win[i].high);
+      ctx.fillStyle = '#22c074';
+      ctx.beginPath();
+      ctx.moveTo(x, y-4); ctx.lineTo(x-tri, y-4-tri*1.8); ctx.lineTo(x+tri, y-4-tri*1.8);
+      ctx.closePath(); ctx.fill();
+      if(!sSmall){ ctx.font='9px "SF Mono",Consolas,monospace'; ctx.textAlign='center';
+        ctx.fillText('S', x, y-4-tri*1.8-3); }
+    }
+    /* ⚡ 拉升：高点上方金色闪电（与S同日时再抬高避让） */
+    if(s.r.length){
+      const lift = s.x.length ? 22 : 12;
+      ctx.font = (sSmall?'10px':'12px')+' -apple-system,"Segoe UI Symbol","PingFang SC",sans-serif';
+      ctx.fillStyle = '#f5b50a'; ctx.textAlign = 'center';
+      ctx.fillText('⚡', x, yPx(win[i].high)-lift);
+    }
+  }
+
   /* 副图标题 */
   const t1 = (panel, txt)=>{ ctx.fillStyle = '#6b7a93'; ctx.textAlign = 'left'; ctx.font = '10px -apple-system,"PingFang SC",sans-serif'; ctx.fillText(txt, panel.x+2, panel.y+11); };
   t1(pVol, '成交量(手)'); t1(pMacd, 'MACD(12,26,9)'); t1(pKdj, 'KDJ(9,3,3)'); t1(pCci, 'CCI(14)');
@@ -2007,8 +2107,8 @@ function drawKChart(){
   ctx.fillStyle = '#6b7a93'; ctx.textAlign = 'left';
   ctx.fillText((vmax/10000).toFixed(1)+'万', L+plotW+6, pVol.y+11);
 
-  /* MACD 面板 */
-  const macd = calcMACD(close);
+  /* MACD 面板（全序列计算后切片，EMA 类指标避免窗口截断失真） */
+  const macd = { dif:cut(FI.macd.dif), dea:cut(FI.macd.dea), hist:cut(FI.macd.hist) };
   let mMax = 0;
   for(let i=0;i<n;i++){ mMax = Math.max(mMax, Math.abs(macd.hist[i]), Math.abs(macd.dif[i]), Math.abs(macd.dea[i])); }
   mMax = mMax || 1;
@@ -2036,7 +2136,7 @@ function drawKChart(){
   ctx.fillText('DIF '+ldif.toFixed(3)+'  DEA '+ldea.toFixed(3)+'  MACD '+(lhist>=0?'+':'')+lhist.toFixed(3), L+plotW+6, pMacd.y+11);
 
   /* KDJ 面板 */
-  const kdj = calcKDJ(high, low, close, 9);
+  const kdj = { k:cut(FI.kdj.k), d:cut(FI.kdj.d), j:cut(FI.kdj.j) };
   let kLo = 0, kHi = 100;
   for(let i=0;i<n;i++){ kLo = Math.min(kLo, kdj.k[i], kdj.d[i], kdj.j[i]); kHi = Math.max(kHi, kdj.k[i], kdj.d[i], kdj.j[i]); }
   const kPx = v => pKdj.y + pKdj.h - (v-kLo)/((kHi-kLo)||1)*pKdj.h;
@@ -2052,7 +2152,7 @@ function drawKChart(){
   ctx.fillText('K '+kdj.k[n-1].toFixed(1)+'  D '+kdj.d[n-1].toFixed(1)+'  J '+kdj.j[n-1].toFixed(1), L+plotW+6, pKdj.y+11);
 
   /* CCI 面板 */
-  const cci = calcCCI(high, low, close, 14);
+  const cci = cut(FI.cci);
   let cMax = 100;
   for(let i=0;i<n;i++){ if(cci[i]!=null) cMax = Math.max(cMax, Math.abs(cci[i])); }
   const cScale = cMax*1.15 || 1;
@@ -2099,7 +2199,8 @@ function drawKChart(){
     ctx.setLineDash([]);
     const chg = i>0 ? (k.close-win[i-1].close)/win[i-1].close*100 : 0;
     const col2 = k.close>=k.open ? '#f5484e' : '#22c074';
-    const info = k.date+'  开'+k.open.toFixed(2)+' 高'+k.high.toFixed(2)+' 低'+k.low.toFixed(2)+' 收'+k.close.toFixed(2)+'  '+(chg>=0?'+':'')+chg.toFixed(2)+'%  量'+(k.vol/10000).toFixed(1)+'万手';
+    const info = k.date+'  开'+k.open.toFixed(2)+' 高'+k.high.toFixed(2)+' 低'+k.low.toFixed(2)+' 收'+k.close.toFixed(2)+'  '+(chg>=0?'+':'')+chg.toFixed(2)+'%  量'+(k.vol/10000).toFixed(1)+'万手'
+      + (winSig[i] ? '  ◆信号 '+sigText(winSig[i]) : '');
     ctx.font = '11px "SF Mono",Consolas,monospace';
     const tw = ctx.measureText(info).width;
     ctx.fillStyle = 'rgba(11,14,20,.92)';
