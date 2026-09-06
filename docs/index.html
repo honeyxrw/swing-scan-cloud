@@ -1621,6 +1621,7 @@ function stockCardHTML(r){
     </div>
     ${condHTML}
     <div class="stock-foot">
+      <button class="btn sm ghost" onclick="showKChart('${r.code}','${escHTML(r.name||'')}')">📈 日K信号</button>
       <button class="btn sm gold" onclick="confirmEntry('${r.code}')" ${ev.score>=store.settings.entryScore?'':'disabled'}>🚗 确认上车</button>
       <button class="btn sm ghost" onclick="addToPool('${r.code}')">＋ 加入股票池</button>
       ${r.type==='etf'?'':`<button class="btn sm ghost" onclick="refreshFund('${r.code}')" id="fundBtn_${r.code}">🔄 刷新基本面</button>`}
@@ -1685,6 +1686,7 @@ function renderPool(){
           <select class="stage-sel" style="padding:2px 6px;font-size:11px;flex:1" onchange="setPoolStage('${p.code}',this.value)">
             ${stages.map(s=>`<option value="${s}" ${s===p.stage?'selected':''}>${names[s]}</option>`).join('')}
           </select>
+          <button class="btn sm ghost" onclick="showKChart('${p.code}','${escHTML(p.name||'')}')" style="padding:2px 7px;font-size:10.5px" title="日K信号图">📈</button>
           <button class="btn sm ghost" onclick="poolDiagnose('${p.code}')" style="padding:2px 8px;font-size:10.5px">诊断</button>
           <button class="btn sm gold" onclick="poolEntry('${p.code}')" style="padding:2px 7px;font-size:10.5px">🚗 上车</button>
           <button class="btn sm ghost red" onclick="removeFromPool('${p.code}')" style="padding:2px 8px;font-size:10.5px">✕</button>
@@ -2270,6 +2272,7 @@ function renderEntryTab(){
       </div>
       <div style="font-size:12px;color:var(--text2)">✅ 满足：${Object.keys(ev.cond).filter(k=>ev.cond[k].ok).map(k=>({'price':'股价适中','cci':'CCI拐头','kdj':'KDJ金叉','sar':'SAR红灯','boll':'站上中轨','macd':'MACD金叉','fund':'基本面'})[k]).join(' · ')}</div>
       <div class="stock-foot">
+        <button class="btn sm ghost" onclick="showKChart('${r.code}','${escHTML(r.name||'')}')">📈 日K信号</button>
         <button class="btn sm gold" onclick="confirmEntry('${r.code}')">🚗 确认上车（记录上车价）</button>
         <button class="btn sm ghost" onclick="addToPool('${r.code}')">＋ 加入股票池</button>
       </div>
@@ -2398,6 +2401,7 @@ function renderExitTab(){
         <div style="font-size:12px;margin-top:8px;${ec.signal==='exit'?'color:var(--red);font-weight:700':ec.signal==='alert'?'color:var(--gold)':'color:var(--text2)'}">${ec.msg}</div>
         <div class="alert-row">${alertHTML}</div>
         <div class="pos-foot">
+          <button class="btn sm ghost" onclick="showKChart('${p.code}','${escHTML(p.name||'')}')">📈 日K信号</button>
           <button class="btn sm red" onclick="confirmExit('${p.id}')">🛑 确认下车</button>
           <button class="btn sm ghost" onclick="loadPos('${p.id}')">🔄 刷新</button>
           <button class="btn sm ghost" onclick="removePos('${p.id}')">删除</button>
