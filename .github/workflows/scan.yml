@@ -2,8 +2,8 @@
 # 由 GitHub Actions 在交易日自动运行，无需本地电脑开机：
 #   11:40（北京时间）午间快照版：今日推荐10只 · 精选1只  --midday
 #   15:15（北京时间）收盘完整版：今日推荐20只
-# 扫描结果提交回本仓库 docs/，Cloudflare Pages 已连接本仓库，
-# 检测到 push 即自动重新发布网页（Git 集成模式，无需 API 令牌）。
+# 扫描结果提交回本仓库 docs/，GitHub Pages（main 分支 /docs 目录）
+# 检测到 push 即自动重新发布网页。
 
 name: 每日选股扫描
 
@@ -41,8 +41,10 @@ jobs:
       - name: 运行全市场扫描
         run: |
           if [ "${{ github.event.inputs.session }}" = "midday" ] || [ "${{ github.event.schedule }}" = "40 3 * * 1-5" ]; then
+            echo "SESSION=midday" >> $GITHUB_ENV
             python scripts/full_market_screener.py --midday
           else
+            echo "SESSION=close" >> $GITHUB_ENV
             python scripts/full_market_screener.py
           fi
 
@@ -57,12 +59,10 @@ jobs:
           changed = True
           if os.path.exists('docs/pool.json'):
               dst = json.load(open('docs/pool.json', encoding='utf-8'))
-              a, b = dst.get('recommendations', {}), src.get('recommendations', {})
-              if a.get('date') == b.get('date') and a.get('session') == b.get('session'):
+              if dst.get('date') == src.get('date') and dst.get('session') == src.get('session'):
                   changed = False
           if changed:
               shutil.copy(pools[-1], 'docs/pool.json')
-              shutil.copy(pools[-1], 'docs/swing/pool.json')
               with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
                   f.write('updated=true\n')
               print('已更新:', pools[-1])
@@ -70,7 +70,7 @@ jobs:
               print('数据未变化（节假日），跳过更新')
           EOF
 
-      - name: 提交更新（push 后 Cloudflare Pages 自动重新发布）
+      - name: 提交更新（push 后 GitHub Pages 自动重新发布）
         if: steps.sync.outputs.updated == 'true'
         run: |
           git config user.name "scan-bot"
