@@ -301,7 +301,7 @@ label.f b{color:var(--text2);font-weight:600}
   <section class="tab active" id="tab-picker">
     <div class="page-head">
       <h2>选股雷达</h2>
-      <span class="desc">输入代码/名称，自动拉取日K并判定 7 大选股条件 · 个股与 ETF 分列显示 · 可买 00/60 开头主板股票</span>
+      <span class="desc">输入代码/名称，自动拉取日K并判定 7 大选股条件 · 叠加量价关系健康闸门 · 个股与 ETF 分列显示 · 可买 00/60 开头主板股票</span>
     </div>
 
     <div class="card">
@@ -321,7 +321,7 @@ label.f b{color:var(--text2);font-weight:600}
     </div>
 
     <div class="card">
-      <h3>📖 选股条件说明 <span class="tag">7 条</span></h3>
+      <h3>📖 选股条件说明 <span class="tag">7 条 + 量价闸门</span></h3>
       <div class="entry-rule">
         <div class="rule-item"><span class="no">① 股价适中</span><b>3 ~ 60 元</b><span class="d">小资金可建立合理仓位，避开高价股与低价垃圾股</span></div>
         <div class="rule-item"><span class="no">② CCI 触底拐头</span><b>CCI(14) &lt; -100 后回升</b><span class="d">超卖区（-100 以下）出现向上拐头，下跌动能衰竭</span></div>
@@ -330,6 +330,7 @@ label.f b{color:var(--text2);font-weight:600}
         <div class="rule-item"><span class="no">⑤ 站上 BOLL 中轨</span><b>收盘价 &gt; 布林中轨(MA20)</b><span class="d">突破 20 日均线，短期趋势转强</span></div>
         <div class="rule-item"><span class="no">⑥ MACD 金叉</span><b>DIF 上穿 DEA</b><span class="d">近 5 日内金叉且 DIF&gt;DEA，动能转正</span></div>
         <div class="rule-item"><span class="no">⑦ 基本面优秀</span><b>自动判定</b><span class="d">腾讯实时(PE/市值) + 东财财务(ROE/净利增速/毛利率/负债率) 八维综合评分，无需手动确认</span></div>
+        <div class="rule-item"><span class="no">🔀 量价关系(闸门)</span><b>健康度 0~5 分</b><span class="d">量增价涨=健康上攻 · 低位量增价平=主力建仓 · 高位量增价平=防出货 · 放量下跌/高位缩量变盘/缩量阴跌=强看空降档，防止盲目上车</span></div>
       </div>
     </div>
   </section>
@@ -443,7 +444,7 @@ label.f b{color:var(--text2);font-weight:600}
       </div>
     </div>
     <div id="posList">
-      <div class="empty"><div class="big">🔴</div>暂无持仓。添加后自动拉取行情，逐项监控 8 个下车条件</div>
+      <div class="empty"><div class="big">🔴</div>暂无持仓。添加后自动拉取行情，逐项监控下车条件（均线/MACD/SAR/CCI + 量价关系）</div>
     </div>
     <div class="card">
       <h3>📜 上车 / 下车记录</h3>
@@ -1331,13 +1332,19 @@ function analyzeStock(kl){
   const cciV = cci[i], cciP = cci[i-1]||0;
   const jVal = kdj.j[i];
 
+  /* 量价关系：当日状态 + 近8日健康均值 + 近3日形态序列（供卡片徽标/趋势参考） */
+  const F = { vols:kl.map(k=>k.vol||0), close, high, low, boll, volMA5:maSeries(kl.map(k=>k.vol||0),5), volMA20:maSeries(kl.map(k=>k.vol||0),20) };
+  const vpNow = vpState(null, i, F, F.volMA5);
+  const vpH = vpHealth(F, 8);
+
   return {
     last:kl[i], prev:kl[i-1],
     macd, kdj, cci, boll, sar,
     ma10, ma20, ma60,
     kdjGolden, macdGolden, kdjDeath, macdDeath,
     sarRedDays, sarGreenDays, sarFlipRed, aboveBollDays,
-    price, cciV, cciP, jVal, dif:macd.dif[i], dea:macd.dea[i], hist:macd.hist[i]
+    price, cciV, cciP, jVal, dif:macd.dif[i], dea:macd.dea[i], hist:macd.hist[i],
+    vpNow, vpH
   };
 }
 
@@ -1364,7 +1371,14 @@ function evaluateEntry(a, settings, fundamental){
   else if(score>=settings.entryScore){ signal='go'; sigText='上车信号'; }
   else if(techScore>=4){ signal='near'; sigText='上车临近'; }
   else { signal='watch'; sigText='等待观察'; }
-  return { cond, score, scoreMax, techScore, signal, sigText };
+  /* --- 量价关系闸门：健康度不足则降档，防止在放量下跌/高位变盘中盲目上车 --- */
+  const vp = a.vpNow || null;
+  const vpBad = vp && (vp.state==='pv_fall'||vp.state==='pv_diverge'||vp.state==='pv_shrink_fall'||vp.state==='pv_flat_up'||vp.state==='pv_flat_fall');
+  const vpGood = vp && (vp.state==='pv_rise'||vp.state==='pv_acc'||vp.state==='pv_stable'||vp.state==='pv_quiet');
+  /* 强看空量价 = 硬闸门：即便技术分达标也回落到观察档；健康量价保留原判 */
+  if(vpBad && (signal==='strong'||signal==='go')){ signal='near'; sigText='上车临近(量价警示)'; }
+  if(vpBad && signal==='near'){ signal='watch'; sigText='观察(量价看空)'; }
+  return { cond, score, scoreMax, techScore, signal, sigText, vp };
 }
 
 /* 阶段归类 */
@@ -1585,12 +1599,20 @@ function renderPickerResults(){
   fillIndustryPills();
 }
 
+/* 量价徽标：健康绿 / 正常紫 / 看空红（ev 或 analysis 均可取到 vpNow） */
+function vpBadge(v){
+  if(!v) return '';
+  const lv = v.level==null ? 3 : v.level;
+  const c = lv>=4 ? '#22c074' : (lv<=1 ? '#f5484e' : '#a78bfa');
+  return `<span class="vp-pill" style="background:rgba(58,71,96,.05);border:1px solid ${c};color:${c};font-size:10.5px;padding:1px 7px;border-radius:9px;white-space:nowrap" title="量价健康度 ${lv}/5 · ${v.txt}">🔀 ${v.txt}</span>`;
+}
 function stockCardHTML(r){
   const ev = r.entry || evaluateEntry(r.analysis, store.settings, r.fundInfo);
   const q = r.quote;
   const cls = q.chgPct>0?'up':(q.chgPct<0?'down':'flat');
   const sigCls = {strong:'sig-strong',go:'sig-go',near:'sig-near',watch:'sig-watch'}[ev.signal];
   const stageCls = {trend:'trend',top:'top',bottom:'bottom',near:'near',launch:'launch'}[r.stage]||'';
+  const vpPill = vpBadge(ev.vp || (r.analysis && r.analysis.vpNow));
   const yaoPill = (r.yaogu && r.yaogu.is) ? `<span class="yaogu-pill" title="${escHTML(r.yaogu.txt)}">⚠ 妖股</span>` : '';
   const indPill = r.type==='stock' ? `<span class="ind-pill" data-code="${r.code}" style="display:none"></span>` : '';
   let condHTML='';
@@ -1613,6 +1635,7 @@ function stockCardHTML(r){
       ${indPill}
       <span class="sig-badge ${sigCls}">${ev.sigText} ${ev.score}/${ev.scoreMax}</span>
       <span class="stage-pill ${stageCls}">${stageName(r.stage)}</span>
+      ${vpPill}
       ${yaoPill}
       <div class="price">
         <div class="p ${cls} num">¥${fmt2(q.price)}</div>
@@ -1802,8 +1825,64 @@ function fullIndicators(kl){
   const close=kl.map(k=>k.close), high=kl.map(k=>k.high), low=kl.map(k=>k.low), vols=kl.map(k=>k.vol||0);
   const macd=calcMACD(close), kdj=calcKDJ(high,low,close,9), cci=calcCCI(high,low,close,14);
   const boll=calcBOLL(close,20), sar=calcSAR(high,low,close);
-  const volMA5=maSeries(vols,5);
-  return { close, high, low, vols, macd, kdj, cci, boll, sar, volMA5 };
+  const volMA5=maSeries(vols,5), volMA20=maSeries(vols,20);
+  return { close, high, low, vols, macd, kdj, cci, boll, sar, volMA5, volMA20 };
+}
+
+/* ===== 量价关系识别（六态）=====
+ * 融入喵喵的经典量价理论，把"量-价-位置"三者合成每日/阶段状态：
+ *   V增：当日量 ≥ 前5日均量×1.2   V平：0.8~1.2  V减：≤0.8
+ *   价涨：当日涨跌幅 ≥0.5%  价平：-0.5%~0.5%  价跌：≤-0.5%
+ * 再结合"位置"（相对 MA20/近期高低点）细分高/低位语义。
+ * 返回：state = 六大形态编码 + level(0~5, 越健康越高) + 短文案
+ *   形态: pv_rise 量增价涨(健康加仓) / pv_flat_up 量增价平(高位转阴·低位建仓)
+ *         pv_fall 量增价跌(放量下跌离场) / pv_flat_chg 量减价涨(背离诱多警惕)
+ *         pv_shrink 量减价平(变盘离场) / pv_shrink_fall 量减价跌(阴跌观望)
+ *   level: 5 健康(量增价涨) 4 筑底建仓 3 正常 2 背离警惕 1 放量下跌 0 阴跌离场
+ */
+function vpState(kl, i, F, volMA){
+  const vma = volMA || F.volMA5;
+  const vols = F.vols, close = F.close;
+  const vBase = (i>=5 && vma[i-1]) ? vma[i-1] : (F.volMA20&&F.volMA20[i-1]||vols[i]||1);
+  const vr = vols[i] / Math.max(1,vBase);          // 量比
+  const prev = close[i-1]||close[i];
+  const chg = (close[i]-prev)/prev*100;            // 当日涨跌幅%
+  const V = vr>=1.2 ? '增' : (vr<=0.8 ? '减' : '平');
+  const P = chg>=0.5 ? '涨' : (chg<=-0.5 ? '跌' : '平');
+  // 位置：收盘相对 MA20（多空分界）
+  const ma20 = F.boll.mid[i]; // boll.mid==MA20
+  const aboveMid = ma20!=null ? close[i]>=ma20 : true;
+  // 高低位：近60日收盘位置分位
+  const look = 60;
+  let hh=-Infinity, ll=Infinity;
+  for(let j=Math.max(0,i-look+1); j<=i; j++){ if(close[j]>hh)hh=close[j]; if(close[j]<ll)ll=close[j]; }
+  const pos = (hh-ll)>1e-9 ? (close[i]-ll)/(hh-ll) : 0.5;
+  const high = pos>=0.66, low = pos<=0.33, mid = !high&&!low;
+
+  let state, level, txt;
+  const key = V+P;
+  if(key==='增涨'){ state='pv_rise'; level=5; txt='量增价涨·健康上攻'+(aboveMid?'':'·尚待收复中轨'); }
+  else if(key==='增平'){ if(low){ state='pv_acc'; level=4; txt='低位量增价平·主力建仓'; }
+                          else { state='pv_flat_up'; level=2; txt='高位量增价平·警惕出货'; } }
+  else if(key==='增跌'){ state='pv_fall'; level=1; txt='放量下跌·空方主导，准备离场'; }
+  else if(key==='减涨'){ state='pv_shrink_rally'; level=2; txt='缩量上涨·量价背离，防诱多'; }
+  else if(key==='减平'){ if(aboveMid){ state='pv_diverge'; level=1; txt='高位量减价平·变盘在即，把握离场'; }
+                          else { state='pv_quiet'; level=3; txt='低位量减价平·缩量整理'; } }
+  else if(key==='减跌'){ state='pv_shrink_fall'; level=0; txt='缩量阴跌·人气涣散，勿抄底'; }
+  else if(key==='平涨'){ state='pv_stable'; level=4; txt='平量上涨·温和上行'; }
+  else if(key==='平平'){ state='pv_flat'; level=3; txt='量平价平·盘整观望'; }
+  else { state='pv_flat_fall'; level=1; txt='平量下跌·走弱'; }
+  return { state, V, P, level, txt, vr, chg, aboveMid, high, low, pos };
+}
+/* 便捷：判断一只标的当前整体量价是否支持上车（近N日加权健康分） */
+function vpHealth(F, days){
+  const n = F.close.length, d = days||8;
+  let s=0, c=0;
+  for(let i=Math.max(1,n-d); i<n; i++){
+    const v = vpState(null,i,F,F.volMA5);
+    s += v.level; c++;
+  }
+  return c ? s/c : 3;  // 0~5 均值
 }
 
 function detectKSignals(kl, F){
@@ -1832,6 +1911,14 @@ function detectKSignals(kl, F){
     const volSurge = volMA5[i-1] && vols[i]>=volMA5[i-1]*2;
     if(close[i]>kl[i].open && chg>=5 && volSurge) r.push('放量长阳+'+chg.toFixed(1)+'%');
     if(boll.up[i]!=null && close[i]>boll.up[i] && volMA5[i-1] && vols[i]>=volMA5[i-1]*1.5 && chg>=3) r.push('放量突破BOLL上轨');
+    /* --- 量价关系信号（六态）--- */
+    const vp = vpState(null, i, F, F.volMA5);
+    if(vp.state==='pv_rise' && chg>=1) r.push('量增价涨+'+chg.toFixed(1)+'%');
+    else if(vp.state==='pv_acc') e.push('低位量增价平·建仓');          // 筑底吸筹 → 进
+    else if(vp.state==='pv_flat_up') x.push('高位量增价平·防出货');     // 高位滞涨 → 离场预警
+    else if(vp.state==='pv_fall') x.push('放量下跌·空方主导');
+    else if(vp.state==='pv_diverge') x.push('高位量减价平·变盘离场');    // 滞涨变盘 → 离场
+    else if(vp.state==='pv_shrink_rally') x.push('缩量上涨·背离防诱多');
     if(e.length||x.length||r.length) out[i]={e,x,r};
   }
   return out;
@@ -2267,6 +2354,7 @@ function renderEntryTab(){
         ${r.type==='stock' ? `<span class="ind-pill" data-code="${r.code}" style="display:none"></span>` : ''}
         <span class="sig-badge ${sigCls}">${ev.sigText} ${ev.score}/${ev.scoreMax}</span>
         <span class="stage-pill ${r.stage}">${stageName(r.stage)}</span>
+        ${vpBadge(ev.vp || (r.analysis && r.analysis.vpNow))}
         ${(r.yaogu && r.yaogu.is) ? `<span class="yaogu-pill" title="${escHTML(r.yaogu.txt)}">⚠ 妖股</span>` : ''}
         <div class="price"><div class="p ${cls} num">¥${fmt2(q.price)}</div><div class="c ${cls} num">${q.chgPct>0?'+':''}${fmt2(q.chgPct)}%</div></div>
       </div>
@@ -2362,6 +2450,20 @@ function exitConditions(p, r){
   if(gain>maxGain) p._maxGain=gain;
   const pullback = p._maxGain>5 && (p._maxGain-gain)/p._maxGain>=0.5;
   arr.push(mk('pull','利润回吐 ≥50%', !!pullback, `最高浮盈 ${fmt2(p._maxGain)}% / 当前 ${fmt2(gain)}%`));
+  /* 量价关系离场信号（六态，详见 vpState）：
+   *   pv_fall 放量下跌 / pv_diverge 高位量减价平变盘 → ⚡关键离场
+   *   pv_flat_up 高位量增价平出货 / pv_shrink_rally 缩量上涨背离 → 警惕
+   *   pv_shrink_fall 缩量阴跌 → 警惕（勿抄底） */
+  const vpv = a.vpNow;
+  if(vpv){
+    const _vk = (st)=>vpv.state===st;
+    const _vtx = ()=>`${vpv.txt}（量${vpv.vr.toFixed(2)}x·${vpv.chg>=0?'+':''}${vpv.chg.toFixed(2)}%）`;
+    const vFall = _vk('pv_fall')||_vk('pv_diverge')||_vk('pv_flat_up');
+    const vShrink = _vk('pv_shrink_fall')||_vk('pv_shrink_rally');
+    if(vFall) KEY.push('vp');
+    arr.push(mk('vp','量价转弱(放量跌/变盘) ⚡关键', vFall, _vtx()));
+    arr.push(mk('vp2','量价背离/阴跌', !!vShrink, _vtx()));
+  }
   const keyHit = arr.filter(c=>c.keyHit&&c.on).length;
   const normalHit = arr.filter(c=>!c.keyHit&&c.on).length;
   let signal='hold', msg='持有（未触发下车条件）';
@@ -2376,7 +2478,7 @@ function renderExitTab(){
   $('#posCount').textContent = store.positions.filter(p=>p.status==='holding').length;
   $('#posCount').style.display = store.positions.length?'':'none';
   if(!store.positions.length){
-    wrap.innerHTML = `<div class="empty"><div class="big">🔴</div>暂无持仓。添加后自动拉取行情，逐项监控 8 个下车条件</div>`;
+    wrap.innerHTML = `<div class="empty"><div class="big">🔴</div>暂无持仓。添加后自动拉取行情，逐项监控下车条件（均线/MACD/SAR/CCI + 量价关系）</div>`;
   }else{
     wrap.innerHTML = store.positions.map(p=>{
       const r = p._diag;
