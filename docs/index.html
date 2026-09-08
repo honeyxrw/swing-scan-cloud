@@ -276,7 +276,7 @@ label.f b{color:var(--text2);font-weight:600}
       <div class="sub">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700">v20260903a</b></div>
     </div>
   </div>
-  <button class="btn ghost sm" id="btnAuto30" title="交易时段内每 30 分钟自动刷新股票池 + 持仓行情（页面需保持打开）">⏱ 盘中30分·开</button>
+  <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓，午间收盘(11:35后)与全天收盘(15:05后)各抢刷一次（页面需保持打开）">⏱ 盘中10分·开</button>
   <button class="btn ghost sm" id="btnLogs" title="查看诊断/运行错误日志（最近 20 条）">🛠 日志</button>
   <div class="net" id="netState"><i></i><span id="netText">行情引擎待命</span></div>
   <div class="acct">
@@ -586,7 +586,7 @@ const REC_DATA_EMBED = {"date":"20260901","note":"每日收盘后自动生成：
 let recData = REC_DATA_EMBED;
 let recSource = '内置数据(9/1) · 离线兜底';
 let recUpdatedAt = null;   // 最近一次在线拉取成功的时间
-let lastDataRefreshAt = null; // 页面数据最近一次刷新时间（推荐拉取成功 / 盘中30分自动刷新完成，任一动作都会更新）
+let lastDataRefreshAt = null; // 页面数据最近一次刷新时间（推荐拉取成功 / 自动刷新完成，任一动作都会更新）
 function escHTML(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 function recCardHTML(x, pick){
@@ -705,10 +705,16 @@ if(typeof document!=='undefined'){
   else document.addEventListener('DOMContentLoaded', autoPollRec);
 }
 
-/* ===== 盘中自动刷新：交易时段内每 30 分钟刷新股票池 + 持仓行情 =====
+/* ===== 盘中/收盘自动刷新 =====
  * 独立于任何服务器——刷新由浏览器里的这个页面自己执行（腾讯/东财公开行情接口），
  * 唯一前提是页面在某个浏览器标签页中保持打开；关掉标签页即停止。
- * 开关状态存 localStorage（store.settings.auto30），下次打开自动恢复。 */
+ * 开关状态存 localStorage（store.settings.auto30，向后兼容旧键名）。
+ * 节奏（1 分钟心跳驱动）：
+ *   ① 交易时段内每 10 分钟刷新一次股票池 + 持仓行情
+ *   ② 午间收盘(11:30+)、全天收盘(15:00+)后各抢刷一次，确保拿到当日午间快照 / 收盘完整版
+ *   ③ 收盘后额外触发一次「今日推荐」探测（把云端刚发布的收盘数据拉下来） */
+const AUTO_INTRA = 10;            // 盘中刷新间隔（分钟）
+const lastTickRef = { at:0 };     // 上次实际执行时刻
 function isTradingTime(){
   const d=new Date();
   const day=d.getDay(); if(day===0||day===6) return false;
@@ -716,32 +722,55 @@ function isTradingTime(){
   return (m>=9*60+25 && m<=11*60+35) || (m>=12*60+55 && m<=15*60+5);
 }
 let auto30Busy=false;
-async function autoRefresh30(){
+/* 判断当前分钟是否命中 10 分钟刻度（距整点 0/10/20/30/40/50 分钟） */
+function onGrid(min){ return (min % AUTO_INTRA) === 0; }
+async function autoRefresh30(forceNow){
   if(typeof store==='undefined' || !store || !store.settings.auto30) return;
-  if(!isTradingTime() || auto30Busy) return;
+  if(!forceNow && !isTradingTime()) return;
+  if(auto30Busy) return;
   auto30Busy=true;
   try{
     const codes=[...new Set([...(store.pool||[]).map(p=>p.code), ...(store.positions||[]).map(p=>p.code)])];
-    if(!codes.length) return;
-    let okN=0;
-    for(const c of codes){ try{ await runDiagnose(c); okN++; }catch(e){} }
-    (store.pool||[]).forEach(p=>{ const r=diagCache[p.code]; if(r){ p.stage=r.stage; p.name=(r.name&&r.name!==r.code)?r.name:p.name; } });
-    (store.positions||[]).forEach(p=>{ const r=diagCache[p.code]; if(r) p._diag=r; });
-    saveStore(); renderPool(); renderEntryTab(); renderExitTab();
-    const now = new Date();
-    lastDataRefreshAt = now;                      /* 与「今日推荐·更新于」共用同一时间戳 */
-    try{ renderRec(); }catch(e){}                 /* 同步刷新推荐头部的「更新于」时间 */
-    const t = now.toLocaleTimeString('zh-CN',{hour12:false,hour:'2-digit',minute:'2-digit'});
-    toast(`⏱ 盘中自动刷新完成：${okN}/${codes.length} 个标的 · ${t}`,'ok');
+    if(codes.length){
+      let okN=0;
+      for(const c of codes){ try{ await runDiagnose(c); okN++; }catch(e){} }
+      (store.pool||[]).forEach(p=>{ const r=diagCache[p.code]; if(r){ p.stage=r.stage; p.name=(r.name&&r.name!==r.code)?r.name:p.name; } });
+      (store.positions||[]).forEach(p=>{ const r=diagCache[p.code]; if(r) p._diag=r; });
+      saveStore(); renderPool(); renderEntryTab(); renderExitTab();
+      const now = new Date();
+      lastDataRefreshAt = now;                      /* 与「今日推荐·更新于」共用同一时间戳 */
+      try{ renderRec(); }catch(e){}                 /* 同步刷新推荐头部的「更新于」时间 */
+      const t = now.toLocaleTimeString('zh-CN',{hour12:false,hour:'2-digit',minute:'2-digit'});
+      toast(`⏱ 自动刷新完成：${okN}/${codes.length} 个标的 · ${t}`,'ok');
+    }
   }catch(e){ /* 静默，下个周期再试 */ }
   finally{ auto30Busy=false; }
 }
-setInterval(autoRefresh30, 30*60*1000);
+/* 1 分钟心跳：盘中每10分 + 午间/收盘边缘各抢刷一次 */
+let lastIntraRun = -1;           // 上次盘中10分刷新的"分"刻度
+function scheduleTick(){
+  const d=new Date();
+  const day=d.getDay();
+  if(day===0||day===6) return;                       // 周末不动
+  const hm=d.getHours()*60+d.getMinutes();
+  const isOpen = isTradingTime();
+  /* ① 盘中每 10 分钟 */
+  if(isOpen && !auto30Busy && d.getMinutes()!==lastIntraRun && onGrid(d.getMinutes())){
+    lastIntraRun = d.getMinutes();
+    autoRefresh30(false);
+  }
+  /* ② 边缘抢鲜：午间收盘 11:35、全天收盘 15:05 过线即强制刷一次（避免错过当日快照版数据） */
+  if(!auto30Busy && ((hm===11*60+35||hm===11*60+36) || (hm===15*60+5||hm===15*60+6))){
+    lastIntraRun = d.getMinutes();                   // 防与①重复
+    autoRefresh30(true);
+  }
+}
+setInterval(scheduleTick, 60*1000);                 /* 每分钟心跳 */
 function refreshAuto30Btn(){
   const b = (typeof $!=='undefined') ? $('#btnAuto30') : null;
   if(!b) return;
   const on = !!(store && store.settings && store.settings.auto30);
-  b.textContent = on? '⏱ 盘中30分·开' : '⏱ 盘中30分·关';
+  b.textContent = on? '⏱ 盘中10分·开' : '⏱ 盘中10分·关';
   b.style.opacity = on? '1' : '.55';
 }
 
@@ -2804,8 +2833,8 @@ function init(){
   $('#btnAuto30').addEventListener('click', ()=>{
     store.settings.auto30 = !store.settings.auto30; saveStore(); refreshAuto30Btn();
     if(store.settings.auto30){
-      toast('盘中自动刷新已开启：交易时段每 30 分钟刷新股票池 + 持仓','ok');
-      if(isTradingTime()) autoRefresh30(); /* 开启即在交易时段立即刷一次 */
+      toast('自动刷新已开启：交易时段每 10 分钟刷股票池+持仓，午间/收盘后各抢刷一次','ok');
+      if(isTradingTime()) autoRefresh30(true); /* 开启即在交易时段立即刷一次 */
     }else{
       toast('盘中自动刷新已关闭','ok');
     }
