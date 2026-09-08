@@ -126,6 +126,7 @@ label.f b{color:var(--text2);font-weight:600}
 .rec-card .px .p{font-size:14px;font-weight:700}
 .rec-card .px .c{font-size:11px}
 .rec-card .rs{font-size:11.5px;color:var(--text2);line-height:1.6;margin:5px 0 8px}
+.rec-card .vp-line{font-size:11px;line-height:1.6;margin:-2px 0 7px;padding:3px 8px;border-radius:7px;background:rgba(58,71,96,.05);border-left:3px solid var(--line2);display:flex;align-items:baseline;gap:4px;flex-wrap:wrap}
 .rec-card .ft{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:10.5px}
 .rec-card .act{font-size:11px;padding:3px 8px;border-radius:6px;background:var(--goldBg);color:var(--gold);font-weight:600;margin-top:7px;line-height:1.5}
 .rec-card .act.buy{background:var(--redBg);color:var(--red)}
@@ -605,6 +606,7 @@ function recCardHTML(x, pick){
     '<div class="px"><div class="p '+(up?'up':(flat?'flat':'dn'))+'">¥'+fmt2(x.close)+'</div>'+
     '<div class="c '+(up?'up':(flat?'flat':'dn'))+'">'+(up?'+':'')+fmt2(x.chg)+'%</div></div></div>'+
     '<div class="rs">'+escHTML(x.reason||'')+'</div>'+
+    '<div class="vp-line" data-vpcode="'+x.code+'">🔀 量价阶段判定中…</div>'+
     '<div class="ft">'+stagePill+six+jhot+ma+'</div>'+
     '<div style="display:flex;align-items:center;gap:8px;margin-top:7px">'+
       '<button class="btn sm ghost" onclick="showKChart(\''+x.code+'\',\''+escHTML(x.name||'')+'\')">📈 日K</button>'+
@@ -635,6 +637,61 @@ function renderRec(){
   $('#recTrend').innerHTML = n2 ? d.trend.map(x=>recCardHTML(x,false)).join('') : '<div class="rec-empty">今日无「趋势中」标的</div>';
   $('#recPicks').innerHTML = n3 ? d.picks.map(x=>recCardHTML(x,true)).join('') : '<div class="rec-empty">今日无精选</div>';
   fillIndustryPills();
+  /* 逐只判定并显示量价关系阶段（异步回填，见 fillRecVP/probeRecVP） */
+  recVpEpoch++; fillRecVP(recVpEpoch);
+}
+/* ===== 今日推荐 · 量价关系阶段判定（六态）=====
+ * 每张推荐卡片拉取该标的日K → analyzeStock 的量价判定(vpNow/vpH)，就地回填"量价阶段"行。
+ * 防抖设计：recVpEpoch 为"渲染代数"，新一轮 renderRec 使旧的回填任务自动失效；
+ * recVpCache 缓存 10 分钟，配合 diagCache（股票池/持仓已诊断过的直接复用），避免每5分钟轮询重复拉K线。 */
+let recVpEpoch = 0;
+const recVpCache = {};
+const REC_VP_TTL = 10*60*1000;
+async function probeRecVP(code){
+  try{
+    const dg = diagCache[code];
+    if(dg && dg.analysis && dg.analysis.vpNow) return { vp:dg.analysis.vpNow, vpH:dg.analysis.vpH, t:Date.now() };
+    const c = recVpCache[code];
+    if(c && Date.now()-c.t<REC_VP_TTL) return c;
+    const kl = sanitizeKLine(await fetchKLine(code));
+    if(!kl || !kl.length) throw new Error('no kline');
+    const a = analyzeStock(kl);
+    if(!a || !a.vpNow) throw new Error('no vp');
+    const out = { vp:a.vpNow, vpH:a.vpH, t:Date.now() };
+    recVpCache[code] = out;
+    return out;
+  }catch(e){ return null; }
+}
+function vpLineHTML(r){
+  if(!r || !r.vp) return '<span style="color:var(--text3)">🔀 量价：K线获取失败，暂无法判定</span>';
+  const v = r.vp, lv = v.level==null?3:v.level;
+  const c = lv>=4 ? '#22c074' : (lv<=1 ? '#f5484e' : '#a78bfa');
+  const h = (r.vpH==null)?'--':r.vpH.toFixed(1);
+  return '<b style="color:'+c+'">🔀 '+escHTML(v.txt)+'</b>'+
+    '<span style="opacity:.62;margin-left:2px">量价健康 '+h+'/5 · '+(v.aboveMid?'站上MA20':'跌破MA20')+'</span>';
+}
+async function fillRecVP(epoch){
+  try{
+    const slots = [];
+    ['recBreakout','recTrend','recPicks'].forEach(id=>{
+      const box = document.getElementById(id);
+      if(!box) return;
+      box.querySelectorAll('[data-vpcode]').forEach(el=>slots.push(el));
+    });
+    if(!slots.length) return;
+    const codes = [...new Set(slots.map(el=>el.getAttribute('data-vpcode')))];
+    let idx = 0;
+    async function worker(){
+      while(idx<codes.length){
+        const code = codes[idx++];
+        const r = await probeRecVP(code);
+        if(recVpEpoch!==epoch) return;      /* 新渲染已开始，放弃过期回填 */
+        const html = vpLineHTML(r);
+        slots.forEach(el=>{ if(el.getAttribute('data-vpcode')===code) el.innerHTML = html; });
+      }
+    }
+    await Promise.all(Array.from({length:Math.min(5,codes.length)}, worker)); /* 并发限流5 */
+  }catch(e){ /* 量价判定失败不影响推荐主体展示 */ }
 }
 
 /* 今日推荐数据源（并发请求全部源，取 date 最新的一份；全部失败时回退内嵌数据）：
