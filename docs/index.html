@@ -265,6 +265,66 @@ label.f b{color:var(--text2);font-weight:600}
 .hist-table th{color:var(--text3);text-align:left;padding:7px 10px;border-bottom:1px solid var(--line2);font-weight:600;white-space:nowrap}
 .hist-table td{padding:7px 10px;border-bottom:1px solid rgba(42,52,72,.5);white-space:nowrap}
 .hist-table tr:hover td{background:rgba(255,255,255,.02)}
+
+/* ===== 主力资金 · 板块进攻地图 (v3.17) ===== */
+.flow-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:10px}
+.seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--card)}
+.seg button{appearance:none;padding:7px 15px;border:none;background:transparent;color:var(--text2);font-size:12.5px;font-weight:700;cursor:pointer}
+.seg button.active{background:var(--goldBg);color:var(--gold)}
+.flow-perms{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:12px;color:var(--text2);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:6px 12px}
+.flow-perms label{display:flex;align-items:center;gap:4px;cursor:pointer}
+.flow-perms input{accent-color:var(--gold);cursor:pointer}
+.flow-legend{font-size:11.5px;color:var(--text2);background:var(--card);border:1px dashed var(--line2);border-radius:10px;padding:9px 13px;line-height:2;margin-bottom:10px}
+.flow-legend b{font-weight:700}
+.fdot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+.fdot.buy{background:var(--green)} .fdot.cyb{background:var(--purple)} .fdot.na{background:var(--text3)} .fdot.over{background:var(--gold)}
+.flow-msg{padding:34px 10px;text-align:center;color:var(--text3);font-size:13px;line-height:2}
+.flow-board{display:grid;grid-template-columns:32px 1.5fr minmax(80px,.9fr) .9fr .65fr 16px;align-items:center;gap:12px;padding:11px 13px;background:var(--card);border:1px solid var(--line);border-radius:11px;margin-bottom:8px;cursor:pointer;transition:.15s}
+.flow-board:hover{border-color:var(--line2);transform:translateX(2px)}
+.flow-board.open{border-color:var(--gold);background:var(--card2)}
+.fb-rank{font:700 12px var(--mono);color:var(--text3)}
+.fb-rank.top{color:var(--gold)}
+.fb-name{font-size:14.5px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.fb-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.fb-bar{height:7px;border-radius:4px;background:rgba(255,255,255,.06);overflow:hidden}
+.fb-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,rgba(245,72,78,.55),var(--red))}
+.fb-bar i.out{background:linear-gradient(90deg,rgba(76,141,255,.45),var(--blue))}
+.fb-num{text-align:right}
+.fb-num b{font:700 14px var(--mono);white-space:nowrap}
+.fb-pct{text-align:right;font:600 13px var(--mono)}
+.fb-arrow{color:var(--text3);font-size:13px;text-align:right}
+.fd-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:space-between;background:var(--card2);border:1px solid var(--gold);border-radius:11px;padding:12px 15px;margin-bottom:10px}
+.fd-title{font-size:16px;font-weight:800;color:var(--text)}
+.fd-title .tag{margin-left:8px;vertical-align:2px}
+.fd-stats{font-size:12px;color:var(--text2);line-height:1.9}
+.fd-stats b{font:700 13px var(--mono)}
+.fd-roles{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 8px;font-size:11.5px;color:var(--text3)}
+.rchip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;background:var(--card);border:1px solid var(--line)}
+.rchip.rl-lead{color:var(--red);border-color:rgba(245,72,78,.45);background:var(--redBg)}
+.rchip.rl-mid{color:var(--gold);border-color:rgba(245,181,10,.4);background:var(--goldBg)}
+.rchip.rl-lag{color:var(--blue);border-color:rgba(76,141,255,.4);background:var(--blueBg)}
+.flow-stk{display:grid;grid-template-columns:minmax(150px,1.6fr) repeat(5,auto);gap:10px;align-items:center;padding:8px 13px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--line2);border-radius:9px;margin-bottom:6px;font-size:12.5px}
+.flow-stk.buy{border-left-color:var(--green)}
+.flow-stk.cyb{border-left-color:var(--purple)}
+.flow-stk.na{border-left-color:var(--text3);opacity:.82}
+.flow-stk.over{border-left-color:var(--gold)}
+.fs-name{display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-width:0}
+.fs-name .n{font-weight:700;color:var(--text);font-size:13px}
+.fs-name .c{font:11px var(--mono);color:var(--text3)}
+.fs-price,.fs-inflow{font:600 12.5px var(--mono)}
+.fs-zj{font:600 11.5px var(--mono);color:var(--text2)}
+.role{display:inline-flex;align-items:center;padding:1px 7px;border-radius:12px;font-size:10.5px;font-weight:800;line-height:16px}
+.role.rl-lead{background:var(--redBg);color:var(--red);border:1px solid rgba(245,72,78,.5)}
+.role.rl-mid{background:var(--goldBg);color:var(--gold);border:1px solid rgba(245,181,10,.45)}
+.role.rl-lag{background:var(--blueBg);color:var(--blue);border:1px solid rgba(76,141,255,.45)}
+.role.rl-etf{background:rgba(255,255,255,.06);color:var(--text2);border:1px solid var(--line2)}
+.fs-tag{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:5px;white-space:nowrap}
+.fs-tag.buy{background:var(--greenBg);color:var(--green)}
+.fs-tag.cyb{background:var(--purpleBg);color:var(--purple)}
+.fs-tag.na{background:rgba(255,255,255,.05);color:var(--text3);border:1px dashed var(--line2)}
+.fs-tag.over{background:var(--goldBg);color:var(--gold)}
+.flow-sec-title{font-size:12.5px;color:var(--text3);margin:14px 0 8px;display:flex;align-items:center;gap:6px}
+.flow-sec-title:before{content:'';width:3px;height:13px;background:var(--gold);border-radius:2px}
 </style>
 </head>
 <body>
@@ -274,7 +334,7 @@ label.f b{color:var(--text2);font-weight:600}
     <div class="dot"></div>
     <div>
       <h1>上车·下车 <em>交易辅助台</em></h1>
-      <div class="sub">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700">v20260903a</b></div>
+      <div class="sub">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700">v3.17 · 主力资金板块地图</b></div>
     </div>
   </div>
   <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓，午间收盘(11:35后)与全天收盘(15:05后)各抢刷一次（页面需保持打开）">⏱ 盘中10分·开</button>
@@ -295,6 +355,7 @@ label.f b{color:var(--text2);font-weight:600}
   <button data-tab="entry">🟢 上车判定 <span class="badge" id="entryCount" style="display:none">0</span></button>
   <button data-tab="exit">🔴 下车判定 <span class="badge" id="posCount" style="display:none">0</span></button>
   <button data-tab="calc">⚖️ 仓位计算器</button>
+  <button data-tab="flow">💰 主力资金</button>
 </nav>
 
 <main>
@@ -494,6 +555,35 @@ label.f b{color:var(--text2);font-weight:600}
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ============ 主力资金 · 板块进攻地图 ============ -->
+  <section class="tab" id="tab-flow">
+    <div class="page-head">
+      <h2>💰 主力资金 · 板块进攻地图</h2>
+      <span class="desc">全市场主力净流入排行 → 点开板块看个股 → 自动标注龙头 / 中军 / 补涨卡位 → 颜色区分你是否可买（数据源：东财，收盘后为当日终值）</span>
+    </div>
+
+    <div class="flow-toolbar">
+      <div class="seg" id="flowTypeSeg">
+        <button data-ft="2" class="active">🏭 行业板块</button>
+        <button data-ft="3">🧩 概念题材</button>
+      </div>
+      <div class="flow-perms" id="flowPerms" title="勾选你账户已开通的交易权限，决定标的是否标为「可买」（ETF 场内基金无需任何权限）">
+        <span style="color:var(--text3)">我的权限：</span>
+        <label><input type="checkbox" data-perm="main" checked disabled>主板</label>
+        <label><input type="checkbox" data-perm="cyb">创业板</label>
+        <label><input type="checkbox" data-perm="kcb">科创板</label>
+        <label><input type="checkbox" data-perm="bj">北交所</label>
+      </div>
+      <button class="btn ghost sm" id="btnFlowRefresh">🔄 刷新榜单</button>
+      <span class="dim" id="flowStamp" style="font-size:11.5px"></span>
+    </div>
+
+    <div class="flow-legend" id="flowLegend"></div>
+
+    <div id="flowList"><div class="flow-msg">加载板块主力净流入排行中…（首次约 2-5 秒）</div></div>
+    <div id="flowDetail"></div>
   </section>
 </main>
 
@@ -2703,6 +2793,262 @@ function calcPosition(){
   $('#fLoss').textContent = `¥${fmt(maxLoss)}`;
 }
 
+/* ================================================================
+ * 主力资金 · 板块进攻地图（v3.17）
+ *  榜单：东财 push2 clist —— 行业(m:90+t:2) / 概念(m:90+t:3) 主力净流入 Top12
+ *  钻取：b:BKxxxx 成分股按主力净流入排序 → 标注 龙头/中军/补涨卡位
+ *  可买着色：按代码市场 + 头部总资金×40%(单标的上限) + 账户权限开关
+ *  说明：本机到东财 IPv6 不稳且接口偶发限流 → 双主机(jsonp) + 缓存 + 重试
+ * ================================================================ */
+const FLOW_EMS = ['https://push2.eastmoney.com','https://push2delay.eastmoney.com'];
+const FLOW_F_RANK = 'f12,f14,f2,f3,f62,f184,f128,f140,f136';
+const FLOW_F_STK  = 'f12,f14,f2,f3,f8,f10,f20,f21,f62,f184,f100';
+const FLOW_CACHE_TTL = 5*60*1000;
+let flowType = 2;                       // 2=行业 3=概念
+let flowPerms = { cyb:false, kcb:false, bj:false };
+let flowLoaded = false;
+let flowDetailBk = '';
+const flowRankCache = {};               // type -> {at,rows}
+const flowStkCache  = {};               // bk   -> {at,rows}
+function num(v){ const n = (typeof v==='string') ? parseFloat(v) : v; return (n!=null && isFinite(n)) ? n : 0; }
+function colP(p){ return p>0 ? 'var(--red)' : (p<0 ? 'var(--green)' : 'var(--text3)'); }
+function fmtNum(v,d){ return num(v).toFixed(d==null?2:d); }
+function fmtPrice(code,p){ const px=num(p); return px ? (isETF(code) ? px.toFixed(3) : px.toFixed(2)) : '—'; }
+function fmtYi(v){
+  const x=num(v), sign = x<0 ? '-' : '+', a=Math.abs(x);
+  if(a>=1e8) return sign+(a/1e8).toFixed(1)+'亿';
+  if(a>=1e4) return sign+(a/1e4).toFixed(0)+'万';
+  return sign+a.toFixed(0);
+}
+function fmtMoney(v){ return v>=1e4 ? (v/1e4).toFixed((v%1e4)?1:0)+'万' : String(Math.round(v)); }
+function flowEmitErr(e){ try{ console.warn('flow:', (e&&e.message)||e); }catch(_){} }
+
+async function flowEM(url){
+  let lastErr = null;
+  for(const base of FLOW_EMS){
+    try{
+      const d = await jsonp(url.replace('@@EM@@', base), 8000, 'cb');
+      if(d && d.data){ const diff = d.data.diff || []; if(diff.length || d.data.total!=null) return diff; }
+      lastErr = new Error('empty data');
+    }catch(e){ lastErr = e; }
+  }
+  throw lastErr || new Error('net');
+}
+async function flowFetchRank(type, count){
+  const fs = 'm:90+t:'+type;
+  const url = '@@EM@@/api/qt/clist/get?pn=1&pz='+(count||12)+'&po=1&np=1&fltt=2&invt=2&ut=bd1d9ddb04089700cf9c27f6f7426281&fid=f62&fs='+encodeURIComponent(fs)+'&fields='+FLOW_F_RANK;
+  const rows = await flowEM(url);
+  return rows.map(r=>({
+    bk:String(r.f12||''), name:String(r.f14||''),
+    pct:num(r.f3), inflow:num(r.f62), zjjb:num(r.f184),
+    leadName:String(r.f128||''), leadCode:String(r.f140||''), leadPct:num(r.f136)
+  })).filter(b=>b.bk && b.name);
+}
+async function flowFetchStocks(bk){
+  const url = '@@EM@@/api/qt/clist/get?pn=1&pz=40&po=1&np=1&fltt=2&invt=2&ut=bd1d9ddb04089700cf9c27f6f7426281&fid=f62&fs=b:'+encodeURIComponent(bk)+'&fields='+FLOW_F_STK;
+  const rows = await flowEM(url);
+  return rows.map(r=>({
+    code:String(r.f12||''), name:String(r.f14||''),
+    price:num(r.f2), pct:num(r.f3), to:num(r.f8), lb:num(r.f10),
+    mcap:num(r.f20), inflow:num(r.f62), zjjb:num(r.f184), ind:String(r.f100||'')
+  })).filter(s=>s.code && s.price>0);
+}
+
+/* 角色归类：仅主力净流入>0 的成分参与；plain 保留全部供比对 */
+function flowRoles(rows){
+  const res = { lead:null, mids:[], lags:[], plain:[] };
+  const pos = rows.filter(s=>s.inflow>0);
+  if(!pos.length){ res.plain = rows.slice(0,22); return res; }
+  let lead = pos[0];
+  if(lead.pct<=0 && pos.length>1 && pos[1].pct>0 && pos[1].inflow>=lead.inflow*0.6) lead = pos[1]; /* 资金王下跌、亚军领涨时让位 */
+  res.lead = lead;
+  const rest = pos.filter(s=>s!==lead);
+  const mids = rest.filter(s=>s.pct>=-0.5).slice(0,2);
+  for(const s of rest){ if(mids.length>=2) break; if(mids.indexOf(s)<0) mids.push(s); }   /* 不足时按资金补足 */
+  res.mids = mids;
+  const chosen = new Set([lead.code, ...mids.map(s=>s.code)]);
+  res.lags = rest.filter(s=>!chosen.has(s.code) && s.pct<=2.0).slice(0,3);
+  const allChosen = new Set([lead.code, ...mids.map(s=>s.code), ...res.lags.map(s=>s.code)]);
+  res.plain = rows.filter(s=>!allChosen.has(s.code)).slice(0,22);
+  return res;
+}
+
+/* 可买性：代码市场 + 单手金额(×100) vs 总资金40%上限 + 账户权限 */
+function flowBuy(code, price){
+  const c = String(code||'').replace(/\D/g,'');
+  let mkt;
+  if(/^(51|56|58|15|16)/.test(c)) mkt='etf';
+  else if(/^(00|60)/.test(c)) mkt='main';
+  else if(/^30/.test(c)) mkt='cyb';
+  else if(/^68/.test(c)) mkt='kcb';
+  else if(/^(4|8|92)/.test(c)) mkt='bj';
+  else mkt='na';
+  const el = $('#hdrCapital');
+  const cap = Math.max(0, parseFloat((el&&el.value)||'')) || 70000;
+  const over = num(price)*100 > cap*0.4;
+  const guard = over ? {cls:'over', tag:'一手超40%预算'} : {cls:'buy', tag:'可买'};
+  if(mkt==='etf') return {cls:'buy', tag:'场内基金·可买'};
+  if(mkt==='main') return guard.cls==='buy' ? {cls:'buy', tag:'主板·可买'} : guard;
+  if(mkt==='cyb') return flowPerms.cyb ? (over?{cls:'over',tag:'创业板·一手超预算'}:{cls:'buy',tag:'创业板·可买'}) : {cls:'cyb', tag:'创业板·需开通'};
+  if(mkt==='kcb') return flowPerms.kcb ? (over?{cls:'over',tag:'科创板·一手超预算'}:{cls:'buy',tag:'科创板·可买'}) : {cls:'na', tag:'科创板·门槛外'};
+  if(mkt==='bj')  return flowPerms.bj  ? (over?{cls:'over',tag:'北交所·一手超预算'}:{cls:'buy',tag:'北交所·可买'}) : {cls:'na', tag:'北交所·门槛外'};
+  return {cls:'na', tag:'未知'};
+}
+
+function flowLegendHTML(){
+  const el = $('#hdrCapital');
+  const cap = Math.max(0, parseFloat((el&&el.value)||'')) || 70000;
+  return '<b>读图</b>：榜单按主力净流入降序。点任一板块展开成分股 → <b style="color:var(--red)">🐲龙头</b>=资金最强（资金王领跌时让位给领涨亚军） · <b style="color:var(--gold)">🎖中军</b>=大市值跟涨 · <b style="color:var(--blue)">⏫补涨卡位</b>=今日涨幅≤2%但主力已净流入（轮动潜伏，简化口径：日内涨幅代理位置）。<br>'+
+  '<b>颜色 = 你的可买性</b>（按头部总资金 '+fmtMoney(cap)+' 元 ×40% 单标的上限 ≈ '+fmtMoney(cap*0.4)+' 判定单手预算，未扣持仓；改头部资金后点「刷新榜单」重算）：'+
+  '<span class="fdot buy"></span><b style="color:var(--green)">绿=可买</b> · '+
+  '<span class="fdot cyb"></span><b style="color:var(--purple)">紫=创业板</b>（上方勾选已开通即可买） · '+
+  '<span class="fdot na"></span><b style="color:var(--text3)">灰=科创/北交</b>（门槛外，纯观察） · '+
+  '<span class="fdot over"></span><b style="color:var(--gold)">黄=主板但一手超预算</b>。'+
+  '<span style="color:var(--text3)">口径：主力=超大单+大单净额（东财）；ETF 场内基金免权限一律可买。行情仅快照，非投资建议。</span>';
+}
+
+function flowBoardHTML(r,i,max){
+  const pos = r.inflow>=0;
+  const w = Math.max(3, Math.round(Math.abs(r.inflow)/Math.max(1,max)*100));
+  return '<div class="flow-board'+(flowDetailBk===r.bk?' open':'')+'" data-bk="'+escHTML(r.bk)+'" data-name="'+escHTML(r.name)+'" title="展开看 龙头/中军/补涨卡位">'+
+    '<span class="fb-rank'+(i<3?' top':'')+'">'+(i<9?'0':'')+(i+1)+'</span>'+
+    '<div><div class="fb-name">'+escHTML(r.name)+
+      (r.leadName ? '<span class="role rl-lead" style="padding:0 6px">领涨 '+(r.leadPct>0?'+':'')+fmtNum(r.leadPct,2)+'%</span>' : '')+
+    '</div><div class="fb-sub">'+(r.leadName ? escHTML(r.leadName)+' <span class="c">'+escHTML(r.leadCode)+'</span> · ' : '')+'净占比 '+(r.zjjb>0?'+':'')+fmtNum(r.zjjb,1)+'%</div></div>'+
+    '<div class="fb-bar"><i class="'+(pos?'':'out')+'" style="width:'+w+'%"></i></div>'+
+    '<div class="fb-num"><b style="color:'+(pos?'var(--red)':'var(--blue)')+'">'+fmtYi(r.inflow)+'</b><div class="fb-sub">主力净流入</div></div>'+
+    '<div class="fb-pct"><b style="color:'+colP(r.pct)+'">'+(r.pct>0?'+':'')+fmtNum(r.pct,2)+'%</b><div class="fb-sub">板块涨跌</div></div>'+
+    '<span class="fb-arrow">▾</span></div>';
+}
+function flowRenderList(rows){
+  const max = Math.max(1, ...rows.map(r=>Math.abs(r.inflow)));
+  $('#flowList').innerHTML = rows.length
+    ? rows.map((r,i)=>flowBoardHTML(r,i,max)).join('')
+    : '<div class="flow-msg">暂无数据（可能东财限流），点「刷新榜单」重试</div>';
+}
+function flowStockHTML(s, role){
+  const buy = flowBuy(s.code, s.price);
+  const rTag = role==='lead' ? '<i class="role rl-lead">🐲 龙头</i>'
+    : role==='mid' ? '<i class="role rl-mid">🎖 中军</i>'
+    : role==='lag' ? '<i class="role rl-lag">⏫ 补涨卡位</i>'
+    : (isETF(s.code) ? '<i class="role rl-etf">ETF</i>' : '');
+  return '<div class="flow-stk '+buy.cls+'">'+
+    '<span class="fs-name"><span class="n">'+escHTML(s.name)+'</span><span class="c">'+escHTML(s.code)+'</span>'+rTag+'</span>'+
+    '<span class="fs-price" style="color:'+colP(s.pct)+'">'+fmtPrice(s.code,s.price)+'<span style="color:var(--text2);font-size:11px"> '+(s.pct>0?'+':'')+fmtNum(s.pct,2)+'%</span></span>'+
+    '<span class="fs-inflow" style="color:'+(s.inflow>=0?'var(--red)':'var(--blue)')+'">'+fmtYi(s.inflow)+'</span>'+
+    '<span class="fs-zj">占'+(s.zjjb>0?'+':'')+fmtNum(s.zjjb,1)+'%</span>'+
+    '<span class="fs-zj">换'+fmtNum(s.to,1)+'%</span>'+
+    '<span class="fs-tag '+buy.cls+'">'+(buy.cls==='buy'?'✓ ':'')+buy.tag+'</span></div>';
+}
+function flowDetailBody(rows){
+  const R = flowRoles(rows);
+  const escN = s=>'<b class="up">'+escHTML(s.name)+'</b>';
+  let sum = '资金结构：🐲龙头 '+escN(R.lead);
+  if(R.mids.length) sum += ' · 🎖中军 '+R.mids.map(s=>escHTML(s.name)).join(' / ');
+  if(R.lags.length) sum += ' · ⏫补涨卡位 '+R.lags.map(s=>escHTML(s.name)).join(' / ');
+  let html = '<div class="flow-msg" style="padding:14px;text-align:left;font-size:13px">'+sum+'</div>';
+  if(R.lead) html += '<div class="flow-sec-title">🐲 龙头（主力资金最强）</div>'+flowStockHTML(R.lead,'lead');
+  if(R.mids.length) html += '<div class="flow-sec-title">🎖 中军（跟涨 · 中坚力量）</div>'+R.mids.map(s=>flowStockHTML(s,'mid')).join('');
+  if(R.lags.length) html += '<div class="flow-sec-title">⏫ 补涨卡位（涨幅≤2% 但主力已流入，等轮动）</div>'+R.lags.map(s=>flowStockHTML(s,'lag')).join('');
+  if(R.plain.length) html += '<div class="flow-sec-title">其余成分（净流入为负或涨幅偏高，仅供比对）</div>'+R.plain.map(s=>flowStockHTML(s,'')).join('');
+  return html;
+}
+
+function flowRankRows(){ const c = flowRankCache[flowType]; return c ? c.rows : []; }
+function flowStampText(){
+  const t = new Date();
+  $('#flowStamp').textContent = '榜单 '+t.toTimeString().slice(0,8)+' · '+(flowType===2?'行业':'概念')+'板块 · 东财';
+}
+function flowRePaint(){
+  $('#flowLegend').innerHTML = flowLegendHTML();
+  const rows = flowRankRows();
+  if(rows.length) flowRenderList(rows);
+  if(flowDetailBk){
+    const c = flowStkCache[flowDetailBk];
+    const b = rows.find(r=>r.bk===flowDetailBk);
+    if(c && c.rows) $('#flowDetail').innerHTML = (b?flowDetailHdr(b):'') + flowDetailBody(c.rows);
+  }
+}
+function saveFlowPrefs(){
+  try{ localStorage.setItem('tradeflow.v1', JSON.stringify({type:flowType, cyb:flowPerms.cyb, kcb:flowPerms.kcb, bj:flowPerms.bj})); }catch(_){}
+}
+async function flowLoad(force){
+  try{
+    const cached = flowRankCache[flowType];
+    if(!force && cached && Date.now()-cached.at < FLOW_CACHE_TTL){
+      flowRenderList(cached.rows); flowStampText(); return;
+    }
+    $('#flowList').innerHTML = '<div class="flow-msg">加载板块主力净流入排行中…（约 2-5 秒）</div>';
+    const rows = await flowFetchRank(flowType, 12);
+    flowRankCache[flowType] = { at:Date.now(), rows };
+    flowRenderList(rows); flowStampText();
+  }catch(e){
+    flowEmitErr(e);
+    $('#flowList').innerHTML = '<div class="flow-msg">⚠️ 主力资金榜加载失败（'+(e&&e.message||'网络异常')+'）。<br>东财接口偶发限流/断连，点 <button class="btn sm" onclick="flowLoad(true)">🔄 重试</button></div>';
+  }
+}
+function flowOpen(){ if(!flowLoaded){ flowLoaded = true; flowLoad(false); } }
+function flowDetailHdr(b){
+  return '<div class="fd-head"><div><div class="fd-title">'+escHTML(b.name||'')+' <span class="tag">'+(flowType===2?'行业':'概念')+'板块</span></div>'+
+    '<div class="fd-stats">主力净流入 <b style="color:var(--red)">'+fmtYi(b.inflow)+'</b> · 净占比 '+(b.zjjb>0?'+':'')+fmtNum(b.zjjb,1)+'% · 板块 '+(b.pct>0?'+':'')+fmtNum(b.pct,2)+'%'+
+    (b.leadName ? ' · 领涨 '+escHTML(b.leadName)+' '+(b.leadPct>0?'+':'')+fmtNum(b.leadPct,2)+'%' : '')+'</div></div>'+
+    '<div style="text-align:right"><div class="dim" style="font-size:11px">成分股按主力净流入排序 · 再点板块收起</div></div></div>';
+}
+async function flowOpenDetail(bk){
+  const rowsAll = flowRankRows();
+  const b = rowsAll.find(r=>r.bk===bk) || {bk:bk, name:bk};
+  flowDetailBk = bk;
+  $$('#flowList .flow-board').forEach(x=>x.classList.toggle('open', x.dataset.bk===bk));
+  const dv = $('#flowDetail');
+  dv.innerHTML = flowDetailHdr(b) + '<div class="flow-msg">拉取成分股资金流中…</div>';
+  const cached = flowStkCache[bk];
+  if(cached && Date.now()-cached.at < FLOW_CACHE_TTL){
+    dv.innerHTML = flowDetailHdr(b) + flowDetailBody(cached.rows); return;
+  }
+  try{
+    const rows = await flowFetchStocks(bk);
+    flowStkCache[bk] = { at:Date.now(), rows };
+    dv.innerHTML = flowDetailHdr(b) + flowDetailBody(rows);
+  }catch(e){
+    flowEmitErr(e);
+    dv.innerHTML = flowDetailHdr(b) + '<div class="flow-msg">⚠️ 成分股加载失败（'+(e&&e.message||'网络异常')+'）。<button class="btn sm" onclick="flowOpenDetail(\''+escHTML(bk)+'\')">重试</button></div>';
+  }
+}
+
+/* 主力资金 UI 初始化（懒加载：首次切到该页签才请求） */
+(function flowInitUI(){
+  const seg = $('#flowTypeSeg');
+  if(!seg) return;
+  try{
+    const p = JSON.parse(localStorage.getItem('tradeflow.v1')||'{}');
+    if(p.cyb!=null) flowPerms.cyb = !!p.cyb;
+    if(p.kcb!=null) flowPerms.kcb = !!p.kcb;
+    if(p.bj!=null)  flowPerms.bj  = !!p.bj;
+    if(p.type===2 || p.type===3) flowType = p.type;
+  }catch(_){}
+  $$('#flowTypeSeg button').forEach(b=>b.classList.toggle('active', b.dataset.ft===String(flowType)));
+  $$('#flowPerms input[data-perm]').forEach(cb=>{ cb.checked = (cb.dataset.perm==='main') ? true : !!flowPerms[cb.dataset.perm]; });
+  $('#flowLegend').innerHTML = flowLegendHTML();
+  seg.addEventListener('click', e=>{
+    const b = e.target.closest('button[data-ft]'); if(!b) return;
+    const ft = +b.dataset.ft; if(ft===flowType) return;
+    flowType = ft; flowDetailBk = ''; $('#flowDetail').innerHTML = '';
+    $$('#flowTypeSeg button').forEach(x=>x.classList.toggle('active', x.dataset.ft===String(ft)));
+    saveFlowPrefs(); flowLoad(false);
+  });
+  $('#flowPerms').addEventListener('change', e=>{
+    const cb = e.target; if(!cb || !cb.dataset || !cb.dataset.perm || cb.dataset.perm==='main') return;
+    flowPerms[cb.dataset.perm] = cb.checked;
+    saveFlowPrefs(); flowRePaint();
+  });
+  $('#btnFlowRefresh').addEventListener('click', ()=>{ flowDetailBk=''; $('#flowDetail').innerHTML=''; flowLoad(true); });
+  $('#flowList').addEventListener('click', e=>{
+    const b = e.target.closest('.flow-board'); if(!b) return;
+    if(flowDetailBk===b.dataset.bk){ flowDetailBk=''; $('#flowDetail').innerHTML=''; b.classList.remove('open'); }
+    else flowOpenDetail(b.dataset.bk);
+  });
+})();
+
 /* ---------- Tab 切换 ---------- */
 function switchTab(name){
   $$('#nav button').forEach(b=>b.classList.toggle('active', b.dataset.tab===name));
@@ -2712,6 +3058,7 @@ function switchTab(name){
   if(name==='pool') renderPool();
   if(name==='picker') renderPickerResults();
   if(name==='rec') renderRec();
+  if(name==='flow'){ flowOpen(); flowRePaint(); }
 }
 
 /* ---------- 批量事件 ---------- */
