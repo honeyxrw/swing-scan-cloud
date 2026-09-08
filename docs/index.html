@@ -1032,16 +1032,22 @@ function fetchQuoteTencent(code){
 
 /* 实时行情源② 东财 push2 */
 async function fetchQuoteEM(code){
-  const url = `https://push2.eastmoney.com/api/qt/stock/get?secid=${secidOf(code)}&fields=f43,f44,f45,f46,f57,f58,f60,f169,f170`;
+  const url = `https://push2.eastmoney.com/api/qt/stock/get?secid=${secidOf(code)}&fields=f43,f44,f45,f46,f57,f58,f59,f60,f169,f170`;
   const d = await jsonp(url, 6000);
   const q = d && d.data;
   if(!q) throw new Error('no quote');
+  /* 东财字段为整数缩放存储：
+   * 价格类 f43(现价)/f60(昨收)/f169(涨跌额) 按 f59（价格小数位）缩放：股票 f59=2 → ÷100；3位小数ETF f59=3 → ÷1000；
+   * 涨跌幅 f170 恒为 ÷100（百分比固定2位小数，与 f59 无关）。
+   * 不能写死 /100，否则 f59=3 的 ETF 价格/涨跌额会放大 10 倍（2026-09-08 修复：515050/159381 小数点错位）。 */
+  const f59 = (q.f59!=null && q.f59>=0 && q.f59<=6) ? +q.f59 : 2;
+  const sc = Math.pow(10, f59);
   return {
     code: String(q.f57),
     name: q.f58,
-    price: q.f43/100,
-    prevClose: q.f60/100,
-    chg: q.f169/100,
+    price: q.f43/sc,
+    prevClose: q.f60/sc,
+    chg: q.f169/sc,
     chgPct: q.f170/100
   };
 }
