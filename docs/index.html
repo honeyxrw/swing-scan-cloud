@@ -2797,7 +2797,7 @@ function calcPosition(){
  * 主力资金 · 板块进攻地图（v3.17）
  *  榜单：东财 push2 clist —— 行业(m:90+t:2) / 概念(m:90+t:3) 主力净流入 Top12
  *  钻取：b:BKxxxx 成分股按主力净流入排序 → 标注 龙头/中军/补涨卡位
- *  可买着色：按代码市场 + 头部总资金×40%(单标的上限) + 账户权限开关
+ *  可买着色：股价<20元→绿·可买（≥20元→黄·超线）+ 代码市场权限开关（2026-09-08 规则）
  *  说明：本机到东财 IPv6 不稳且接口偶发限流 → 双主机(jsonp) + 缓存 + 重试
  * ================================================================ */
 const FLOW_EMS = ['https://push2.eastmoney.com','https://push2delay.eastmoney.com'];
@@ -2873,7 +2873,8 @@ function flowRoles(rows){
   return res;
 }
 
-/* 可买性：代码市场 + 单手金额(×100) vs 总资金40%上限 + 账户权限 */
+/* 可买性（2026-09-08 新规）：股价 < 20 元 → 绿·可买；≥ 20 元 → 黄·超线。
+ * 市场权限门槛不变（创业板/科创板/北交所需勾选已开通），ETF 免权限但同样受 20 元线约束 */
 function flowBuy(code, price){
   const c = String(code||'').replace(/\D/g,'');
   let mkt;
@@ -2883,28 +2884,25 @@ function flowBuy(code, price){
   else if(/^68/.test(c)) mkt='kcb';
   else if(/^(4|8|92)/.test(c)) mkt='bj';
   else mkt='na';
-  const el = $('#hdrCapital');
-  const cap = Math.max(0, parseFloat((el&&el.value)||'')) || 70000;
-  const over = num(price)*100 > cap*0.4;
-  const guard = over ? {cls:'over', tag:'一手超40%预算'} : {cls:'buy', tag:'可买'};
-  if(mkt==='etf') return {cls:'buy', tag:'场内基金·可买'};
+  const p = num(price);
+  const over = p >= 20;
+  const guard = over ? {cls:'over', tag:'股价≥20元'} : {cls:'buy', tag:'可买'};
+  if(mkt==='etf') return over ? {cls:'over', tag:'场内基金·股价≥20元'} : {cls:'buy', tag:'场内基金·可买'};
   if(mkt==='main') return guard.cls==='buy' ? {cls:'buy', tag:'主板·可买'} : guard;
-  if(mkt==='cyb') return flowPerms.cyb ? (over?{cls:'over',tag:'创业板·一手超预算'}:{cls:'buy',tag:'创业板·可买'}) : {cls:'cyb', tag:'创业板·需开通'};
-  if(mkt==='kcb') return flowPerms.kcb ? (over?{cls:'over',tag:'科创板·一手超预算'}:{cls:'buy',tag:'科创板·可买'}) : {cls:'na', tag:'科创板·门槛外'};
-  if(mkt==='bj')  return flowPerms.bj  ? (over?{cls:'over',tag:'北交所·一手超预算'}:{cls:'buy',tag:'北交所·可买'}) : {cls:'na', tag:'北交所·门槛外'};
+  if(mkt==='cyb') return flowPerms.cyb ? (over?{cls:'over',tag:'创业板·股价≥20元'}:{cls:'buy',tag:'创业板·可买'}) : {cls:'cyb', tag:'创业板·需开通'};
+  if(mkt==='kcb') return flowPerms.kcb ? (over?{cls:'over',tag:'科创板·股价≥20元'}:{cls:'buy',tag:'科创板·可买'}) : {cls:'na', tag:'科创板·门槛外'};
+  if(mkt==='bj')  return flowPerms.bj  ? (over?{cls:'over',tag:'北交所·股价≥20元'}:{cls:'buy',tag:'北交所·可买'}) : {cls:'na', tag:'北交所·门槛外'};
   return {cls:'na', tag:'未知'};
 }
 
 function flowLegendHTML(){
-  const el = $('#hdrCapital');
-  const cap = Math.max(0, parseFloat((el&&el.value)||'')) || 70000;
   return '<b>读图</b>：榜单按主力净流入降序。点任一板块展开成分股 → <b style="color:var(--red)">🐲龙头</b>=资金最强（资金王领跌时让位给领涨亚军） · <b style="color:var(--gold)">🎖中军</b>=大市值跟涨 · <b style="color:var(--blue)">⏫补涨卡位</b>=今日涨幅≤2%但主力已净流入（轮动潜伏，简化口径：日内涨幅代理位置）。<br>'+
-  '<b>颜色 = 你的可买性</b>（按头部总资金 '+fmtMoney(cap)+' 元 ×40% 单标的上限 ≈ '+fmtMoney(cap*0.4)+' 判定单手预算，未扣持仓；改头部资金后点「刷新榜单」重算）：'+
-  '<span class="fdot buy"></span><b style="color:var(--green)">绿=可买</b> · '+
-  '<span class="fdot cyb"></span><b style="color:var(--purple)">紫=创业板</b>（上方勾选已开通即可买） · '+
+  '<b>颜色 = 你的可买性</b>（规则：<b>股价 &lt; 20 元 → 绿·可买</b>；≥ 20 元 → 黄·超线；权限门槛另计）：'+
+  '<span class="fdot buy"></span><b style="color:var(--green)">绿=股价&lt;20元·可买</b> · '+
+  '<span class="fdot cyb"></span><b style="color:var(--purple)">紫=创业板</b>（股价&lt;20元但需勾选已开通） · '+
   '<span class="fdot na"></span><b style="color:var(--text3)">灰=科创/北交</b>（门槛外，纯观察） · '+
-  '<span class="fdot over"></span><b style="color:var(--gold)">黄=主板但一手超预算</b>。'+
-  '<span style="color:var(--text3)">口径：主力=超大单+大单净额（东财）；ETF 场内基金免权限一律可买。行情仅快照，非投资建议。</span>';
+  '<span class="fdot over"></span><b style="color:var(--gold)">黄=股价≥20元·超线</b>。'+
+  '<span style="color:var(--text3)">口径：主力=超大单+大单净额（东财）；ETF 场内基金免权限，同样按 20 元线判定。行情仅快照，非投资建议。</span>';
 }
 
 function flowBoardHTML(r,i,max){
