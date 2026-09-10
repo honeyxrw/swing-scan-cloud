@@ -58,10 +58,17 @@ jobs:
           pools = sorted(glob.glob('reports/pool_*.json'))
           assert pools, '未生成 pool 文件'
           src = json.load(open(pools[-1], encoding='utf-8'))
+          def sig(d):
+              # 内容签名：date+session+各组推荐名单（含 v3.18 妖股集）。
+              # 只比 date/session 会漏掉「同日新增字段/名单变化」的更新
+              r = d.get('recommendations') or {}
+              codes = lambda k: tuple((x or {}).get('code') for x in (r.get(k) or []))
+              return (d.get('date'), d.get('session'),
+                      codes('trend'), codes('breakout'), codes('picks'), codes('monster'))
           changed = True
           if os.path.exists('docs/pool.json'):
               dst = json.load(open('docs/pool.json', encoding='utf-8'))
-              if dst.get('date') == src.get('date') and dst.get('session') == src.get('session'):
+              if sig(dst) == sig(src):
                   changed = False
           if changed:
               shutil.copy(pools[-1], 'docs/pool.json')
