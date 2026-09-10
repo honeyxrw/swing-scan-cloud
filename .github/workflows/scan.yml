@@ -1,6 +1,7 @@
 # 喵喵波段选股 · 云端自动扫描
 # 由 GitHub Actions 在交易日自动运行，无需本地电脑开机：
-#   11:40（北京时间）午间快照版：今日推荐10只 · 精选1只  --midday
+#   11:31（北京时间）上午收盘即扫：午间快照版 今日推荐10只 · 精选1只  --midday
+#   11:50（北京时间）午间兜底：GitHub 定时常延迟，重复跑会被「数据未变化」守卫跳过
 #   15:15（北京时间）收盘完整版：今日推荐20只
 # 扫描结果提交回本仓库 docs/，GitHub Pages（main 分支 /docs 目录）
 # 检测到 push 即自动重新发布网页。
@@ -9,7 +10,8 @@ name: 每日选股扫描
 
 on:
   schedule:
-    - cron: '40 3 * * 1-5'   # 北京时间 11:40 · 午间快照（GitHub cron 为 UTC）
+    - cron: '31 3 * * 1-5'   # 北京时间 11:31 · 上午收盘即扫（GitHub cron 为 UTC）
+    - cron: '50 3 * * 1-5'   # 北京时间 11:50 · 午间兜底（重复运行自动跳过提交）
     - cron: '15 7 * * 1-5'   # 北京时间 15:15 · 收盘完整版
   workflow_dispatch:
     inputs:
@@ -40,7 +42,7 @@ jobs:
 
       - name: 运行全市场扫描
         run: |
-          if [ "${{ github.event.inputs.session }}" = "midday" ] || [ "${{ github.event.schedule }}" = "40 3 * * 1-5" ]; then
+          if [ "${{ github.event.inputs.session }}" = "midday" ] || [ "${{ github.event.schedule }}" = "31 3 * * 1-5" ] || [ "${{ github.event.schedule }}" = "50 3 * * 1-5" ]; then
             echo "SESSION=midday" >> $GITHUB_ENV
             python scripts/full_market_screener.py --midday
           else
