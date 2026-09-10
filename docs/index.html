@@ -1122,31 +1122,85 @@ function sanitizeKLine(kl){
   }
   return out.length ? out : null;
 }
+/* 交易日/今日字符串 */
+function isTradingDay(d){ const w=(d||new Date()).getDay(); return w!==0 && w!==6; }
+function dayStr(d){
+  const x = d||new Date();
+  return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');
+}
+/* K线源信息（供日K弹窗显示「数据来源/最新交易日」，也便于排查"两个价格"这类问题） */
+let lastKLineInfo = { code:'', src:'', last:'', synth:false, ignored:'' };
+
+/* 用实时快照补「当日K线」：
+ * 部分源（如新浪日K）盘中只到昨日，导致同一标的在不同刷新里显示两个价格（昨日收盘 / 今日价）。
+ * 当选中的序列最后一根不是今天、且今天是交易日且在盘中/午间，用腾讯快照合成今日 bar（开/高/低/收/量）。
+ * 快照时间戳不是今天的则不加，避免把上一交易日的快照当成今天。 */
+async function ensureTodayBar(kl, code){
+  try{
+    if(!Array.isArray(kl) || !kl.length) return kl;
+    const now = new Date();
+    if(!isTradingDay(now)) return kl;
+    const m = now.getHours()*60+now.getMinutes();
+    if(m < 9*60+30 || m > 15*60+35) return kl;           /* 未开盘 / 收盘后（K源已含当日） */
+    const td = dayStr(now);
+    const last = String(kl[kl.length-1].date||'').slice(0,10);
+    if(last >= td) return kl;                            /* 已含当日，不重复追加 */
+    const q = await fetchQuote(code);
+    if(!q || !q.open || !q.price) return kl;             /* 源未提供 开/高/低（如东财）→ 不合成 */
+    const qd = String(q.time||'').slice(0,8);
+    if(qd && qd !== td.replace(/-/g,'')) return kl;      /* 快照不是今天的 → 不加 */
+    const out = kl.slice();
+    out.push({ date:td, open:+q.open, close:+q.price, high:+q.high||+q.price, low:+q.low||+q.price, vol:+q.vol||0, amount:0 });
+    lastKLineInfo.synth = true;
+    return out;
+  }catch(e){ return kl; }
+}
+
+/* fetchKLine 容错获取（2026-09-10 重构选源策略）：
+ * ① 腾讯 / 腾讯镜像 / 新浪 三源【并发取数】后统一清洗
+ * ② 选源规则：【最后一根K线日期最新者优先；日期相同则按源优先级(腾讯>腾讯镜像>新浪)】
+ *    —— 原实现用 Promise.any「先到先得」，同一标的会在"含当日的腾讯源"与"只到昨日的新浪源"之间随机命中，
+ *       导致连续刷新出现两个价格、指标(MA/KDJ/MACD)也跟着跳。改为确定性选源后结果稳定且始终最新。
+ * ③ 三源全败 → 东财 push2his 末位兜底（本机 IPv6 链路不稳，快速失败）
+ * ④ 选中的序列若缺当日 bar（盘中），用实时快照补一根，保证"永远是最新数据"
+ */
 async function fetchKLine(code){
   const reasons = [];
-  const one = async (fn, label) => {
-    try{
-      const kl = await fn(code);
-      if(kl && kl.length) return kl;
-      throw new Error('no kline');
-    }catch(e){
-      reasons.push(label + (cnErr(e && e.message)==='无K线' ? '' : '('+cnErr(e && e.message)+')'));
-      throw e; /* Promise.any 需要 rejected 才能继续等其它源 */
+  lastKLineInfo = { code:String(code), src:'', last:'', synth:false, ignored:'' };
+  const fast = [
+    { label:'腾讯',     fn:fetchKLineTencent,  pri:0 },
+    { label:'腾讯镜像', fn:fetchKLineQQProxy,  pri:1 },
+    { label:'新浪',     fn:fetchKLineSina,     pri:2 }
+  ];
+  const settled = await Promise.allSettled(fast.map(s=>s.fn(code)));
+  const ok = [];
+  settled.forEach((r,i)=>{
+    const s = fast[i];
+    if(r.status==='fulfilled' && r.value && r.value.length){ ok.push({ label:s.label, pri:s.pri, kl:r.value }); }
+    else{
+      const msg = (r.status==='rejected') ? cnErr(r.reason && r.reason.message) : '无K线';
+      reasons.push(s.label + (msg==='无K线' ? '' : '('+msg+')'));
     }
-  };
-  try{
-    /* 三源并发竞速：任一成功即整体成功 */
-    return await Promise.any([
-      one(fetchKLineTencent, '腾讯'),
-      one(fetchKLineQQProxy, '腾讯镜像'),
-      one(fetchKLineSina, '新浪')
-    ]);
-  }catch(err){
-    /* 前三源全败 → 东财末位兜底（快速失败居多） */
-    const em = await one(fetchKLineEM, '东财').catch(()=>null);
-    if(em) return em;
+  });
+  if(!ok.length){
+    /* 三源全败 → 东财末位兜底 */
+    try{
+      const em = await fetchKLineEM(code);
+      if(em && em.length){
+        const k = sanitizeKLine(em) || em;
+        lastKLineInfo = { code:String(code), src:'东财', last:String(k[k.length-1].date||''), synth:false, ignored:reasons.join('；') };
+        return ensureTodayBar(k, code);
+      }
+      reasons.push('东财(无K线)');
+    }catch(e){ reasons.push('东财('+cnErr(e && e.message)+')'); }
     throw new Error('K线获取失败：'+ (reasons.join('；') || '数据源均无此代码') + '。多为网络波动，请稍后重试');
   }
+  ok.forEach(o=>{ o.kl = sanitizeKLine(o.kl) || o.kl; o.last = o.kl.length ? String(o.kl[o.kl.length-1].date||'') : ''; });
+  ok.sort((a,b)=> (a.last<b.last?1:(a.last>b.last?-1:0)) || (a.pri-b.pri));   /* 最新日期优先 → 源优先级 */
+  const best = ok[0];
+  const stale = ok.slice(1).filter(x=>x.last && x.last!==best.last).map(x=>x.label+'仅到'+x.last);
+  lastKLineInfo = { code:String(code), src:best.label, last:best.last, synth:false, ignored:stale.join('、') };
+  return ensureTodayBar(best.kl, code);
 }
 
 /* 实时行情源① 腾讯 qt.gtimg.cn（本机 IPv6/4 均稳定，优先）
@@ -1169,13 +1223,16 @@ function fetchQuoteTencent(code){
       const raw = window[varname];
       if(raw && typeof raw==='string'){
         const p = raw.split('~');
-        /* [1]名称 [2]代码 [3]现价 [4]昨收 [31]涨跌额 [32]涨跌幅%
-           [38]换手率% [39]市盈率TTM [45]流通市值(亿) [46]总市值(亿) */
+        /* [1]名称 [2]代码 [3]现价 [4]昨收 [5]今开 [6]成交量(手) [30]时间(yyyymmddHHMMSS)
+           [31]涨跌额 [32]涨跌幅% [33]最高 [34]最低
+           [38]换手率% [39]市盈率TTM [45]流通市值(亿) [46]总市值(亿)
+           2026-09-10：补充 今开/最高/最低/成交量/快照时间 —— 供「当日K线缺失时用快照补 bar」使用 */
         if(p.length>35 && p[2]){
           const nm = isGarbledName(p[1]) ? null : p[1];
           done=true; cleanup();
           resolve({
             code:String(p[2]), name:nm, price:+p[3], prevClose:+p[4], chg:+p[31], chgPct:+p[32],
+            open:+p[5]||0, high:+p[33]||0, low:+p[34]||0, vol:+p[6]||0, time:String(p[30]||''),
             turnover: +p[38]||null, pe: +p[39]||null, floatCap: +p[45]||null, mktCap: +p[46]||null
           });
           return;
@@ -1403,11 +1460,20 @@ function sma(arr, n, m){
   return out;
 }
 function std(arr){ const m=arr.reduce((a,b)=>a+b,0)/arr.length; return Math.sqrt(arr.reduce((a,b)=>a+(b-m)*(b-m),0)/arr.length); }
+/* 样本标准差（÷n-1）——通达信 STD 口径，BOLL 用这个 */
+function stdSample(arr){
+  const n=arr.length; if(n<2) return 0;
+  const m=arr.reduce((a,b)=>a+b,0)/n;
+  return Math.sqrt(arr.reduce((a,b)=>a+(b-m)*(b-m),0)/(n-1));
+}
 
 function calcMACD(close){
   const e12=ema(close,12), e26=ema(close,26);
   const dif = e12.map((v,i)=>v-e26[i]);
-  const dea = sma(dif,9,2);
+  /* DEA = EMA(DIF,9)，通达信 EMA(X,N)=(2X+(N-1)Y')/(N+1) ≡ SMA(X,N+1,2)。
+   * 2026-09-10 修正：原写 sma(dif,9,2) 相当于 α=2/9=0.2222（应为 0.2），
+   * 会让 DEA/柱在快速行情中明显偏离主流软件（601949 实测 DEA 0.211 vs 正确 0.278）。 */
+  const dea = sma(dif,10,2);
   const hist = dif.map((v,i)=>(v-dea[i])*2);
   return {dif,dea,hist};
 }
@@ -1441,7 +1507,8 @@ function calcBOLL(close,n){
   for(let i=0;i<close.length;i++){
     if(i<n-1){ mid.push(null);up.push(null);low.push(null);continue; }
     const sl=close.slice(i-n+1,i+1);
-    const m=sl.reduce((a,b)=>a+b,0)/n, sd=std(sl);
+    /* σ 用样本标准差（÷n-1）对齐通达信 BOLL = MA(C,N) ± 2*STD(C,N)（STD 为估算标准差） */
+    const m=sl.reduce((a,b)=>a+b,0)/n, sd=stdSample(sl);
     mid.push(m); up.push(m+2*sd); low.push(m-2*sd);
   }
   return {mid,up,low};
@@ -2148,7 +2215,11 @@ async function showKChart(code, name){
       if(!kl || kl.length<2) throw new Error('数据不足');
     }
     kChartState.kl = kl;
-    $('#kmMeta').textContent = '日线 · 前复权 · '+kl.length+' 根 · 最新 '+kl[kl.length-1].date;
+    const info = (lastKLineInfo && lastKLineInfo.code===String(code)) ? lastKLineInfo : null;
+    const adj = (info && info.src==='新浪') ? '不复权兜底' : '前复权';
+    const lastD = String(kl[kl.length-1].date||'');
+    $('#kmMeta').textContent = '日线 · '+adj+' · '+kl.length+' 根 · 最新 '+lastD+
+      (info && info.src ? ' · 源:'+info.src : '') + (info && info.synth ? ' · 当日为快照合成' : '');
     $('#kmLoading').style.display = 'none';
     requestAnimationFrame(()=>drawKChart());
   }catch(e){
