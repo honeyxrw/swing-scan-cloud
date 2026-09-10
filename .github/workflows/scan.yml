@@ -1,7 +1,8 @@
 # 喵喵波段选股 · 云端自动扫描
 # 由 GitHub Actions 在交易日自动运行，无需本地电脑开机：
 #   11:31（北京时间）上午收盘即扫：午间快照版 今日推荐10只 · 精选1只  --midday
-#   11:50（北京时间）午间兜底：GitHub 定时常延迟，重复跑会被「数据未变化」守卫跳过
+#   11:50（北京时间）午间兜底：GitHub 定时常延迟；若延迟到 13:00 后才执行，
+#          自动升级为收盘完整版 close（防止晚到兜底把推荐覆盖回 10 只 midday 版）
 #   15:15（北京时间）收盘完整版：今日推荐20只
 # 扫描结果提交回本仓库 docs/，GitHub Pages（main 分支 /docs 目录）
 # 检测到 push 即自动重新发布网页。
@@ -42,11 +43,30 @@ jobs:
 
       - name: 运行全市场扫描
         run: |
-          if [ "${{ github.event.inputs.session }}" = "midday" ] || [ "${{ github.event.schedule }}" = "31 3 * * 1-5" ] || [ "${{ github.event.schedule }}" = "50 3 * * 1-5" ]; then
-            echo "SESSION=midday" >> $GITHUB_ENV
+          # 判定扫描模式：
+          #   手动 dispatch 的 inputs.session 优先；
+          #   午间 cron（31 3 / 50 3）默认 midday，但若被 GitHub 延迟到 13:00 后
+          #   才执行（此时已收盘，收盘数据是午间超集），自动升级为 close 完整版，
+          #   避免晚到的兜底把收盘后的今日推荐重新覆盖回 10 只 midday 版。
+          #   收盘 cron 与 dispatch=close 天然正确，无需守卫。
+          S="${{ github.event.schedule }}"
+          if [ "${{ github.event.inputs.session }}" = "midday" ]; then
+            SESSION=midday
+          elif [ "$S" = "31 3 * * 1-5" ] || [ "$S" = "50 3 * * 1-5" ]; then
+            NOW=$(date +%H%M)
+            if [ $((10#$NOW)) -gt 1300 ]; then
+              echo "⚠️ 午间 cron 延迟到 $(date '+%H:%M') 才执行（已过 13:00 收盘）→ 升级为 close 完整版"
+              SESSION=close
+            else
+              SESSION=midday
+            fi
+          else
+            SESSION=close
+          fi
+          echo "SESSION=$SESSION" >> $GITHUB_ENV
+          if [ "$SESSION" = "midday" ]; then
             python scripts/full_market_screener.py --midday
           else
-            echo "SESSION=close" >> $GITHUB_ENV
             python scripts/full_market_screener.py
           fi
 
