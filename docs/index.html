@@ -142,6 +142,14 @@ label.f b{color:var(--text2);font-weight:600}
 .yaogu-pill{font-size:10.5px;font-weight:800;padding:1px 8px;border-radius:10px;background:linear-gradient(135deg,var(--yaoBg),rgba(245,72,78,.10));color:var(--yao);border:1px solid rgba(255,110,169,.45);letter-spacing:.5px;cursor:help}
 .ind-pill{font-size:10.5px;font-weight:600;padding:1px 8px;border-radius:10px;background:var(--blueBg);color:var(--blue);border:1px solid rgba(76,141,255,.32);white-space:nowrap;cursor:help}
 .rec-empty{grid-column:1/-1;text-align:center;color:var(--text3);padding:22px 10px;font-size:12.5px}
+/* ---- v3.18 妖股集卡片 ---- */
+.rec-card.monster{border:1px solid rgba(245,72,78,.45);background:linear-gradient(160deg,rgba(245,72,78,.05),rgba(255,255,255,.01) 55%)}
+.rec-card.monster .m-limit{font-size:10.5px;font-weight:700;color:#fff;background:linear-gradient(135deg,#f5484e,#ff8a3d);padding:1px 7px;border-radius:9px;white-space:nowrap}
+.rec-card.monster .m-spark{width:100%;height:44px;display:block;margin:2px 0 6px}
+.rec-card.monster .m-tech{font-size:11px;color:var(--text2);line-height:1.65;background:rgba(58,71,96,.05);border-left:3px solid var(--gold);padding:4px 8px;border-radius:7px;margin-bottom:6px;word-break:break-all}
+.rec-card.monster .m-warn{font-size:10.5px;color:var(--gold);line-height:1.5;margin-bottom:6px}
+.m-stat{font-size:10.5px;color:var(--text3);white-space:nowrap}
+.m-stat b{color:var(--text2)}
 .sig-strong{background:var(--redBg);color:var(--red)}
 .sig-go{background:var(--goldBg);color:var(--gold)}
 .sig-near{background:var(--blueBg);color:var(--blue)}
@@ -334,7 +342,7 @@ label.f b{color:var(--text2);font-weight:600}
     <div class="dot"></div>
     <div>
       <h1>上车·下车 <em>交易辅助台</em></h1>
-      <div class="sub">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700">v3.17 · 主力资金板块地图</b></div>
+      <div class="sub">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700">v3.18 · 妖股集 + 主力资金板块地图</b></div>
     </div>
   </div>
   <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓；上午收盘(11:30后)与全天收盘(15:00后)各抢刷一次，并抢鲜云端午间/收盘扫描结果（页面需保持打开）">⏱ 盘中10分·开</button>
@@ -425,6 +433,12 @@ label.f b{color:var(--text2);font-weight:600}
       <h3>⭐ 今日精选 <span class="tag" id="recPicksN">0</span></h3>
       <p class="rec-sub">B+ 鱼头优先 → 六联信号多 → 信号分高，每日最多 6 只</p>
       <div class="rec-grid" id="recPicks"></div>
+    </div>
+
+    <div class="card">
+      <h3>😈 妖股集 <span class="tag" id="recMonsterN">0</span></h3>
+      <p class="rec-sub">全市场扫描（不受行业/价位/基本面门槛约束）：短期涨幅极端 + 连板基因，仅作情绪风向标与观察名单 —— <b style="color:var(--red)">高风险博弈区，严禁盲目追高</b></p>
+      <div class="rec-grid" id="recMonster"></div>
     </div>
   </section>
 
@@ -726,9 +740,58 @@ function renderRec(){
   $('#recBreakout').innerHTML = n1 ? d.breakout.map(x=>recCardHTML(x,false)).join('') : '<div class="rec-empty">今日无「启动·刚突破确认」标的，耐心等鱼头</div>';
   $('#recTrend').innerHTML = n2 ? d.trend.map(x=>recCardHTML(x,false)).join('') : '<div class="rec-empty">今日无「趋势中」标的</div>';
   $('#recPicks').innerHTML = n3 ? d.picks.map(x=>recCardHTML(x,true)).join('') : '<div class="rec-empty">今日无精选</div>';
+  /* v3.18 妖股集（云端全市场扫描直出，量价/技术面已算好，无需浏览器二次判定） */
+  const nm = Array.isArray(d.monster) ? d.monster.length : -1;   /* -1=本轮数据未含妖股集 */
+  $('#recMonsterN').textContent = (nm<0?'--':nm)+' 只';
+  $('#recMonster').innerHTML = nm>0 ? d.monster.map(monsterCardHTML).join('') :
+    (nm===0 ? '<div class="rec-empty">今日无命中妖股判定口径的标的（短线情绪平静，是好事）</div>'
+            : '<div class="rec-empty">本轮数据未含妖股集 —— 等云端下一轮扫描（11:31/15:15）后自动出现</div>');
   fillIndustryPills();
   /* 逐只判定并显示量价关系阶段（异步回填，见 fillRecVP/probeRecVP） */
   recVpEpoch++; fillRecVP(recVpEpoch);
+}
+/* ===== v3.18 妖股集卡片 ===== */
+function sparkSVG(spark){
+  if(!Array.isArray(spark) || spark.length<2) return '';
+  const w=260,h=44,pad=3;
+  const mn=Math.min.apply(null,spark), mx=Math.max.apply(null,spark), rg=(mx-mn)||1;
+  const pts=spark.map((v,i)=>{
+    const x=pad+i*(w-2*pad)/(spark.length-1);
+    const y=h-pad-(v-mn)/rg*(h-2*pad);
+    return x.toFixed(1)+','+y.toFixed(1);
+  });
+  const up = spark[spark.length-1]>=spark[0];      /* 涨红跌绿 */
+  const col = up?'#f5484e':'#22c074';
+  return '<svg class="m-spark" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none">'+
+    '<path d="M'+pts.join(' L')+' L'+(w-pad).toFixed(1)+','+(h-pad)+' L'+pad+','+(h-pad)+' Z" fill="'+col+'" opacity=".13"/>'+
+    '<path d="M'+pts.join(' L')+'" fill="none" stroke="'+col+'" stroke-width="1.6"/></svg>';
+}
+function monsterCardHTML(x){
+  const cls = x.chg>0?'up':(x.chg<0?'down':'flat');
+  const v = x.vp||{};
+  const lv = v.level==null?3:v.level;
+  const vpc = lv>=4 ? '#22c074' : (lv<=1 ? '#f5484e' : '#a78bfa');
+  const stats = [];
+  if(x.gain10!=null) stats.push('10日 <b>'+(x.gain10>0?'+':'')+x.gain10+'%</b>');
+  if(x.gain20!=null) stats.push('20日 <b>'+(x.gain20>0?'+':'')+x.gain20+'%</b>');
+  if(x.turnover!=null) stats.push('换手 <b>'+x.turnover+'%</b>');
+  if(x.volRatio!=null) stats.push('量比 <b>'+x.volRatio+'</b>');
+  if(x.mcap!=null) stats.push('市值 <b>'+x.mcap+'亿</b>');
+  return '<div class="rec-card monster">'+
+    '<div class="hd"><div><span class="nm">'+escHTML(x.name)+'</span> <span class="code">'+escHTML(x.code)+'</span>'+
+      '<span class="tag" style="margin-left:4px">'+escHTML(x.board||'')+'</span>'+
+      '<span class="tag" style="margin-left:3px">'+escHTML(x.sector||'—')+'</span></div>'+
+      (x.limit10?'<span class="m-limit">'+x.limit10+'板/10日</span>':'')+'</div>'+
+    '<div class="px"><b class="'+cls+'">'+(x.close!=null?x.close:'--')+'</b>'+
+      '<span class="'+cls+'">'+(x.chg>0?'+':'')+(x.chg!=null?x.chg:'--')+'%</span></div>'+
+    sparkSVG(x.spark)+
+    '<div class="rs" style="display:flex;gap:9px;flex-wrap:wrap;margin:0 0 6px">'+stats.map(s=>'<span class="m-stat">'+s+'</span>').join('')+'</div>'+
+    '<div class="m-tech">📊 '+escHTML(x.tech||'技术面数据待云端下轮扫描')+'</div>'+
+    (v.txt?'<div class="vp-line" style="border-left-color:'+vpc+'"><b style="color:'+vpc+'">🔀 '+escHTML(v.txt)+'</b>'+
+      (v.vr!=null?'<span style="opacity:.62;margin-left:2px">量比 '+v.vr+' · 位置分位 '+Math.round((v.pos||0)*100)+'%</span>':'')+'</div>':'')+
+    (x.warn?'<div class="m-warn">⚠️ '+escHTML(x.warn)+'</div>':'')+
+    '<div class="ft"><button class="btn sm ghost" onclick="showKChart(\''+x.code+'\',\''+escHTML(x.name||'')+'\')">📈 日K</button></div>'+
+  '</div>';
 }
 /* ===== 今日推荐 · 量价关系阶段判定（六态）=====
  * 每张推荐卡片拉取该标的日K → analyzeStock 的量价判定(vpNow/vpH)，就地回填"量价阶段"行。

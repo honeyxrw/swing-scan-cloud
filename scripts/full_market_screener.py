@@ -45,6 +45,18 @@ REC_TOTAL_TARGET = 20      # 收盘版今日推荐总数目标（trend+breakout+
 REC_MIDDAY_TOTAL = 10      # 午间快照版（--midday，11:40 上午收盘后跑）今日推荐总数目标
 REC_MIDDAY_PICKS = 1       # 午间快照版精选固定 1 只（精选=两组之外最强信号；午间不用 B/A 硬凑数量）
 
+# ===== v3.12 妖股集（全市场扫描，不受行业/价格/基本面门槛约束）=====
+# 判定口径：短期涨幅极端 + 连板基因 + 高波动；排除 ST/退整/新股/北交所
+MONSTER_CAND_GAINER = 150   # 东财全市场涨幅榜抓取页大小
+MONSTER_CAND_TURN = 80      # 东财全市场换手率榜抓取页大小
+MONSTER_MAX = 12            # 妖股集最多输出只数（按 近10日涨停数 → 近10日涨幅 排序）
+MONSTER_GAIN10 = 35.0       # 近10日累计涨幅 ≥ 35%
+MONSTER_GAIN20 = 55.0       # 或 近20日累计涨幅 ≥ 55%
+MONSTER_LIMIT10 = 2         # 且 近10日涨停 ≥ 2 次（主板≥9.8% / 创业科创≥19.5%）
+MONSTER_LIMIT10_ALT = 3     # 连板型替代口径：近10日涨停 ≥ 3 次（不要求涨幅门槛）
+MONSTER_AMT20_MIN = 5000e4  # 流动性门槛：20日均成交额 ≥ 5000万（防僵尸股；一字板妖股日成交小，用均值而非当日）
+MONSTER_SPARK = 30          # 页面 mini-K 用的收盘序列长度
+
 # ===== 行业板块（腾讯申万一级）=====
 BOARDS = [
     ('pt01801080', '电子', '科技'),
@@ -637,12 +649,241 @@ def analyze(symbol, code, name, is_etf, sector=''):
     }
 
 
+# ======================================================================
+# ===== v3.12 妖股集：全市场扫描（不受行业/价格/基本面门槛约束）=====
+# ======================================================================
+EM_UT = 'bd1d9ddb04089700cf9c27f6f7426281'
+EM_HOSTS = ('https://push2delay.eastmoney.com', 'https://push2.eastmoney.com')
+EM_FS_ALL_A = 'm:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23'   # 沪深A股全市场（含创业/科创，排除北交）
+EM_F_LIST = 'f12,f14,f2,f3,f8,f10,f20,f100,f109,f160'
+
+
+def _em_clist(fid, pz, pn=1):
+    """东财 clist 全市场榜单（延迟行情，对收盘/午间扫描足够）。双主机回退。"""
+    last_err = None
+    for host in EM_HOSTS:
+        url = (f'{host}/api/qt/clist/get?pn={pn}&pz={pz}&po=1&np=1&fltt=2&invt=2'
+               f'&ut={EM_UT}&fid={fid}&fs={EM_FS_ALL_A}&fields={EM_F_LIST}')
+        try:
+            d = _get_json(url, tries=4, backoff=1.5)
+            diff = (d.get('data') or {}).get('diff') or []
+            if diff:
+                return diff
+            last_err = RuntimeError('empty diff')
+        except Exception as ex:
+            last_err = ex
+    raise last_err
+
+
+def fetch_monster_candidates():
+    """全市场候选：涨幅榜 + 换手榜并集，过滤 ST/退整/新股/北交所，返回 {code: info}"""
+    raw = {}
+    for fid, pz in (('f3', MONSTER_CAND_GAINER), ('f8', MONSTER_CAND_TURN)):
+        try:
+            for pn in (1, 2):
+                for x in _em_clist(fid, pz, pn):
+                    code = str(x.get('f12') or '')
+                    raw[code] = x
+        except Exception as ex:
+            print(f'  [警告] 东财榜单(fid={fid})拉取失败: {ex}', flush=True)
+    cand = {}
+    for code, x in raw.items():
+        name = str(x.get('f14') or '')
+        price = x.get('f2')
+        if not code.startswith(('00', '60', '30', '68')):
+            continue                                   # 只留沪深主板/创业/科创
+        if 'ST' in name.upper() or '退' in name or name.startswith(('N', 'C')):
+            continue                                   # 剔除 ST/退整/新股次新
+        if not isinstance(price, (int, float)):
+            continue                                   # 停牌/异常
+        cand[code] = {
+            'name': name, 'price': price,
+            'pct': x.get('f3') if isinstance(x.get('f3'), (int, float)) else 0.0,
+            'turnover': x.get('f8') if isinstance(x.get('f8'), (int, float)) else None,
+            'volRatio': x.get('f10') if isinstance(x.get('f10'), (int, float)) else None,
+            'mcap': x.get('f20') if isinstance(x.get('f20'), (int, float)) else None,
+            'industry': str(x.get('f100') or '—'),
+        }
+    return cand
+
+
+def _limit_th(code):
+    return 19.5 if code.startswith(('30', '68')) else 9.8
+
+
+def monster_metrics(bars, code):
+    """K线级妖股判定：近10/20日涨幅 + 近10日涨停次数。
+    注意：不设日内振幅硬门槛——一字连板妖股振幅极小，振幅仅作输出参考。
+    返回 (ok, m)"""
+    n = len(bars)
+    if n < 70:
+        return False, {}
+    th = _limit_th(code)
+    c = [b['close'] for b in bars]
+
+    def gain(d):
+        if n <= d or c[-d - 1] <= 0:
+            return 0.0
+        return (c[-1] / c[-d - 1] - 1) * 100
+
+    gain10, gain20 = gain(10), gain(20)
+    limit10 = 0
+    for i in range(max(1, n - 10), n):
+        pc = c[i - 1]
+        if pc > 0 and (c[i] / pc - 1) * 100 >= th:
+            limit10 += 1
+    amp20 = sum((b['high'] - b['low']) / b['close'] for b in bars[-20:]) / 20 * 100
+    ok = ((gain10 >= MONSTER_GAIN10 or gain20 >= MONSTER_GAIN20) and limit10 >= MONSTER_LIMIT10) \
+        or limit10 >= MONSTER_LIMIT10_ALT
+    return ok, {'gain10': round(gain10, 1), 'gain20': round(gain20, 1),
+                'limit10': limit10, 'amp20': round(amp20, 1)}
+
+
+def vp_state_py(bars):
+    """页面 vpState 六态的 Python 镜像（口径一致：量增≥1.2/量减≤0.8，价涨≥0.5%/跌≤-0.5%，
+    位置=近60日收盘分位，高位≥0.66 / 低位≤0.33）"""
+    n = len(bars)
+    last = bars[-1]
+    base = [b['vol'] for b in bars[-6:-1]]
+    vma5 = sum(base) / 5 if base else last['vol']
+    vr = last['vol'] / max(1e-9, vma5)
+    chg = (last['close'] / bars[-2]['close'] - 1) * 100 if n >= 2 and bars[-2]['close'] > 0 else 0.0
+    V = '增' if vr >= 1.2 else ('减' if vr <= 0.8 else '平')
+    P = '涨' if chg >= 0.5 else ('跌' if chg <= -0.5 else '平')
+    ma20 = sum(b['close'] for b in bars[-20:]) / 20
+    above_mid = last['close'] >= ma20
+    seg = bars[-60:]
+    hh = max(b['close'] for b in seg)
+    ll = min(b['close'] for b in seg)
+    pos = (last['close'] - ll) / (hh - ll) if hh > ll else 0.5
+    high, low = pos >= 0.66, pos <= 0.33
+    key = V + P
+    if key == '增涨':
+        state, level, txt = 'pv_rise', 5, '量增价涨·健康上攻' + ('' if above_mid else '·尚待收复中轨')
+    elif key == '增平':
+        if low:
+            state, level, txt = 'pv_acc', 4, '低位量增价平·主力建仓'
+        else:
+            state, level, txt = 'pv_flat_up', 2, '高位量增价平·警惕出货'
+    elif key == '增跌':
+        state, level, txt = 'pv_fall', 1, '放量下跌·空方主导，准备离场'
+    elif key == '减涨':
+        state, level, txt = 'pv_shrink_rally', 2, '缩量上涨·量价背离，防诱多'
+    elif key == '减平':
+        if above_mid:
+            state, level, txt = 'pv_diverge', 1, '高位量减价平·变盘在即，把握离场'
+        else:
+            state, level, txt = 'pv_quiet', 3, '低位量减价平·缩量整理'
+    elif key == '减跌':
+        state, level, txt = 'pv_shrink_fall', 0, '缩量阴跌·人气涣散，勿抄底'
+    elif key == '平涨':
+        state, level, txt = 'pv_stable', 4, '平量上涨·温和上行'
+    elif key == '平平':
+        state, level, txt = 'pv_flat', 3, '量平价平·盘整观望'
+    else:
+        state, level, txt = 'pv_flat_fall', 1, '平量下跌·走弱'
+    return {'state': state, 'level': level, 'txt': txt,
+            'vr': round(vr, 2), 'chg': round(chg, 2), 'pos': round(pos, 2)}
+
+
+def _board_tag(code):
+    if code.startswith(('00', '60')):
+        return '主板'
+    if code.startswith('30'):
+        return '创业板'
+    if code.startswith('68'):
+        return '科创板'
+    return '—'
+
+
+def analyze_monster(symbol, code, info):
+    """妖股单只分析：K线判定 → 复用 analyze() 全套技术面 → 组装页面所需字段。未命中返回 None"""
+    try:
+        bars = fetch_kline(symbol)
+        ok, m = monster_metrics(bars, code)
+        if not ok:
+            return None
+        r = analyze(symbol, code, info['name'], False, info['industry'])
+        if r is None:
+            return None
+        if r['amt20'] < MONSTER_AMT20_MIN:
+            return None                                # 僵尸股过滤（20日均额≥5000万）
+        vp = vp_state_py(bars)
+        macd_st = '金叉' if r['dif'] > r['dea'] else '死叉'
+        tech = (f"{r['stage']}｜六联{r['six_cnt']}/5{r['six_grade']}"
+                f"｜MACD{macd_st}(柱{r['hist']:+.3f})"
+                f"｜KDJ J{r['j']:.0f}｜CCI{r['cci']:.0f}"
+                f"｜SAR{'多头' if r['sar_up'] else '空头'}"
+                f"｜{'站上' if r['above_ma20'] else '跌破'}MA20 {r['ma20']:.2f}"
+                f"｜BOLL {r['lower']:.2f}~{r['upper']:.2f}")
+        board = _board_tag(code)
+        warn = []
+        if r['j'] > 90:
+            warn.append(f"J值超买({r['j']:.0f})")
+        if r['close'] > r['upper']:
+            warn.append('冲出BOLL上轨')
+        if r['stage_brief'] in ('D', 'E'):
+            warn.append('顶部/冷却阶段')
+        if info['price'] > PRICE_MAX:
+            warn.append(f"超出常买价位({PRICE_MAX:.0f}元)")
+        return {
+            'code': code, 'name': info['name'], 'sector': info['industry'],
+            'board': board,
+            'close': round(r['close'], 3), 'chg': round(r['chg'], 2),
+            'turnover': info['turnover'], 'volRatio': info['volRatio'],
+            'mcap': round(info['mcap'] / 1e8, 1) if info['mcap'] else None,
+            'gain10': m['gain10'], 'gain20': m['gain20'],
+            'limit10': m['limit10'], 'amp20': m['amp20'],
+            'stage': r['stage_brief'], 'stageName': r['stage'], 'score': r['score'],
+            'six': f"{r['six_cnt']}/5", 'sixGrade': r['six_grade'],
+            'tech': tech, 'vp': vp, 'warn': '、'.join(warn),
+            'spark': [round(b['close'], 3) for b in bars[-MONSTER_SPARK:]],
+            'lastDate': r['date'],
+        }
+    except Exception:
+        return None
+
+
+def scan_monsters():
+    """妖股集主流程：全市场榜单 → 候选拉K线判定 → 排序输出"""
+    t0 = time.time()
+    cand = fetch_monster_candidates()
+    if not cand:
+        print('  [警告] 妖股候选抓取失败，本轮妖股集为空', flush=True)
+        return []
+    print(f"  全市场候选（涨幅/换手榜并集·剔ST退整新股北交）：{len(cand)} 只", flush=True)
+    tasks = []
+    for code, info in cand.items():
+        symbol = ('sh' if code.startswith(('6', '5')) else 'sz') + code
+        tasks.append((symbol, code, info))
+    items = []
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        futs = {pool.submit(analyze_monster, *t): t for t in tasks}
+        for i, fut in enumerate(as_completed(futs), 1):
+            if i % 50 == 0:
+                print(f'  妖股判定进度 {i}/{len(tasks)}...', flush=True)
+            try:
+                it = fut.result()
+                if it:
+                    items.append(it)
+            except Exception:
+                pass
+    items.sort(key=lambda x: (-x['limit10'], -x['gain10']))
+    items = items[:MONSTER_MAX]
+    print(f"  😈 妖股集命中 {len(items)} 只，耗时 {time.time()-t0:.0f}秒", flush=True)
+    for it in items:
+        print(f"    [{it['sector']}] {it['code']} {it['name']} 收{it['close']} {it['chg']:+.2f}% "
+              f"10日{it['gain10']:+.0f}% 涨停{it['limit10']}板 换手{it['turnover'] or '—'}% "
+              f"量价[{it['vp']['txt']}]", flush=True)
+    return items
+
+
 def main():
     t0 = time.time()
     session = 'midday' if '--midday' in sys.argv else 'close'
     sess_tag = ' · 午间快照版（今日推荐10只·精选1只）' if session == 'midday' else ''
     print("=" * 90, flush=True)
-    print(f"喵喵全市场波段选股扫描 v3.11 · {datetime.date.today().strftime('%Y-%m-%d')}{sess_tag}")
+    print(f"喵喵全市场波段选股扫描 v3.12（+妖股集） · {datetime.date.today().strftime('%Y-%m-%d')}{sess_tag}")
     print(f"框架：账户可买(主板00/60) · 科技+有色 · ≤{PRICE_MAX:.0f}元 · 基本面资格赛(A/B档无红旗) → 技术面5阶段 | ETF独立池")
     print("=" * 90, flush=True)
 
@@ -771,7 +1012,14 @@ def main():
         print(f"ℹ️ 数据日 {data_day} ≠ 运行日 {today_str()}（非交易日补跑），候选池按数据日落盘", flush=True)
     html_path = generate_html(results, failed, techs, metals, qualified, rejected_c, rejected_flag, data_day)
     print(f"\n报告已保存: {html_path}")
-    json_path = generate_json(results, data_day, session)
+    # v3.12 妖股集：全市场扫描（独立于行业池与今日推荐，不受门槛约束）
+    print(f"\n[5/5] 😈 妖股集：全市场扫描判定...", flush=True)
+    try:
+        monster_items = scan_monsters()
+    except Exception as ex:
+        print(f'  [警告] 妖股集扫描失败(不影响主流程): {ex}', flush=True)
+        monster_items = []
+    json_path = generate_json(results, data_day, session, monster_items)
     print(f"候选池JSON已保存: {json_path}")
     return results, html_path
 
@@ -991,10 +1239,12 @@ def build_recommendations(results, today, session='close'):
     }
 
 
-def generate_json(results, today, session='close'):
+def generate_json(results, today, session='close', monster_items=None):
     """输出候选池 JSON v2（个股池与ETF池分离，供波段作战台 v4 导入）；session 决定今日推荐形态（收盘20只 / 午间10只精选1）"""
     stocks = [_item(r) for r in results if not r['is_etf']]
     etfs = [_item(r) for r in results if r['is_etf']]
+    recs = build_recommendations(results, today, session)
+    recs['monster'] = monster_items or []
     out = {
         'date': today, 'session': session,
         'criteria': (f'账户可买：沪深主板00/60（开户满3年·资产10万以内）· 价格≤{PRICE_MAX:.0f}元 · '
@@ -1002,7 +1252,7 @@ def generate_json(results, today, session='close'):
         'stocks': stocks,
         'etfs': etfs,
         # v3.10 今日推荐：趋势中 + 启动刚突破确认 + 精选（收盘版20只 / 午间快照版10只·精选1只，精选按三维综合评分）
-        'recommendations': build_recommendations(results, today, session),
+        'recommendations': recs,
         'count': len(stocks) + len(etfs),
     }
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'reports')
