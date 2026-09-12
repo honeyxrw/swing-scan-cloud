@@ -481,7 +481,7 @@ label.f b{color:var(--text2);font-weight:600}
 
     <div class="card">
       <h3>🎯 次日上涨候选 <span class="tag" id="ndStockN">--</span></h3>
-      <p class="rec-sub">强势板块内：当日涨幅 3%-6%（未涨停）× 站上 MA5 与 MA20 × 量超 5 日均量（盘中按进度折算）× 尾盘半小时不跳水 —— 全部满足</p>
+      <p class="rec-sub">强势板块内：股价 ≤25元 × 当日涨幅 3%-6%（未涨停）× 站上 MA5 与 MA20 × 量超 5 日均量（盘中按进度折算）× 尾盘半小时不跳水 —— 全部满足</p>
       <div class="rec-grid" id="ndStocks"></div>
     </div>
 
@@ -3271,6 +3271,7 @@ function switchTab(name){
 const ND_UT = 'bd1d9ddb04089700cf9c27f6f7426281';
 const ND_F_BRD = 'f12,f14,f3,f62,f109,f160,f104,f105';
 const ND_F_STK = 'f12,f14,f2,f3,f8,f6,f100';
+const ND_MAX_PRICE = 25;                      /* 个人购买条件：股价 ≤25元 */
 let ndBusy=false, ndData=null, ndAt=0, ndLastTag='', ndEpoch=0;
 
 function ndLimitTh(code){ return /^(30|68)/.test(code) ? 19.5 : 9.8; }
@@ -3391,6 +3392,7 @@ async function runNextDayScan(auto){
     sel.forEach(b=>b.stks.forEach(s=>{
       if(seen[s.code]) return; seen[s.code]=1;
       if(!/^(00|30|60|68)/.test(s.code)) return;          /* 仅沪深主板/创业板/科创板，剔北交所 */
+      if(s.price > ND_MAX_PRICE) return;                   /* 个人购买条件：股价≤25元 */
       if(s.pct<3 || s.pct>=6) return;
       if(/ST|退/i.test(s.name)) return;
       cands.push(s);
@@ -3513,10 +3515,10 @@ function ndRender(){
           '<span class="m-stat">板块内上涨 <b>'+b.adv+'</b> 家</span></div></div>').join('');
     sb.innerHTML = d.stocks.length
       ? d.stocks.map(ndCardHTML).join('')
-      : '<div class="empty" style="grid-column:1/-1">入选板块中暂无满足全部条件的个股（3%-6% × 站上MA5/MA20 × 放量 × 尾盘不跳水）</div>';
+      : '<div class="empty" style="grid-column:1/-1">入选板块中暂无满足全部条件的个股（≤25元 × 3%-6% × 站上MA5/MA20 × 放量 × 尾盘不跳水）</div>';
   }
   const t=new Date(d.at);
-  if(note) note.innerHTML='<b>更新 '+t.toLocaleTimeString('zh-CN',{hour12:false})+'</b> · 自动刷新窗口：开盘日 14:00-15:00 每 10 分钟（15:00 为收盘终版）· 筛选链：大盘开关（跌幅≤-1.5% 或 上涨<500家 → 停扫）→ 板块（涨幅前5 × ≥3只强股 × 5日/10日累计收涨）→ 个股（3%-6%未涨停 × 站上MA5&MA20 × 量超5日均量 × 尾盘无跳水）。盘中量能按交易进度折算全天；尾盘数据缺失的标的保留并标 ⚠。候选仅为尾盘强势观察名单，<b style="color:var(--gold)">次日需结合竞价与大盘确认，非买入指令</b>。';
+  if(note) note.innerHTML='<b>更新 '+t.toLocaleTimeString('zh-CN',{hour12:false})+'</b> · 自动刷新窗口：开盘日 14:00-15:00 每 10 分钟（15:00 为收盘终版）· 筛选链：大盘开关（跌幅≤-1.5% 或 上涨<500家 → 停扫）→ 板块（涨幅前5 × ≥3只强股 × 5日/10日累计收涨）→ 个股（<b>股价≤25元</b> × 3%-6%未涨停 × 站上MA5&MA20 × 量超5日均量 × 尾盘无跳水）。盘中量能按交易进度折算全天；尾盘数据缺失的标的保留并标 ⚠。候选仅为尾盘强势观察名单，<b style="color:var(--gold)">次日需结合竞价与大盘确认，非买入指令</b>。';
 }
 
 /* 手动刷新按钮绑定 */
