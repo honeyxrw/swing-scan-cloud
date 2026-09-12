@@ -150,6 +150,24 @@ label.f b{color:var(--text2);font-weight:600}
 .rec-card.monster .m-warn{font-size:10.5px;color:var(--gold);line-height:1.5;margin-bottom:6px}
 .m-stat{font-size:10.5px;color:var(--text3);white-space:nowrap}
 .m-stat b{color:var(--text2)}
+
+/* ---- v3.19 次日上涨票 ---- */
+.nd-gate{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nd-flag{font-size:14px;font-weight:800;padding:5px 14px;border-radius:20px;white-space:nowrap}
+.nd-flag.ok{background:var(--greenBg);color:var(--green)}
+.nd-flag.bad{background:var(--redBg);color:var(--red)}
+.nd-chip{font-size:12px;color:var(--text2);white-space:nowrap}
+.nd-chip b{font-weight:700}
+.nd-reason{font-size:12px;color:var(--text3);margin-top:9px;line-height:1.7}
+.nd-badges{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:4px 0 8px;font-size:10.5px;color:var(--text3)}
+.nd-b{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:6px;font-weight:800;font-size:11px;padding:0 5px}
+.nd-b.ok{background:var(--greenBg);color:var(--green)}
+.nd-b.no{background:var(--redBg);color:var(--red)}
+.nd-b.na{background:rgba(147,160,180,.18);color:var(--text3)}
+.nd-b.warn{background:var(--goldBg);color:var(--gold)}
+.rec-card.nd-board{border:1px solid rgba(245,181,10,.35);background:linear-gradient(160deg,rgba(245,181,10,.05),rgba(255,255,255,.01) 55%)}
+.rec-card.nd-board .m-limit{font-size:12.5px}
+.rec-card.nd-stock{border:1px solid rgba(245,181,10,.28)}
 .sig-strong{background:var(--redBg);color:var(--red)}
 .sig-go{background:var(--goldBg);color:var(--gold)}
 .sig-near{background:var(--blueBg);color:var(--blue)}
@@ -342,7 +360,7 @@ label.f b{color:var(--text2);font-weight:600}
     <div class="dot"></div>
     <div>
       <h1>上车·下车 <em>交易辅助台</em></h1>
-      <div class="sub">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700">v3.18 · 妖股集 + 主力资金板块地图</b></div>
+      <div class="sub">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700">v3.19 · 次日上涨票 + 妖股集 + 板块地图</b></div>
     </div>
   </div>
   <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓；上午收盘(11:30后)与全天收盘(15:00后)各抢刷一次，并抢鲜云端午间/收盘扫描结果（页面需保持打开）">⏱ 盘中10分·开</button>
@@ -359,6 +377,7 @@ label.f b{color:var(--text2);font-weight:600}
 <nav id="nav">
   <button data-tab="picker" class="active">📡 选股雷达</button>
   <button data-tab="rec">🔥 今日推荐 <span class="badge" id="recCount" style="display:none">0</span></button>
+  <button data-tab="nd">🌅 次日上涨 <span class="badge" id="ndCount" style="display:none">0</span></button>
   <button data-tab="pool">🗂 股票池 <span class="badge blue" id="poolCount">0</span></button>
   <button data-tab="entry">🟢 上车判定 <span class="badge" id="entryCount" style="display:none">0</span></button>
   <button data-tab="exit">🔴 下车判定 <span class="badge" id="posCount" style="display:none">0</span></button>
@@ -439,6 +458,35 @@ label.f b{color:var(--text2);font-weight:600}
       <h3>😈 妖股集 <span class="tag" id="recMonsterN">0</span></h3>
       <p class="rec-sub">全市场扫描（不受行业/价位/基本面门槛约束）：短期涨幅极端 + 连板基因，仅作情绪风向标与观察名单 —— <b style="color:var(--red)">高风险博弈区，严禁盲目追高</b></p>
       <div class="rec-grid" id="recMonster"></div>
+    </div>
+  </section>
+
+  <!-- ============ 次日上涨票 ============ -->
+  <section class="tab" id="tab-nd">
+    <div class="page-head">
+      <h2>🌅 次日上涨票</h2>
+      <span class="desc">尾盘选强势：今日已走强 + 明日大概率延续 · 开盘日 14:00-15:00 每 10 分钟自动刷新</span>
+      <button class="btn ghost sm" id="btnRefreshND" style="margin-left:auto">🔄 立即扫描</button>
+    </div>
+
+    <div class="card">
+      <div id="ndGate"><div class="empty">尚未扫描 · 交易时段 14:00-15:00 每 10 分钟自动刷新，或点击右上角「立即扫描」</div></div>
+    </div>
+
+    <div class="card">
+      <h3>🔥 入选强势板块 <span class="tag" id="ndBoardN">--</span></h3>
+      <p class="rec-sub">板块涨幅排名前 5 × 板块内 ≥3 只涨超5%/涨停 × 非一日游（5日/10日累计均收涨）—— 三关全过才入选，锁定 1-2 个板块</p>
+      <div class="rec-grid" id="ndBoards"></div>
+    </div>
+
+    <div class="card">
+      <h3>🎯 次日上涨候选 <span class="tag" id="ndStockN">--</span></h3>
+      <p class="rec-sub">强势板块内：当日涨幅 3%-6%（未涨停）× 站上 MA5 与 MA20 × 量超 5 日均量（盘中按进度折算）× 尾盘半小时不跳水 —— 全部满足</p>
+      <div class="rec-grid" id="ndStocks"></div>
+    </div>
+
+    <div class="card">
+      <div class="rec-note" id="ndNote"></div>
     </div>
   </section>
 
@@ -986,6 +1034,14 @@ function scheduleTick(){
    *    云端刚发布就立即更新「今日推荐」（其余时段仍走 5 分钟常规轮询） */
   if((hm>=11*60+32 && hm<=11*60+36) || (hm>=15*60+16 && hm<=15*60+22)){
     autoPollRec();
+  }
+  /* ④ 次日上涨票：开盘日 14:00~15:00 每 10 分钟自动扫描（14:00…14:50 + 15:00 收盘终版） */
+  if(hm>=14*60 && hm<=15*60 && d.getMinutes()%10===0 && !ndBusy){
+    const tag = d.toDateString()+'#ND'+d.getHours()+':'+d.getMinutes();
+    if(tag!==ndLastTag){
+      ndLastTag = tag;
+      runNextDayScan(true);
+    }
   }
 }
 setInterval(scheduleTick, 60*1000);                 /* 每分钟心跳 */
@@ -3203,7 +3259,271 @@ function switchTab(name){
   if(name==='picker') renderPickerResults();
   if(name==='rec') renderRec();
   if(name==='flow'){ flowOpen(); flowRePaint(); }
+  if(name==='nd') ndOpen();
 }
+
+/* ================================================================
+ * v3.19 次日上涨票 —— 尾盘强势延续筛选（页面端实时计算）
+ * 三级漏斗：① 大盘开关 → ② 强势板块(1-2个) → ③ 强势个股
+ * 数据源：东财 ulist/clist（双主机回退，复用 flowEM）+ 腾讯日K三源（复用 fetchKLine）+ 腾讯分时
+ * 刷新：开盘日 14:00-15:00 每 10 分钟（scheduleTick ④ 挂载）+ 手动随时可刷
+ * ================================================================ */
+const ND_UT = 'bd1d9ddb04089700cf9c27f6f7426281';
+const ND_F_BRD = 'f12,f14,f3,f62,f109,f160,f104,f105';
+const ND_F_STK = 'f12,f14,f2,f3,f8,f6,f100';
+let ndBusy=false, ndData=null, ndAt=0, ndLastTag='', ndEpoch=0;
+
+function ndLimitTh(code){ return /^(30|68)/.test(code) ? 19.5 : 9.8; }
+function ndIsTradDay(){ const d=new Date(); return d.getDay()!==0 && d.getDay()!==6; }
+function ndInWindow(){
+  const d=new Date(), hm=d.getHours()*60+d.getMinutes();
+  return ndIsTradDay() && hm>=14*60 && hm<=15*60;
+}
+/* 今日已交易分钟数（盘中量能折算全天用；9:30-11:30 + 13:00-15:00 共240分） */
+function ndElapsedMin(){
+  const d=new Date(), m=d.getHours()*60+d.getMinutes();
+  const el = (m<=11*60+30) ? (m-9*60-30) : (m>=13*60 ? (m-13*60+120) : 120);
+  return Math.max(0, Math.min(240, el));
+}
+function ndAvg(a){ return a.length ? a.reduce((s,v)=>s+(v||0),0)/a.length : 0; }
+
+/* ① 大盘开关：上证跌幅 + 沪深上涨家数（f104 上涨/f105 下跌） */
+async function ndFetchGate(){
+  const url='@@EM@@/api/qt/ulist.np/get?fltt=2&invt=2&ut='+ND_UT+
+    '&fields=f2,f3,f6,f12,f14,f104,f105,f106&secids=1.000001,0.399001,0.399006';
+  const rows=await flowEM(url);
+  const m={}; rows.forEach(r=>{ m[String(r.f12)]={ name:String(r.f14||''), pct:num(r.f3), adv:num(r.f104), dec:num(r.f105), flat:num(r.f106) }; });
+  const sh=m['000001']||{}, sz=m['399001']||{}, cyb=m['399006']||{};
+  const adv=(sh.adv||0)+(sz.adv||0), dec=(sh.dec||0)+(sz.dec||0), drop=sh.pct||0;
+  const crash=drop<=-1.5, extreme=adv<500;           /* 单边暴跌 / 涨跌家数极端 */
+  return { sh, sz, cyb, adv, dec, drop, crash, extreme, ok:!crash && !extreme };
+}
+/* 上证量能：当日量 vs 5日均量（盘中按进度折算全天） */
+async function ndIdxVolRatio(){
+  try{
+    const url='https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000001,day,,,8,qfq';
+    const d=await jsonp(url,6000,'_var');
+    const node=d&&d.data&&d.data.sh000001;
+    const arr=(node&&(node.qfqday||node.day))||[];
+    if(arr.length<6) return null;
+    const today=+arr[arr.length-1][5]||0;
+    const avg5=ndAvg(arr.slice(-6,-1).map(b=>+b[5]||0));
+    if(!avg5||!today) return null;
+    const el=ndElapsedMin(), partial=(el>30 && el<240);
+    return { raw:today/avg5, proj:(partial?today*240/el:today)/avg5, partial };
+  }catch(e){ return null; }
+}
+/* ② 板块榜：行业+概念按涨幅取前 5 */
+async function ndFetchBoardList(){
+  const url='@@EM@@/api/qt/clist/get?pn=1&pz=8&po=1&np=1&fltt=2&invt=2&ut='+ND_UT+
+    '&fid=f3&fs='+encodeURIComponent('m:90+t:2,m:90+t:3')+'&fields='+ND_F_BRD;
+  const rows=await flowEM(url);
+  return rows.slice(0,5).map(r=>({
+    bk:String(r.f12||''), name:String(r.f14||''), pct:num(r.f3),
+    g5:num(r.f109), g10:num(r.f160), adv:num(r.f104)
+  })).filter(b=>b.bk && b.name);
+}
+/* 板块明细：成分股 + 强势股统计 + 非一日游判定（5日/10日累计均收涨） */
+async function ndBoardDetail(b){
+  const url='@@EM@@/api/qt/clist/get?pn=1&pz=500&po=1&np=1&fltt=2&invt=2&ut='+ND_UT+
+    '&fid=f3&fs=b:'+encodeURIComponent(b.bk)+'&fields='+ND_F_STK;
+  const rows=await flowEM(url);
+  const stks=rows.map(r=>({
+    code:String(r.f12||''), name:String(r.f14||''), price:num(r.f2), pct:num(r.f3),
+    to:num(r.f8), amt:num(r.f6), ind:String(r.f100||'')
+  })).filter(s=>s.code && s.price>0);
+  const strong=stks.filter(s=>s.pct>=5).length;
+  const limitN=stks.filter(s=>s.pct>=ndLimitTh(s.code)).length;
+  const steady=(b.g5>0 && b.g10>0);
+  return Object.assign({}, b, { stks, strong, limitN, steady });
+}
+/* 尾盘走势：腾讯分时，14:00 后回撤（数据为最近交易日） */
+async function ndMinute(code){
+  const tc=tencentSecid(code);
+  const url='https://web.ifzq.gtimg.cn/appstock/app/minute/query?code='+tc;
+  const d=await jsonp(url,6000,'_var');
+  const arr=(d&&d.data&&d.data[tc]&&d.data[tc].data&&d.data[tc].data.data)||[];
+  const pts=arr.map(s=>{ const p=String(s).trim().split(/\s+/); return { t:+p[0]||0, p:+p[1]||0 }; })
+    .filter(x=>x.t>=930 && x.t<=1500 && x.p>0);
+  if(pts.length<5) return null;
+  const last=pts[pts.length-1].p;
+  const base=pts.find(x=>x.t>=1400);
+  const p0=base ? base.p : pts[Math.max(0,pts.length-31)].p;
+  if(!p0 || !last) return null;
+  return { tail:last/p0-1, last };
+}
+/* 并发限流池 */
+async function ndPool(items,worker,size){
+  const out=new Array(items.length); let i=0;
+  await Promise.all(Array.from({length:Math.max(1,Math.min(size,items.length))},async()=>{
+    while(i<items.length){
+      const k=i++;
+      try{ out[k]=await worker(items[k]); }
+      catch(e){ out[k]=null; try{ console.warn('nd:', items[k].code, e&&e.message); }catch(_){} }
+    }
+  }));
+  return out;
+}
+
+/* 主扫描 */
+async function runNextDayScan(auto){
+  if(ndBusy) return;
+  ndBusy=true; ndEpoch++;
+  const btn=$('#btnRefreshND');
+  if(btn){ btn.textContent='⏳ 扫描中…'; btn.disabled=true; }
+  const sb=$('#ndStocks');
+  if(sb) sb.innerHTML='<div class="empty" style="grid-column:1/-1">⏳ 三级漏斗扫描中：大盘开关 → 强势板块 → 个股三关…</div>';
+  try{
+    const [gate, ivr]=await Promise.all([ndFetchGate(), ndIdxVolRatio().catch(()=>null)]);
+    gate.vol=ivr;
+    if(!gate.ok){
+      ndData={ gate, boards:[], sel:[], stocks:[], at:Date.now() };
+      ndAt=Date.now();
+      if(!auto) toast('大盘触发熔断条件（跌幅≤-1.5% 或 上涨<500家），今日不宜选股','err');
+      return;
+    }
+    /* ② 板块：涨幅前5 → 成分统计 → 非一日游 → 取前2 */
+    const bl=await ndFetchBoardList();
+    const details=(await ndPool(bl, ndBoardDetail, 5)).filter(Boolean);
+    const sel=details.filter(d=>d.strong>=3 && d.steady).slice(0,2);
+    /* ③ 个股：入选板块内 3%~6% 未涨停，剔 ST/退 */
+    const seen={}, cands=[];
+    sel.forEach(b=>b.stks.forEach(s=>{
+      if(seen[s.code]) return; seen[s.code]=1;
+      if(!/^(00|30|60|68)/.test(s.code)) return;          /* 仅沪深主板/创业板/科创板，剔北交所 */
+      if(s.pct<3 || s.pct>=6) return;
+      if(/ST|退/i.test(s.name)) return;
+      cands.push(s);
+    }));
+    cands.sort((a,b)=>b.pct-a.pct);
+    const candList=cands.slice(0,36);
+    const ep=ndEpoch;
+    const rows=await ndPool(candList, async s=>{
+      const kl=sanitizeKLine(await fetchKLine(s.code));
+      if(!kl || kl.length<25) throw new Error('K线不足');
+      const closes=kl.map(k=>k.close), vols=kl.map(k=>k.vol);
+      const last=closes[closes.length-1], lastDate=String(kl[kl.length-1].date||'');
+      const ma5=ndAvg(closes.slice(-5)), ma20=ndAvg(closes.slice(-20));
+      const vol5=ndAvg(vols.slice(-6,-1));
+      const el=ndElapsedMin(), partial=(el>30 && el<240);
+      const todayVol=vols[vols.length-1]||0;
+      const projVol=partial ? todayVol*240/el : todayVol;   /* 盘中按进度折算全天量 */
+      const volR=vol5 ? projVol/vol5 : 0;
+      const mi=await ndMinute(s.code).catch(()=>null);
+      const tail=mi ? mi.tail : null;
+      return Object.assign({}, s, {
+        kdate:lastDate, ma5, ma20, volR, tail,
+        aboveMA5:last>ma5, aboveMA20:last>ma20, volOk:volR>1,
+        tailOk:(tail==null ? null : tail>=-0.005)            /* 尾盘回撤 <0.5% 视为不跳水 */
+      });
+    }, 6);
+    if(ep!==ndEpoch) return;                                  /* 已被新一轮覆盖，丢弃旧结果 */
+    const stocks=rows.filter(r=>r && r.aboveMA5 && r.aboveMA20 && r.volOk)
+                     .filter(r=>r.tailOk!==false)             /* 明确跳水的剔除；数据缺失保留并标注 */
+                     .sort((a,b)=>(b.pct-a.pct) || (b.volR-a.volR));
+    ndData={ gate, boards:details, sel, stocks, at:Date.now() };
+    ndAt=Date.now();
+  }catch(e){
+    try{ toast('次日上涨扫描失败：'+((e&&e.message)||e),'err'); }catch(_){}
+    console.warn('nd scan:', e);
+  }finally{
+    ndBusy=false;
+    const btn=$('#btnRefreshND');
+    if(btn){ btn.textContent='🔄 立即扫描'; btn.disabled=false; }
+    try{ ndRender(); }catch(_){}
+  }
+}
+
+/* 页签打开：窗口内数据过期(>10分钟)自动重扫，否则渲染缓存 */
+function ndOpen(){
+  const fresh = ndData && (Date.now()-ndAt < 10*60*1000);
+  if(!ndBusy && !fresh && ndInWindow()) runNextDayScan(true);
+  ndRender();
+}
+
+/* ---------- 渲染 ---------- */
+function ndCardHTML(x){
+  const cls = x.pct>0 ? 'up' : (x.pct<0 ? 'down' : 'flat');
+  const bg = ok => (ok==null ? '<span class="nd-b na">--</span>'
+                   : (ok ? '<span class="nd-b ok">✓</span>' : '<span class="nd-b no">✗</span>'));
+  const badges =
+    bg(x.aboveMA5)+'<span>MA5</span>'+ bg(x.aboveMA20)+'<span>MA20</span>'+
+    bg(x.volOk)+'<span>量能×'+(x.volR||0).toFixed(2)+'</span>'+
+    (x.tail==null ? '<span class="nd-b warn">⚠</span><span>尾盘未知</span>'
+                  : '<span class="nd-b '+(x.tailOk?'ok':'no')+'">'+(x.tailOk?'✓':'✗')+'</span><span>尾盘'+(x.tail>0?'+':'')+(x.tail*100).toFixed(2)+'%</span>');
+  return '<div class="rec-card nd-stock">'+
+    '<div class="hd"><div><span class="nm">'+escHTML(x.name)+'</span> <span class="code">'+escHTML(x.code)+'</span>'+
+      (x.ind ? '<span class="tag" style="margin-left:4px">'+escHTML(x.ind)+'</span>' : '')+'</div></div>'+
+    '<div class="px"><b class="'+cls+'">'+fmtPrice(x.code,x.price)+'</b>'+
+      '<span class="'+cls+'">'+(x.pct>0?'+':'')+x.pct.toFixed(2)+'%</span></div>'+
+    '<div class="nd-badges">'+badges+'</div>'+
+    '<div class="rs" style="display:flex;gap:9px;flex-wrap:wrap;margin:0 0 6px">'+
+      '<span class="m-stat">换手 <b>'+x.to.toFixed(1)+'%</b></span>'+
+      '<span class="m-stat">成交额 <b>'+fmtYi(x.amt)+'</b></span>'+
+      '<span class="m-stat">MA5 <b>'+x.ma5.toFixed(2)+'</b> / MA20 <b>'+x.ma20.toFixed(2)+'</b></span></div>'+
+    '<div class="ft"><button class="btn sm ghost" onclick="showKChart(\''+x.code+'\',\''+escHTML(x.name||'')+'\')">📈 日K</button></div>'+
+  '</div>';
+}
+function ndRender(){
+  const g=$('#ndGate'), bb=$('#ndBoards'), sb=$('#ndStocks'), note=$('#ndNote');
+  if(!g) return;
+  const d=ndData;
+  $('#ndBoardN').textContent = (d && d.sel) ? (d.sel.length+' 个') : '--';
+  const ns = (d && d.stocks) ? d.stocks.length : 0;
+  $('#ndStockN').textContent = d ? (ns+' 只') : '--';
+  const badge=$('#ndCount');
+  if(badge){ badge.textContent=ns; badge.style.display=(d && d.stocks && ns) ? '' : 'none'; }
+  if(!d){ bb.innerHTML=''; sb.innerHTML=''; if(note) note.textContent=''; return; }
+  /* ① 大盘开关 */
+  const gt=d.gate;
+  const flag = gt.ok ? '<span class="nd-flag ok">✓ 今日适合选股</span>'
+                     : '<span class="nd-flag bad">✗ 今日不宜选股</span>';
+  const volTxt = gt.vol ? ('量能 ×'+(gt.vol.partial?gt.vol.proj:gt.vol.raw).toFixed(2)+(gt.vol.partial?'（盘中折算全天）':'（vs 5日均量）')) : '量能 --';
+  let reason;
+  if(!gt.ok){
+    const rs=[];
+    if(gt.crash) rs.push('上证跌幅 '+gt.drop.toFixed(2)+'% 已达单边暴跌阈值 -1.5%');
+    if(gt.extreme) rs.push('全市场上涨仅 '+gt.adv+' 家 < 500 家（涨跌家数极端）');
+    reason='<div class="nd-reason">🚫 '+escHTML(rs.join('；'))+' —— 按纪律今日不产生板块与个股结果</div>';
+  }else{
+    reason='<div class="nd-reason">上证 '+gt.drop.toFixed(2)+'% · 上涨 '+gt.adv+' 家 / 下跌 '+gt.dec+' 家 · '+escHTML(volTxt)+' —— 大盘环境允许选股</div>';
+  }
+  g.innerHTML='<div class="nd-gate">'+flag+
+    '<span class="nd-chip">上证指数 <b class="'+(gt.drop<0?'down':'up')+'">'+(gt.drop>0?'+':'')+gt.drop.toFixed(2)+'%</b></span>'+
+    '<span class="nd-chip">上涨 <b style="color:var(--red)">'+gt.adv+'</b> 家</span>'+
+    '<span class="nd-chip">下跌 <b style="color:var(--green)">'+gt.dec+'</b> 家</span>'+
+    '<span class="nd-chip">'+escHTML(volTxt)+'</span></div>'+reason;
+  /* ② 板块 ③ 个股 */
+  if(!gt.ok){
+    bb.innerHTML='<div class="empty" style="grid-column:1/-1">🚫 大盘触发熔断条件，今日不产生结果 —— 空仓等待也是纪律</div>';
+    sb.innerHTML='';
+  }else if(!d.sel.length){
+    bb.innerHTML='<div class="empty" style="grid-column:1/-1">今日无同时满足「涨幅前5 × 板块内≥3只强股 × 非一日游」的板块</div>';
+    sb.innerHTML='';
+  }else{
+    bb.innerHTML=d.sel.map(b=>
+      '<div class="rec-card nd-board">'+
+        '<div class="hd"><div><span class="nm">'+escHTML(b.name)+'</span><span class="tag" style="margin-left:5px">'+escHTML(b.bk)+'</span></div>'+
+        '<span class="m-limit">'+(b.pct>0?'+':'')+b.pct.toFixed(2)+'%</span></div>'+
+        '<div class="rs" style="display:flex;gap:9px;flex-wrap:wrap;margin:6px 0 0">'+
+          '<span class="m-stat">5日累计 <b>'+(b.g5>0?'+':'')+b.g5.toFixed(1)+'%</b></span>'+
+          '<span class="m-stat">10日累计 <b>'+(b.g10>0?'+':'')+b.g10.toFixed(1)+'%</b></span>'+
+          '<span class="m-stat">涨≥5% <b>'+b.strong+'</b> 只</span>'+
+          '<span class="m-stat">涨停 <b>'+b.limitN+'</b> 只</span>'+
+          '<span class="m-stat">板块内上涨 <b>'+b.adv+'</b> 家</span></div></div>').join('');
+    sb.innerHTML = d.stocks.length
+      ? d.stocks.map(ndCardHTML).join('')
+      : '<div class="empty" style="grid-column:1/-1">入选板块中暂无满足全部条件的个股（3%-6% × 站上MA5/MA20 × 放量 × 尾盘不跳水）</div>';
+  }
+  const t=new Date(d.at);
+  if(note) note.innerHTML='<b>更新 '+t.toLocaleTimeString('zh-CN',{hour12:false})+'</b> · 自动刷新窗口：开盘日 14:00-15:00 每 10 分钟（15:00 为收盘终版）· 筛选链：大盘开关（跌幅≤-1.5% 或 上涨<500家 → 停扫）→ 板块（涨幅前5 × ≥3只强股 × 5日/10日累计收涨）→ 个股（3%-6%未涨停 × 站上MA5&MA20 × 量超5日均量 × 尾盘无跳水）。盘中量能按交易进度折算全天；尾盘数据缺失的标的保留并标 ⚠。候选仅为尾盘强势观察名单，<b style="color:var(--gold)">次日需结合竞价与大盘确认，非买入指令</b>。';
+}
+
+/* 手动刷新按钮绑定 */
+document.addEventListener('DOMContentLoaded', ()=>{
+  const b=$('#btnRefreshND');
+  if(b) b.addEventListener('click', ()=>runNextDayScan(false));
+});
 
 /* ---------- 批量事件 ---------- */
 /* 并发限流：同时最多 3 只在途诊断，其余排队 —— 多只连诊时不至于几十个请求同时打爆弱网 */
