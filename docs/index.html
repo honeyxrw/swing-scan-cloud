@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-CN" data-page-node-id="oNLTBSh6gVReBD62DJyOY2">
+<head data-page-node-id="oV08jGmIaW34oE88mlDiEN">
+<meta charset="UTF-8" data-page-node-id="7pHP8DcHY3IbqlynSKKWb1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="CwLplKrNM8zAxgdwCLJ6yD">
 <title>上车·下车 · A股交易辅助台</title>
 <style>
 :root{
@@ -351,268 +351,357 @@ label.f b{color:var(--text2);font-weight:600}
 .fs-tag.over{background:var(--goldBg);color:var(--gold)}
 .flow-sec-title{font-size:12.5px;color:var(--text3);margin:14px 0 8px;display:flex;align-items:center;gap:6px}
 .flow-sec-title:before{content:'';width:3px;height:13px;background:var(--gold);border-radius:2px}
+/* ================================================================
+ * v3.19.2 界面美化层 · 意式现代（低饱和暖调 / 精致层级 / 微交互）
+ * 仅覆盖视觉，不改结构与逻辑 —— 置于样式表末尾，同权重后到生效
+ * ================================================================ */
+
+/* --- 色板微暖化（冷蓝黑 → 暖炭）+ 圆角节奏统一 --- */
+:root{
+  --bg:#0e0d12; --panel:#16141b; --card:#1a1821; --card2:#211e28;
+  --line:#2b2833; --line2:#3d3947;
+  --radius:14px;
+}
+body{
+  background:
+    radial-gradient(1200px 520px at 50% -180px, rgba(245,181,10,.05), transparent 60%),
+    radial-gradient(900px 420px at 88% 115%, rgba(76,141,255,.04), transparent 65%),
+    var(--bg);
+  background-attachment:fixed;
+}
+
+/* --- 顶栏：暖光玻璃 + 金色发丝线 --- */
+header{
+  background:linear-gradient(180deg, rgba(23,21,28,.90), rgba(14,13,18,.84));
+  backdrop-filter:blur(16px) saturate(1.35);
+  border-bottom:1px solid rgba(245,181,10,.13);
+  box-shadow:0 10px 32px rgba(0,0,0,.35);
+}
+.logo h1{letter-spacing:.6px}
+.logo .sub{letter-spacing:.4px}
+
+/* --- 导航：金色光条 + hover 上浮 --- */
+nav{padding:12px 20px 0;gap:6px;position:relative}
+nav::after{content:'';position:absolute;left:20px;right:20px;bottom:-1px;height:1px;
+  background:linear-gradient(90deg, transparent, rgba(245,181,10,.30), transparent)}
+nav button{padding:10px 18px;font-weight:600;letter-spacing:.2px;border-radius:10px 10px 0 0;
+  transition:.18s cubic-bezier(.33,1,.68,1)}
+nav button:hover{transform:translateY(-1px);background:rgba(255,255,255,.04)}
+nav button.active{
+  color:var(--gold);border-bottom-color:transparent;
+  background:linear-gradient(180deg, rgba(245,181,10,.11), rgba(245,181,10,.02));
+  box-shadow:inset 0 -2px 0 var(--gold), inset 0 1px 0 rgba(245,181,10,.22);
+}
+nav button .badge{box-shadow:0 1px 5px rgba(0,0,0,.4)}
+
+/* --- 卡片：顶部受光 + hover 浮起 + h3 金色节标 --- */
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.018), rgba(255,255,255,0) 42%), var(--card);
+  box-shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 8px 22px rgba(0,0,0,.20);
+  transition:box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover{border-color:var(--line2);box-shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 12px 30px rgba(0,0,0,.28)}
+.card h3{letter-spacing:.3px;padding-left:11px;position:relative}
+.card h3::before{content:'';position:absolute;left:0;top:3px;bottom:3px;width:3px;border-radius:2px;
+  background:linear-gradient(180deg, var(--gold), rgba(245,181,10,.12))}
+.card h3 .tag{border:1px solid rgba(76,141,255,.20)}
+.page-head h2{letter-spacing:.4px}
+
+/* --- 推荐卡：hover 抬升 + 金色边缘微光 --- */
+.rec-card{transition:transform .18s cubic-bezier(.33,1,.68,1), box-shadow .18s ease, border-color .18s ease}
+.rec-card:hover{transform:translateY(-2px);border-color:rgba(245,181,10,.32);
+  box-shadow:0 14px 30px rgba(0,0,0,.34), 0 0 0 1px rgba(245,181,10,.07)}
+.rec-sub{letter-spacing:.2px}
+
+/* --- 按钮：渐变提亮 + 按压反馈 --- */
+.btn{transition:.16s cubic-bezier(.33,1,.68,1);box-shadow:0 2px 10px rgba(0,0,0,.22)}
+.btn:not(.ghost):hover{filter:brightness(1.12);transform:translateY(-1px)}
+.btn:not(.ghost):active{transform:translateY(0) scale(.98);filter:brightness(.95)}
+.btn.ghost:hover{color:var(--gold);border-color:rgba(245,181,10,.45);background:rgba(245,181,10,.06)}
+
+/* --- 输入聚焦光圈 --- */
+input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,141,255,.15)}
+
+/* --- 滚动条：细圆角 + hover 金 --- */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.10);border-radius:6px;border:2.5px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:rgba(245,181,10,.30)}
+
+/* --- 说明条 / 空态 / toast --- */
+.rec-note{background:linear-gradient(180deg, rgba(245,181,10,.045), rgba(245,181,10,.010)), var(--card2);
+  border-color:rgba(245,181,10,.16);border-left-color:var(--gold)}
+.empty{padding:42px 10px;letter-spacing:.3px}
+.toast{backdrop-filter:blur(12px);border-radius:10px;box-shadow:0 12px 34px rgba(0,0,0,.45)}
+
+/* --- 列表项 hover（股票池列等） --- */
+.pool-item{transition:.15s ease}
+.pool-item:hover{border-color:var(--line2);background:rgba(255,255,255,.03)}
+
+/* --- K线弹窗 --- */
+.kmodal{border-color:rgba(245,181,10,.10);box-shadow:0 30px 90px rgba(0,0,0,.60)}
 </style>
 </head>
-<body>
+<body data-page-node-id="HPLMPrO8Q4tl4b2eUDeupn">
 
-<header>
-  <div class="logo">
-    <div class="dot"></div>
-    <div>
-      <h1>上车·下车 <em>交易辅助台</em></h1>
-      <div class="sub">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700">v3.19 · 次日上涨票 + 妖股集 + 板块地图</b></div>
+<header data-page-node-id="igposLqdVbAY7fxHycw0Bb">
+  <div class="logo" data-page-node-id="2zxAB9bXySvfPLNT1dHFCp">
+    <div class="dot" data-page-node-id="B64VgY9ICK8alTln10bpl9"></div>
+    <div data-page-node-id="qeFHt96hG8fSoj3jG4e3Cx">
+      <h1 data-page-node-id="dMewWe7cDY8PVmeuzwwwrn">上车·下车 <em data-page-node-id="ifDluLN1yVtiTPiAUxjcpt">交易辅助台</em></h1>
+      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.19 · 次日上涨票 + 妖股集 + 板块地图</b></div>
     </div>
   </div>
-  <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓；上午收盘(11:30后)与全天收盘(15:00后)各抢刷一次，并抢鲜云端午间/收盘扫描结果（页面需保持打开）">⏱ 盘中10分·开</button>
-  <button class="btn ghost sm" id="btnLogs" title="查看诊断/运行错误日志（最近 20 条）">🛠 日志</button>
-  <div class="net" id="netState"><i></i><span id="netText">行情引擎待命</span></div>
-  <div class="acct">
-    <div class="chip">总资金<input type="text" class="num" id="hdrCapital" value="70000" title="点击修改总资金" style="width:92px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-size:14px;color:var(--gold);font-weight:700;text-align:right"></div>
-    <div class="chip">单笔风险<b class="num" id="hdrRisk">2%</b></div>
-    <div class="chip">单笔亏损上限<b class="num">≤1,500</b></div>
-    <div class="chip">风控纪律<b style="font-size:11.5px">单标的≤40% · 现金≥20%</b></div>
+  <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓；上午收盘(11:30后)与全天收盘(15:00后)各抢刷一次，并抢鲜云端午间/收盘扫描结果（页面需保持打开）" data-page-node-id="xoPPQtPL1X6ATwVoQlbP16">⏱ 盘中10分·开</button>
+  <button class="btn ghost sm" id="btnLogs" title="查看诊断/运行错误日志（最近 20 条）" data-page-node-id="gvSCnwQT6oYLMAwruNqLhn">🛠 日志</button>
+  <div class="net" id="netState" data-page-node-id="rIO0prxj3QL3IrSJPsTJ29"><i data-page-node-id="MeNvkHHPON9THH5WOi17Sv"></i><span id="netText" data-page-node-id="qJNQhIMB0zUbhMPq9FVd0S">行情引擎待命</span></div>
+  <div class="acct" data-page-node-id="AFzkf2CBeqo4XUo9q4os30">
+    <div class="chip" data-page-node-id="htV92P494Yej8smcB9CPoZ">总资金<input type="text" class="num" id="hdrCapital" value="70000" title="点击修改总资金" style="width:92px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-size:14px;color:var(--gold);font-weight:700;text-align:right" data-page-node-id="IjbeNhqtCbe8Bv57mYNvoH"></div>
+    <div class="chip" data-page-node-id="tyDATlC0pU5rBkZOapC1DC">单笔风险<b class="num" id="hdrRisk" data-page-node-id="WBvawOeBgZR4T5fROmzn0s">2%</b></div>
+    <div class="chip" data-page-node-id="8A1UFRM07fEM0xEQpE6XJl">单笔亏损上限<b class="num" data-page-node-id="7iUrBwBSdYEIaHGjtC1mvD">≤1,500</b></div>
+    <div class="chip" data-page-node-id="xxzWWLEf8Zwwz80967W99g">风控纪律<b style="font-size:11.5px" data-page-node-id="2xfln0GvXeDAWbVTX78GFf">单标的≤40% · 现金≥20%</b></div>
   </div>
 </header>
 
-<nav id="nav">
-  <button data-tab="picker" class="active">📡 选股雷达</button>
-  <button data-tab="flow">💰 主力资金</button>
-  <button data-tab="rec">🔥 今日推荐 <span class="badge" id="recCount" style="display:none">0</span></button>
-  <button data-tab="nd">🌅 次日上涨 <span class="badge" id="ndCount" style="display:none">0</span></button>
-  <button data-tab="pool">🗂 股票池 <span class="badge blue" id="poolCount">0</span></button>
-  <button data-tab="entry">🟢 上车判定 <span class="badge" id="entryCount" style="display:none">0</span></button>
-  <button data-tab="exit">🔴 下车判定 <span class="badge" id="posCount" style="display:none">0</span></button>
-  <button data-tab="calc">⚖️ 仓位计算器</button>
+<nav id="nav" data-page-node-id="yM0UTHYuHB39SW4CrTFMla">
+  <button data-tab="picker" class="active" data-page-node-id="ZSBR6yBHBdnzykXp7C2GGh">📡 选股雷达</button>
+  <button data-tab="flow" data-page-node-id="9MwO2xaVJASWPdDJ57ysxA">💰 主力资金</button>
+  <button data-tab="rec" data-page-node-id="H4IZr8VncgI50mXmZgXbv3">🔥 今日推荐 <span class="badge" id="recCount" style="display:none" data-page-node-id="GN6GdNKCkUuS43mWhGaaYQ">0</span></button>
+  <button data-tab="nd" data-page-node-id="nj0BJJt1xyLIFhqgLImdv2">🌅 次日上涨 <span class="badge" id="ndCount" style="display:none" data-page-node-id="GkmsbeDQCuVtpEYU9eFLIN">0</span></button>
+  <button data-tab="pool" data-page-node-id="yYrFnp1DLzW92GKxsYbCUc">🗂 股票池 <span class="badge blue" id="poolCount" data-page-node-id="K4UzaEkWgJG26rZBOWuxKr">0</span></button>
+  <button data-tab="entry" data-page-node-id="G6WvDlqh1fXpR1y3lqfhXo">🟢 上车判定 <span class="badge" id="entryCount" style="display:none" data-page-node-id="Jv344MAkHuAL3RnEBXa851">0</span></button>
+  <button data-tab="exit" data-page-node-id="bMdTwneMVM3ADpvrYq91ug">🔴 下车判定 <span class="badge" id="posCount" style="display:none" data-page-node-id="HS9hARzRfDvrHXJHO7JIjY">0</span></button>
+  <button data-tab="calc" data-page-node-id="A5kFB5GkbtLPbYRKw9sbBj">⚖️ 仓位计算器</button>
 </nav>
 
-<main>
+<main data-page-node-id="Mx80EJZoCnQ4qmw9qH14sE">
   <!-- ============ 选股雷达 ============ -->
-  <section class="tab active" id="tab-picker">
-    <div class="page-head">
-      <h2>选股雷达</h2>
-      <span class="desc">输入代码/名称，自动拉取日K并判定 7 大选股条件 · 叠加量价关系健康闸门 · 个股与 ETF 分列显示 · 可买 00/60 开头主板股票</span>
+  <section class="tab active" id="tab-picker" data-page-node-id="ux9cChkVlYFzKAFfjcaKU0">
+    <div class="page-head" data-page-node-id="8nsxq1emST5JAE7LLKaigq">
+      <h2 data-page-node-id="AELhGEk8SGccTijujZR6f0">选股雷达</h2>
+      <span class="desc" data-page-node-id="1RDn8rrZN0rqpuOyQwt7e5">输入代码/名称，自动拉取日K并判定 7 大选股条件 · 叠加量价关系健康闸门 · 个股与 ETF 分列显示 · 可买 00/60 开头主板股票</span>
     </div>
 
-    <div class="card">
-      <div class="inline-form">
-        <input type="text" id="pickerInput" placeholder="输入代码或名称，可多只，逗号分隔，如：600519, 000001, 510300, 浦发" style="flex:1;min-width:280px">
-        <button class="btn gold" id="btnDiagnose">🚀 开始诊断</button>
-        <label class="f"><b>股价适中区间</b><input type="text" class="num" id="setPriceRange" value="3-60" style="width:90px"></label>
-        <label class="f"><b>上车门槛</b><select id="setEntryScore" style="width:110px">
-          <option value="5">≥5/7 条件</option>
-          <option value="6">≥6/7 条件</option>
+    <div class="card" data-page-node-id="EZrSifbRMZE6U47bzkStYN">
+      <div class="inline-form" data-page-node-id="ZIWD5Q6fKX8DD8ePrVeuxp">
+        <input type="text" id="pickerInput" placeholder="输入代码或名称，可多只，逗号分隔，如：600519, 000001, 510300, 浦发" style="flex:1;min-width:280px" data-page-node-id="C1ydjXFX3lYcJ8Jr4FIPbr">
+        <button class="btn gold" id="btnDiagnose" data-page-node-id="PAk3rdAmDCMNOUhAJTRfTd">🚀 开始诊断</button>
+        <label class="f" data-page-node-id="9ofuP4hJTkiGof4uczfCpw"><b data-page-node-id="xh89msScpOIACSb6YQzmcM">股价适中区间</b><input type="text" class="num" id="setPriceRange" value="3-60" style="width:90px" data-page-node-id="udExUgGJGWB9kDBcmRxEli"></label>
+        <label class="f" data-page-node-id="PnSQfmHdW2AcNaWSikMvDX"><b data-page-node-id="kuuuTl9NvicbJlUats1j5D">上车门槛</b><select id="setEntryScore" style="width:110px" data-page-node-id="9nTnRg0zp3J4mjpN5vXBHS">
+          <option value="5" data-page-node-id="YnfbIU8jjfqGSU08taMaxB">≥5/7 条件</option>
+          <option value="6" data-page-node-id="WXhYeFW4mtAQbD2Ia85CZ3">≥6/7 条件</option>
         </select></label>
-        <button class="btn ghost sm" id="btnClearDiag">清空结果</button>
+        <button class="btn ghost sm" id="btnClearDiag" data-page-node-id="j1rGs5GlGsmiMVFGQfwClm">清空结果</button>
       </div>
-      <div class="cond-grid" id="diagResult">
-        <div class="empty" style="grid-column:1/-1"><div class="big">📡</div>输入代码开始诊断。示例：<b>600519</b>（贵州茅台）<br>诊断将计算 CCI/KDJ/SAR/BOLL/MACD 五项指标，逐条判定上车条件</div>
+      <div class="cond-grid" id="diagResult" data-page-node-id="feCpoVPidb5PgwyzbUa7IM">
+        <div class="empty" style="grid-column:1/-1" data-page-node-id="yiuTWM9SUtHADTSSgjvqGy"><div class="big" data-page-node-id="FZQabrwEoDjEfFcDoV6nfe">📡</div>输入代码开始诊断。示例：<b data-page-node-id="lwLKLJ8N6qiCV0BTsOqNpJ">600519</b>（贵州茅台）<br data-page-node-id="RVrJCerX0AZLcEJRbw4gfP">诊断将计算 CCI/KDJ/SAR/BOLL/MACD 五项指标，逐条判定上车条件</div>
       </div>
     </div>
 
-    <div class="card">
-      <h3>📖 选股条件说明 <span class="tag">7 条 + 量价闸门</span></h3>
-      <div class="entry-rule">
-        <div class="rule-item"><span class="no">① 股价适中</span><b>3 ~ 60 元</b><span class="d">小资金可建立合理仓位，避开高价股与低价垃圾股</span></div>
-        <div class="rule-item"><span class="no">② CCI 触底拐头</span><b>CCI(14) &lt; -100 后回升</b><span class="d">超卖区（-100 以下）出现向上拐头，下跌动能衰竭</span></div>
-        <div class="rule-item"><span class="no">③ KDJ 金叉</span><b>K 上穿 D</b><span class="d">近 3 日内出现金叉，K/D 当前保持多头（K&gt;D）</span></div>
-        <div class="rule-item"><span class="no">④ SAR 亮红灯</span><b>SAR 由绿翻红</b><span class="d">止损点翻到 K 线下方，多头信号确认（翻红第 1 天最有效）</span></div>
-        <div class="rule-item"><span class="no">⑤ 站上 BOLL 中轨</span><b>收盘价 &gt; 布林中轨(MA20)</b><span class="d">突破 20 日均线，短期趋势转强</span></div>
-        <div class="rule-item"><span class="no">⑥ MACD 金叉</span><b>DIF 上穿 DEA</b><span class="d">近 5 日内金叉且 DIF&gt;DEA，动能转正</span></div>
-        <div class="rule-item"><span class="no">⑦ 基本面优秀</span><b>自动判定</b><span class="d">腾讯实时(PE/市值) + 东财财务(ROE/净利增速/毛利率/负债率) 八维综合评分，无需手动确认</span></div>
-        <div class="rule-item"><span class="no">🔀 量价关系(闸门)</span><b>健康度 0~5 分</b><span class="d">量增价涨=健康上攻 · 低位量增价平=主力建仓 · 高位量增价平=防出货 · 放量下跌/高位缩量变盘/缩量阴跌=强看空降档，防止盲目上车</span></div>
+    <div class="card" data-page-node-id="jhmMY45gObXEqPtedSyDYE">
+      <h3 data-page-node-id="y1FJQEg9iNxqFds0sCxGiB">📖 选股条件说明 <span class="tag" data-page-node-id="EzHbhjj1BWiOnsARG3ZOsi">7 条 + 量价闸门</span></h3>
+      <div class="entry-rule" data-page-node-id="UTXRTnxamKdOIZmleI6Prc">
+        <div class="rule-item" data-page-node-id="zdD9yXkS9FV4orkjTzfd8u"><span class="no" data-page-node-id="ShyvUS9GR5KO1JiqKP0AhE">① 股价适中</span><b data-page-node-id="AZdtCAMxCbiAZChLyOJVub">3 ~ 60 元</b><span class="d" data-page-node-id="fvKFNb9CyWVaC5aivQssBD">小资金可建立合理仓位，避开高价股与低价垃圾股</span></div>
+        <div class="rule-item" data-page-node-id="8LyAkzTH05xVHh75dWuqvL"><span class="no" data-page-node-id="JLL5YY81kqD8LkDufuXICk">② CCI 触底拐头</span><b data-page-node-id="ifw1Ny6pPKAkcloxG5JW9l">CCI(14) &lt; -100 后回升</b><span class="d" data-page-node-id="sZwZjAkokbSgKAaGGOWgWC">超卖区（-100 以下）出现向上拐头，下跌动能衰竭</span></div>
+        <div class="rule-item" data-page-node-id="AGjvgyHVda1I7uj6OZneJe"><span class="no" data-page-node-id="Mxk6qMaDH5hWjtxmBIFmH1">③ KDJ 金叉</span><b data-page-node-id="hyTReC1tcqXZuaAVdgFBRu">K 上穿 D</b><span class="d" data-page-node-id="KgtdwMw5qs7oFCHIVMR9Je">近 3 日内出现金叉，K/D 当前保持多头（K&gt;D）</span></div>
+        <div class="rule-item" data-page-node-id="h6GDP78QipEsossVQyHlbH"><span class="no" data-page-node-id="mWaxAP6mtLQGJGrwu77Fl1">④ SAR 亮红灯</span><b data-page-node-id="DSgRzvjt2Bi6AYI6nKKnlS">SAR 由绿翻红</b><span class="d" data-page-node-id="Omsq12AA5XVvF5aCw3JQMN">止损点翻到 K 线下方，多头信号确认（翻红第 1 天最有效）</span></div>
+        <div class="rule-item" data-page-node-id="7PgwECFM74JzQmsQSYjEfS"><span class="no" data-page-node-id="R5TFg5LWsFFZhVMPQrV5WD">⑤ 站上 BOLL 中轨</span><b data-page-node-id="z2DMaQK2hUAENUN4U3oG5B">收盘价 &gt; 布林中轨(MA20)</b><span class="d" data-page-node-id="LTvISI3UDVnmeYCT3nzAZv">突破 20 日均线，短期趋势转强</span></div>
+        <div class="rule-item" data-page-node-id="soK5FBOSFzSFoYnhdmK91o"><span class="no" data-page-node-id="xnp1BpWD0PuA8dVCDjyVNR">⑥ MACD 金叉</span><b data-page-node-id="2xXSpxGtEY9wlYeKBIx1j2">DIF 上穿 DEA</b><span class="d" data-page-node-id="SQnyxuN1RwkJ4ufLej11Zt">近 5 日内金叉且 DIF&gt;DEA，动能转正</span></div>
+        <div class="rule-item" data-page-node-id="wFUjPdR9e0Y9eT7yfprDB1"><span class="no" data-page-node-id="g4rRIyLAMAlbwo466sq5vz">⑦ 基本面优秀</span><b data-page-node-id="9lRLNzl3YmXHW9wuAgqbvE">自动判定</b><span class="d" data-page-node-id="Kz37YbehuqafsTfpxGBRHA">腾讯实时(PE/市值) + 东财财务(ROE/净利增速/毛利率/负债率) 八维综合评分，无需手动确认</span></div>
+        <div class="rule-item" data-page-node-id="oH2aw13eeaVM3lq8UcQfNc"><span class="no" data-page-node-id="4sXazhgWrgnyzsWhXRr1A7">🔀 量价关系(闸门)</span><b data-page-node-id="YFHYzvgnW1fU16gfMUcUTo">健康度 0~5 分</b><span class="d" data-page-node-id="Yd1g94rs3xA75ilJcnzWuc">量增价涨=健康上攻 · 低位量增价平=主力建仓 · 高位量增价平=防出货 · 放量下跌/高位缩量变盘/缩量阴跌=强看空降档，防止盲目上车</span></div>
       </div>
     </div>
   </section>
 
   <!-- ============ 今日推荐 ============ -->
-  <section class="tab" id="tab-rec">
-    <div class="page-head">
-      <h2>🔥 今日推荐</h2>
-      <span class="desc" id="recDate">每日收盘后自动扫描全市场生成：趋势中 + 启动·刚突破确认</span>
-      <button class="btn ghost sm" id="btnRefreshRec" style="margin-left:auto">🔄 刷新</button>
+  <section class="tab" id="tab-rec" data-page-node-id="LD1fqPcnCmA56YaKMlay6j">
+    <div class="page-head" data-page-node-id="SejZnNEG7uE2k9OmUGBI7b">
+      <h2 data-page-node-id="DXEmz9X0kvA5hcihKsxBL1">🔥 今日推荐</h2>
+      <span class="desc" id="recDate" data-page-node-id="cKgopbY8nykWO72aDiYXSD">每日收盘后自动扫描全市场生成：趋势中 + 启动·刚突破确认</span>
+      <button class="btn ghost sm" id="btnRefreshRec" style="margin-left:auto" data-page-node-id="Ji7KKiH3WCJtqhY2xpFQZZ">🔄 刷新</button>
     </div>
 
-    <div class="card">
-      <div class="rec-note" id="recNote"></div>
+    <div class="card" data-page-node-id="k66uueWxF0gwZK2xF6lC2w">
+      <div class="rec-note" id="recNote" data-page-node-id="VCA8CT74Pc0Is6csIkBRv7"></div>
     </div>
 
-    <div class="card">
-      <h3>🚀 启动 · 刚突破确认 <span class="tag" id="recBreakoutN">0</span></h3>
-      <p class="rec-sub">60分钟鱼头（B+）刚启动，或当日放量收盘突破20日新高 —— 刚突破确认的买点窗口</p>
-      <div class="rec-grid" id="recBreakout"></div>
+    <div class="card" data-page-node-id="HT5DTDkWRF9MYf5QtCDjPw">
+      <h3 data-page-node-id="xZ4DzuVGu8d3MzXRsroDAB">🚀 启动 · 刚突破确认 <span class="tag" id="recBreakoutN" data-page-node-id="PDx9Dv4NsNyysEuwIeFbEW">0</span></h3>
+      <p class="rec-sub" data-page-node-id="rYoDUTYArGDBFCzIAtjc8c">60分钟鱼头（B+）刚启动，或当日放量收盘突破20日新高 —— 刚突破确认的买点窗口</p>
+      <div class="rec-grid" id="recBreakout" data-page-node-id="MvPAr7bpwHnRxUV7xq6oTH"></div>
     </div>
 
-    <div class="card">
-      <h3>📈 趋势中（C 阶段） <span class="tag" id="recTrendN">0</span></h3>
-      <p class="rec-sub">五信号共振确认的趋势中段，持有者拿住，未上车者不追高、等回踩</p>
-      <div class="rec-grid" id="recTrend"></div>
+    <div class="card" data-page-node-id="3yqQVym6XBrEv2eDlzAoQa">
+      <h3 data-page-node-id="wVcA3hY7KHLNMG8VrLXDGw">📈 趋势中（C 阶段） <span class="tag" id="recTrendN" data-page-node-id="07b3uFMHeatazsAlO1CHzE">0</span></h3>
+      <p class="rec-sub" data-page-node-id="1rP8M0NU5tlI6V5evEUdWT">五信号共振确认的趋势中段，持有者拿住，未上车者不追高、等回踩</p>
+      <div class="rec-grid" id="recTrend" data-page-node-id="CEWpl0Wnw1HE47qUkKOh8C"></div>
     </div>
 
-    <div class="card">
-      <h3>⭐ 今日精选 <span class="tag" id="recPicksN">0</span></h3>
-      <p class="rec-sub">B+ 鱼头优先 → 六联信号多 → 信号分高，每日最多 6 只</p>
-      <div class="rec-grid" id="recPicks"></div>
+    <div class="card" data-page-node-id="RXBLdoo6BPX29iBvxNvpqU">
+      <h3 data-page-node-id="YXqAZRwOp8LgfLnryLS1cv">⭐ 今日精选 <span class="tag" id="recPicksN" data-page-node-id="XNKwxZLmQB60mg3pESltLD">0</span></h3>
+      <p class="rec-sub" data-page-node-id="wT7ApF9M1KmGnrHo7ml72p">B+ 鱼头优先 → 六联信号多 → 信号分高，每日最多 6 只</p>
+      <div class="rec-grid" id="recPicks" data-page-node-id="sM9OFMKMtS4UjVZ3Cz5Zrb"></div>
     </div>
 
-    <div class="card">
-      <h3>😈 妖股集 <span class="tag" id="recMonsterN">0</span></h3>
-      <p class="rec-sub">全市场扫描（不受行业/价位/基本面门槛约束）：短期涨幅极端 + 连板基因，仅作情绪风向标与观察名单 —— <b style="color:var(--red)">高风险博弈区，严禁盲目追高</b></p>
-      <div class="rec-grid" id="recMonster"></div>
+    <div class="card" data-page-node-id="66k4D6wnAA3ZPbIvXGmslj">
+      <h3 data-page-node-id="jlNDKCXkRcxEugDEqNj62E">😈 妖股集 <span class="tag" id="recMonsterN" data-page-node-id="3SqJAJ5GYXzsbwLHYFUGeA">0</span></h3>
+      <p class="rec-sub" data-page-node-id="TBUBaXYPAW4FHUa4vq8DUv">全市场扫描（不受行业/价位/基本面门槛约束）：短期涨幅极端 + 连板基因，仅作情绪风向标与观察名单 —— <b style="color:var(--red)" data-page-node-id="eSVpyF2apGrktSrMWaiYJl">高风险博弈区，严禁盲目追高</b></p>
+      <div class="rec-grid" id="recMonster" data-page-node-id="bVk4NmdqcS3R9yt6ckxooM"></div>
     </div>
   </section>
 
   <!-- ============ 次日上涨票 ============ -->
-  <section class="tab" id="tab-nd">
-    <div class="page-head">
-      <h2>🌅 次日上涨票</h2>
-      <span class="desc">尾盘选强势：今日已走强 + 明日大概率延续 · 开盘日 14:00-15:00 每 10 分钟自动刷新</span>
-      <button class="btn ghost sm" id="btnRefreshND" style="margin-left:auto">🔄 立即扫描</button>
+  <section class="tab" id="tab-nd" data-page-node-id="AQxriSmENLPyuGQK96WHWU">
+    <div class="page-head" data-page-node-id="lNoUYreFtlNGFX0tw5GCL1">
+      <h2 data-page-node-id="VxOCwnfZ3GZsThgyTGwpM2">🌅 次日上涨票</h2>
+      <span class="desc" data-page-node-id="gQCjh16Q3n9EkQxpCAeWv6">尾盘选强势：今日已走强 + 明日大概率延续 · 开盘日 14:00-15:00 每 10 分钟自动刷新</span>
+      <button class="btn ghost sm" id="btnRefreshND" style="margin-left:auto" data-page-node-id="rETILoI2WKmKJE2WJiGyqF">🔄 立即扫描</button>
     </div>
 
-    <div class="card">
-      <div id="ndGate"><div class="empty">尚未扫描 · 交易时段 14:00-15:00 每 10 分钟自动刷新，或点击右上角「立即扫描」</div></div>
+    <div class="card" data-page-node-id="1i3eOwBbYKGhFzytPREprF">
+      <div id="ndGate" data-page-node-id="NrjMKZqJlHWdvsFtoDLOXq"><div class="empty" data-page-node-id="GtGq0sUV0ysuUCcPR6Kk2A">尚未扫描 · 交易时段 14:00-15:00 每 10 分钟自动刷新，或点击右上角「立即扫描」</div></div>
     </div>
 
-    <div class="card">
-      <h3>🔥 入选强势板块 <span class="tag" id="ndBoardN">--</span></h3>
-      <p class="rec-sub">板块涨幅排名前 5 × 板块内 ≥3 只涨超5%/涨停 × 非一日游（5日/10日累计均收涨）—— 三关全过才入选，锁定 1-2 个板块</p>
-      <div class="rec-grid" id="ndBoards"></div>
+    <div class="card" data-page-node-id="JobfVgEkNfAF6tRZnYynDQ">
+      <h3 data-page-node-id="wjFlBy1AzkOE40U2uONdv2">🔥 入选强势板块 <span class="tag" id="ndBoardN" data-page-node-id="jpe66Z1AIin1uAjIDVClLJ">--</span></h3>
+      <p class="rec-sub" data-page-node-id="gFTqLnxBjJV3NdJQzFmF54">板块涨幅排名前 5 × 板块内 ≥3 只涨超5%/涨停 × 非一日游（5日/10日累计均收涨）—— 三关全过才入选，锁定 1-2 个板块</p>
+      <div class="rec-grid" id="ndBoards" data-page-node-id="AeGBVzbiYqfmxYtgpDIgOy"></div>
     </div>
 
-    <div class="card">
-      <h3>🎯 次日上涨候选 <span class="tag" id="ndStockN">--</span></h3>
-      <p class="rec-sub">强势板块内：股价 ≤25元 × 当日涨幅 3%-6%（未涨停）× 站上 MA5 与 MA20 × 量超 5 日均量（盘中按进度折算）× 尾盘半小时不跳水 —— 全部满足</p>
-      <div class="rec-grid" id="ndStocks"></div>
+    <div class="card" data-page-node-id="Ez6FkHjRVJSRPdZEjmVstZ">
+      <h3 data-page-node-id="U1ibKlAiNIfDTw1x1auvTC">🎯 次日上涨候选 <span class="tag" id="ndStockN" data-page-node-id="LEPOzs7ZMJRl22zy5bodNu">--</span></h3>
+      <p class="rec-sub" data-page-node-id="oYnMHG6HV7gcEGg0fmuzSZ">强势板块内：股价 ≤25元 × 当日涨幅 3%-6%（未涨停）× 站上 MA5 与 MA20 × 量超 5 日均量（盘中按进度折算）× 尾盘半小时不跳水 —— 全部满足</p>
+      <div class="rec-grid" id="ndStocks" data-page-node-id="S0GC08jxX5beBPCAWyH40e"></div>
     </div>
 
-    <div class="card">
-      <div class="rec-note" id="ndNote"></div>
+    <div class="card" data-page-node-id="PCsQXIw9BCLzjjHYUEGtA2">
+      <div class="rec-note" id="ndNote" data-page-node-id="un1ot1ejDNicbd9nwqGooA"></div>
     </div>
   </section>
 
   <!-- ============ 股票池 ============ -->
-  <section class="tab" id="tab-pool">
-    <div class="page-head">
-      <h2>股票池 · 五阶段看板</h2>
-      <span class="desc">按趋势阶段分类管理候选标的 · 诊断后自动归类，也可手动调整</span>
+  <section class="tab" id="tab-pool" data-page-node-id="GuZhDDRJGCDEUyi4Bd9MAn">
+    <div class="page-head" data-page-node-id="il4ft8r5iPaaku8yvRY5WU">
+      <h2 data-page-node-id="jpgbeZcQBq4Rt4yZEAmQeM">股票池 · 五阶段看板</h2>
+      <span class="desc" data-page-node-id="d7RTNLyAuPyLqZC62qhYGU">按趋势阶段分类管理候选标的 · 诊断后自动归类，也可手动调整</span>
     </div>
-    <div class="stage-legend">
-      <span><i style="background:var(--gold)"></i>上车临近：条件接近满足</span>
-      <span><i style="background:var(--purple)"></i>启动：刚突破确认</span>
-      <span><i style="background:var(--red)"></i>趋势中：上升趋势运行</span>
-      <span><i style="background:var(--cocoa)"></i>顶部：超买/见顶信号</span>
-      <span><i style="background:var(--green)"></i>底部：超跌/筑底</span>
+    <div class="stage-legend" data-page-node-id="hXgQuCfLRVljIDfn2KTMOm">
+      <span data-page-node-id="WvmFLGU13xdYNYtMahuheW"><i style="background:var(--gold)" data-page-node-id="PCk1nBJB28yTlbX2jePb2A"></i>上车临近：条件接近满足</span>
+      <span data-page-node-id="BaegZFlhyycGz2waZ4axSF"><i style="background:var(--purple)" data-page-node-id="DZYibS3K1hVjAHlP8zSvq2"></i>启动：刚突破确认</span>
+      <span data-page-node-id="myopMtTyyoZZu0JmDhWjMN"><i style="background:var(--red)" data-page-node-id="RRH4R9vgYBP6jAl66Z1bdO"></i>趋势中：上升趋势运行</span>
+      <span data-page-node-id="Z1U6SbE2MOyAB46CdnFpom"><i style="background:var(--cocoa)" data-page-node-id="Tu0hEUOWxCsgzfSKvYfO5z"></i>顶部：超买/见顶信号</span>
+      <span data-page-node-id="MdfVWcxAKjIqID6uUjW8TG"><i style="background:var(--green)" data-page-node-id="zn52SRfE3fCrjTy7n0ID04"></i>底部：超跌/筑底</span>
     </div>
-    <div class="card">
-      <div class="inline-form" style="margin-bottom:12px">
-        <input type="text" id="poolAddInput" placeholder="输入代码加入股票池（自动诊断归类）" style="flex:1;min-width:240px">
-        <button class="btn" id="btnPoolAdd">＋ 加入股票池</button>
-        <button class="btn ghost sm" id="btnPoolRefresh">🔄 刷新全部行情</button>
-        <button class="btn ghost sm red" id="btnPoolClear">清空</button>
+    <div class="card" data-page-node-id="FLyAHGMy5HhwypviFm6vnO">
+      <div class="inline-form" style="margin-bottom:12px" data-page-node-id="eOGmspjvTqH4nOJzYOfnRh">
+        <input type="text" id="poolAddInput" placeholder="输入代码加入股票池（自动诊断归类）" style="flex:1;min-width:240px" data-page-node-id="kF9gu4RLNlLS2rpie0cs05">
+        <button class="btn" id="btnPoolAdd" data-page-node-id="awe479MRmmgZEWtGu2MqDs">＋ 加入股票池</button>
+        <button class="btn ghost sm" id="btnPoolRefresh" data-page-node-id="hs14CfzeWOTa2yDQ69CFB3">🔄 刷新全部行情</button>
+        <button class="btn ghost sm red" id="btnPoolClear" data-page-node-id="9l44ls7PIi6FqS2mrrUReK">清空</button>
       </div>
-      <div class="pool-board" id="poolBoard">
-        <div class="empty" style="grid-column:1/-1"><div class="big">🗂</div>股票池为空。从「选股雷达」诊断后一键加入，或上方直接输入代码</div>
+      <div class="pool-board" id="poolBoard" data-page-node-id="ReLbJqHcR8RmXqePd2ScRH">
+        <div class="empty" style="grid-column:1/-1" data-page-node-id="fTM8t9XGBR5RpsOZQ7jCr1"><div class="big" data-page-node-id="ccVglVLU4XYEgwQmRS0gQA">🗂</div>股票池为空。从「选股雷达」诊断后一键加入，或上方直接输入代码</div>
       </div>
     </div>
   </section>
 
   <!-- ============ 上车判定 ============ -->
-  <section class="tab" id="tab-entry">
-    <div class="page-head">
-      <h2>上车判定</h2>
-      <span class="desc">自动扫描股票池与诊断记录，满足 ≥ 门槛条件的标的自动显示在此</span>
+  <section class="tab" id="tab-entry" data-page-node-id="DX5G0kwBUmZEazjw3XCQ2b">
+    <div class="page-head" data-page-node-id="FlDomHQ5unSZIc7giNn0JP">
+      <h2 data-page-node-id="JrCog90Y6lHG8yzDWAMKSe">上车判定</h2>
+      <span class="desc" data-page-node-id="tANfs8xHkh3fc5o2C5vcjj">自动扫描股票池与诊断记录，满足 ≥ 门槛条件的标的自动显示在此</span>
     </div>
-    <div class="card">
-      <h3>📊 当前上车信号 <span class="tag" id="entrySignalTag">自动扫描</span></h3>
-      <div class="board-row">
-        <div class="bx green"><span style="color:var(--text3)">强上车信号</span><b id="bxStrong">0</b>满足 ≥6/7 条件</div>
-        <div class="bx gold"><span style="color:var(--text3)">上车信号</span><b id="bxGo">0</b>满足 ≥5/7 条件</div>
-        <div class="bx blue"><span style="color:var(--text3)">上车临近</span><b id="bxNear">0</b>满足 4/7 条件</div>
-        <div class="bx red"><span style="color:var(--text3)">等待/观察</span><b id="bxWatch">0</b>满足 &lt;4 条件</div>
+    <div class="card" data-page-node-id="21rhMyBYrtCJef6gdPeKUZ">
+      <h3 data-page-node-id="Ebkg6MXxlWCxvAwmwkFXas">📊 当前上车信号 <span class="tag" id="entrySignalTag" data-page-node-id="zeA1zlt0ujYSVwyAMeUfCH">自动扫描</span></h3>
+      <div class="board-row" data-page-node-id="wBklstTD6eV86SYBeRdMVd">
+        <div class="bx green" data-page-node-id="ABb6nhRmIyZvoWES4Dv3f4"><span style="color:var(--text3)" data-page-node-id="bLNy5YnJwJoG9JcAzB0FGw">强上车信号</span><b id="bxStrong" data-page-node-id="BiVQFJC0jGo2GMetOZM23N">0</b>满足 ≥6/7 条件</div>
+        <div class="bx gold" data-page-node-id="fZcE7fu2vgbPNEGW0kHnJp"><span style="color:var(--text3)" data-page-node-id="CDFNnY0lb4Du63wpUNJ067">上车信号</span><b id="bxGo" data-page-node-id="4jjmPMiOBeZMcsyYcvIPwq">0</b>满足 ≥5/7 条件</div>
+        <div class="bx blue" data-page-node-id="mTeODwOyesRkgFVucsqbA4"><span style="color:var(--text3)" data-page-node-id="BFMieeRlTPnMWcREzNVGvl">上车临近</span><b id="bxNear" data-page-node-id="NFLn8pQZ7w0siVjwdl3M2X">0</b>满足 4/7 条件</div>
+        <div class="bx red" data-page-node-id="5FTWjuw1JKSO5lxqpJiJ4H"><span style="color:var(--text3)" data-page-node-id="H7CAfppk9nc8gAvbOD1vsH">等待/观察</span><b id="bxWatch" data-page-node-id="1e6pen6VeJURIoP1jVUiRj">0</b>满足 &lt;4 条件</div>
       </div>
     </div>
-    <div class="card">
-      <div class="page-head" style="margin-bottom:4px">
-        <h3 style="margin:0">🟢 满足上车条件的标的</h3>
-        <span class="desc" id="entryScanNote">扫描中…</span>
-        <button class="btn ghost sm red" style="margin-left:auto" onclick="clearDiagRecords()">🗑 清空记录</button>
+    <div class="card" data-page-node-id="YEAjOPWI1SAjeNRLTmlDDM">
+      <div class="page-head" style="margin-bottom:4px" data-page-node-id="T25efq0zOn9b6GV9pa9puL">
+        <h3 style="margin:0" data-page-node-id="FGeBtQyYttB6xzoYaYB6Bf">🟢 满足上车条件的标的</h3>
+        <span class="desc" id="entryScanNote" data-page-node-id="rRSmwEJBq2Dh9663AG19MQ">扫描中…</span>
+        <button class="btn ghost sm red" style="margin-left:auto" onclick="clearDiagRecords()" data-page-node-id="dESUyTZGJxrpC3koaRQxsb">🗑 清空记录</button>
       </div>
-      <div id="entryList">
-        <div class="empty"><div class="big">🟢</div>暂无满足上车条件的标的<br>先在「选股雷达」诊断，或把候选加入「股票池」</div>
+      <div id="entryList" data-page-node-id="ND04tEu4NRidQJWmfhOHES">
+        <div class="empty" data-page-node-id="8OSrgLhJyvZpsXLYS28xEB"><div class="big" data-page-node-id="zME2GJ8CvLBMaRzJ6BndKO">🟢</div>暂无满足上车条件的标的<br data-page-node-id="NbOLY1jtGGrjjX4iqLyPJC">先在「选股雷达」诊断，或把候选加入「股票池」</div>
       </div>
     </div>
   </section>
 
   <!-- ============ 下车判定 ============ -->
-  <section class="tab" id="tab-exit">
-    <div class="page-head">
-      <h2>下车判定</h2>
-      <span class="desc">设置持仓标的与成本/止损，自动监控触发条件，信号灯提示下车时机</span>
+  <section class="tab" id="tab-exit" data-page-node-id="YUl7hex4HlFJfEcqilwp1m">
+    <div class="page-head" data-page-node-id="RSikAKLCCXImPv2n29hBxO">
+      <h2 data-page-node-id="7YTmyQmvl5Zq557Fm52FD5">下车判定</h2>
+      <span class="desc" data-page-node-id="TAS1sjJAd3ziWBsSR6lPlQ">设置持仓标的与成本/止损，自动监控触发条件，信号灯提示下车时机</span>
     </div>
-    <div class="card">
-      <h3>➕ 添加 / 更新持仓</h3>
-      <div class="inline-form">
-        <input type="text" id="posCode" placeholder="股票代码（00/60 开头）" style="width:150px">
-        <input type="text" class="num" id="posCost" placeholder="成本价" style="width:100px">
-        <input type="text" class="num" id="posQty" placeholder="持仓数量(股)" style="width:110px">
-        <input type="text" class="num" id="posStop" placeholder="止损价（默认MA20破位）" style="width:140px">
-        <button class="btn" id="btnPosAdd">添加持仓</button>
+    <div class="card" data-page-node-id="W7rnXcIY2PqsKY8iUwGgNh">
+      <h3 data-page-node-id="09e2XjDB8Thp2rhlCWMvzd">➕ 添加 / 更新持仓</h3>
+      <div class="inline-form" data-page-node-id="AErsi3k1TQDmuIKnWDWchA">
+        <input type="text" id="posCode" placeholder="股票代码（00/60 开头）" style="width:150px" data-page-node-id="Sd6JdcHsDv1HKmrr8aY91o">
+        <input type="text" class="num" id="posCost" placeholder="成本价" style="width:100px" data-page-node-id="aKnqYw9FrzNcmXx9tAGgwe">
+        <input type="text" class="num" id="posQty" placeholder="持仓数量(股)" style="width:110px" data-page-node-id="yaj1U0ZhDxQ4eEfig7HTVY">
+        <input type="text" class="num" id="posStop" placeholder="止损价（默认MA20破位）" style="width:140px" data-page-node-id="XocW6Wv8GpVFgIIQEjf3AT">
+        <button class="btn" id="btnPosAdd" data-page-node-id="yrbLPj5Q4iO9EW2BQn6CZC">添加持仓</button>
       </div>
-      <div style="font-size:11.5px;color:var(--text3);margin-top:8px">止损价建议 = 技术位（MA20 / 前低 / SAR 绿点），跌破立即执行，不犹豫。</div>
+      <div style="font-size:11.5px;color:var(--text3);margin-top:8px" data-page-node-id="sGSwQBVhM2HuGmySLKXBKc">止损价建议 = 技术位（MA20 / 前低 / SAR 绿点），跌破立即执行，不犹豫。</div>
     </div>
-    <div class="card">
-      <h3>🔍 下车监控条件 <span class="tag">8 项</span></h3>
-      <div class="board-row">
-        <div class="bx red"><span style="color:var(--text3)">关键条件（触发任一即建议下车）</span><b>① 跌破MA20 ② 跌破止损 ③ SAR翻绿</b></div>
-        <div class="bx gold"><span style="color:var(--text3)">警惕条件（触发 ≥3 项建议下车）</span><b>④ 跌破MA10 ⑤ MACD死叉 ⑥ KDJ死叉 ⑦ CCI高位回落 ⑧ 利润回吐≥50%</b></div>
+    <div class="card" data-page-node-id="3Yijuc7pbLvUrqjf5UWcbE">
+      <h3 data-page-node-id="AKnajGQ7xyQv9DiRaPH0HJ">🔍 下车监控条件 <span class="tag" data-page-node-id="n926Q11j8Bo2wDKynzUTgT">8 项</span></h3>
+      <div class="board-row" data-page-node-id="4DTNDqvVVohMZNg0lGJGUn">
+        <div class="bx red" data-page-node-id="cF6MIqxaJGlg2PztpZZJ03"><span style="color:var(--text3)" data-page-node-id="hB3T6z8Q0x7nL8yE6gFdPO">关键条件（触发任一即建议下车）</span><b data-page-node-id="cA1A2ITnkwIcJrjSPyum2M">① 跌破MA20 ② 跌破止损 ③ SAR翻绿</b></div>
+        <div class="bx gold" data-page-node-id="pAALBSUzG3IcqRzWvlNTlb"><span style="color:var(--text3)" data-page-node-id="NsxYzaFP3aWnBK2nh0qwtl">警惕条件（触发 ≥3 项建议下车）</span><b data-page-node-id="FK7osLhKWAOuO5DAeOC3jM">④ 跌破MA10 ⑤ MACD死叉 ⑥ KDJ死叉 ⑦ CCI高位回落 ⑧ 利润回吐≥50%</b></div>
       </div>
     </div>
-    <div id="posList">
-      <div class="empty"><div class="big">🔴</div>暂无持仓。添加后自动拉取行情，逐项监控下车条件（均线/MACD/SAR/CCI + 量价关系）</div>
+    <div id="posList" data-page-node-id="Gk0k23E3Hh7KMOkbOl2zEp">
+      <div class="empty" data-page-node-id="GuAjZhLXFVdpKzFIBsSdEq"><div class="big" data-page-node-id="UGdugXPyIzrkxZvIe8b63Q">🔴</div>暂无持仓。添加后自动拉取行情，逐项监控下车条件（均线/MACD/SAR/CCI + 量价关系）</div>
     </div>
-    <div class="card">
-      <h3>📜 上车 / 下车记录</h3>
-      <div id="histWrap"><div class="empty">暂无交易记录</div></div>
+    <div class="card" data-page-node-id="mepv1AvsXoQAtFFClkQBL6">
+      <h3 data-page-node-id="8jQAtLPpMjMzHqwEmQ9RvJ">📜 上车 / 下车记录</h3>
+      <div id="histWrap" data-page-node-id="FcCIxFPrGglKmFVR9BA2kq"><div class="empty" data-page-node-id="JL77kGKgENsyjZJ4bHPkaF">暂无交易记录</div></div>
     </div>
   </section>
 
   <!-- ============ 仓位计算器 ============ -->
-  <section class="tab" id="tab-calc">
-    <div class="page-head">
-      <h2>仓位计算器</h2>
-      <span class="desc">固定比例法：单笔风险金 ÷ 每股止损距离 = 建议买入数量 · 自动校验 40% 单标的上限</span>
+  <section class="tab" id="tab-calc" data-page-node-id="z61G7trx4cNQ5IsDNgL8JC">
+    <div class="page-head" data-page-node-id="2IlEzliPN4bQ9K2pwlGKI5">
+      <h2 data-page-node-id="RtFoCjcdO9q9K1WG2GFlYU">仓位计算器</h2>
+      <span class="desc" data-page-node-id="uUDi6LHYwKjY4218wlx6MV">固定比例法：单笔风险金 ÷ 每股止损距离 = 建议买入数量 · 自动校验 40% 单标的上限</span>
     </div>
-    <div class="calc-grid">
-      <div class="card">
-        <h3>⚙️ 输入参数</h3>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <label class="f"><b>账户总资金（元）</b><input type="text" class="num" id="cCapital" value="70000"></label>
-          <label class="f"><b>单笔风险比例（%）</b><input type="text" class="num" id="cRisk" value="2"></label>
-          <label class="f"><b>买入价（元）</b><input type="text" class="num" id="cBuy" placeholder="如 12.50"></label>
-          <label class="f"><b>止损价（元）</b><input type="text" class="num" id="cStop" placeholder="如 11.80"></label>
-          <label class="f"><b>目标价（元，可选）</b><input type="text" class="num" id="cTarget" placeholder="用于盈亏比计算"></label>
-          <label class="f"><b>已占用仓位（元，可选）</b><input type="text" class="num" id="cUsed" placeholder="已有持仓市值，用于总仓位检查"></label>
-          <button class="btn gold" id="btnCalc">🧮 计算建议仓位</button>
-          <button class="btn ghost sm" id="btnCalcDemo">填入示例数据</button>
+    <div class="calc-grid" data-page-node-id="Tw5cIykB9DDIEFdc7wQn2N">
+      <div class="card" data-page-node-id="aFZhYw1IppXArNSihN7agH">
+        <h3 data-page-node-id="9D2gfuaRh6OPDzFVsHc8Hr">⚙️ 输入参数</h3>
+        <div style="display:flex;flex-direction:column;gap:12px" data-page-node-id="6sOEByIPK8iCdK3rfXmegB">
+          <label class="f" data-page-node-id="N2fYGaBAc3xAG54hljkZGe"><b data-page-node-id="Ak56xALxAhCjULbz2tDtjJ">账户总资金（元）</b><input type="text" class="num" id="cCapital" value="70000" data-page-node-id="Oo38kvXkMQ7zc3TlmBMzWz"></label>
+          <label class="f" data-page-node-id="uqKQjBxiOVZ3wvf2CxXaNK"><b data-page-node-id="qK4F7x1WjAaMnySLB2yEZZ">单笔风险比例（%）</b><input type="text" class="num" id="cRisk" value="2" data-page-node-id="6RbRIoaAnxxiscDdxPnIDt"></label>
+          <label class="f" data-page-node-id="dc1TRp0EbheIxdmicb5Fq0"><b data-page-node-id="AQnYsHTJmXulEI8P8T6Ajr">买入价（元）</b><input type="text" class="num" id="cBuy" placeholder="如 12.50" data-page-node-id="6UIBkVYjOx6Sllky1c0L6r"></label>
+          <label class="f" data-page-node-id="sQHjoNYQJTsbYAx7L3NDUZ"><b data-page-node-id="vJj3N93phCuE7WweiXd3Tw">止损价（元）</b><input type="text" class="num" id="cStop" placeholder="如 11.80" data-page-node-id="q9BcmrRgvCDkBZy6sCYytX"></label>
+          <label class="f" data-page-node-id="2kJzWC7GOQC6PnzuLQAYlf"><b data-page-node-id="RA8LhkWwhZRsIW3yCECkxo">目标价（元，可选）</b><input type="text" class="num" id="cTarget" placeholder="用于盈亏比计算" data-page-node-id="mDzLW5sdP5AOhR7aTZqaHd"></label>
+          <label class="f" data-page-node-id="CeY8ri0AWTX7G0LA7JjJ2Q"><b data-page-node-id="Pcih0HcdCj8y4aTkQpcRm0">已占用仓位（元，可选）</b><input type="text" class="num" id="cUsed" placeholder="已有持仓市值，用于总仓位检查" data-page-node-id="UYmDlhytMc48airK4dP7SH"></label>
+          <button class="btn gold" id="btnCalc" data-page-node-id="JdDi0PkPO4i8bzx1YEzIdq">🧮 计算建议仓位</button>
+          <button class="btn ghost sm" id="btnCalcDemo" data-page-node-id="743pbS8gv4QlljYHibhT69">填入示例数据</button>
         </div>
       </div>
-      <div>
-        <div class="card" id="calcResult" style="display:none"></div>
-        <div class="card">
-          <h3>📐 计算公式</h3>
-          <div class="formula">
-<span class="hl">单笔最大亏损</span> = 总资金 × 单笔风险%
-   = <span id="fLoss"></span>
-<br><span class="hl">每股风险距离</span> = 买入价 − 止损价
-<br><span class="hl">建议数量</span> = ⌊ 单笔最大亏损 ÷ 每股风险距离 ⌋ （按 100 股取整）
-<br><span class="hl">建议金额</span> = 建议数量 × 买入价
-<br><span class="hl">仓位占比</span> = 建议金额 ÷ 总资金（上限 40%，超出需压缩）
-<br><span class="hl">盈亏比</span> = (目标价 − 买入价) ÷ (买入价 − 止损价)，≥2 才值得出手
+      <div data-page-node-id="Kxdz9a5eouNzTbSDhL3Rqd">
+        <div class="card" id="calcResult" style="display:none" data-page-node-id="1TnMJpE8rMlgOlaKrWCYvh"></div>
+        <div class="card" data-page-node-id="Dhf3Q8w1HMyN7S5sDIQ8Rz">
+          <h3 data-page-node-id="7VU7EXb6JGcwOSN46NhTj3">📐 计算公式</h3>
+          <div class="formula" data-page-node-id="ZrUuRBPXIoXUCuwpod14kn">
+<span class="hl" data-page-node-id="PERUsKedXHRSE5BiLt2Y2A">单笔最大亏损</span> = 总资金 × 单笔风险%
+   = <span id="fLoss" data-page-node-id="RTdek15qRy5gEaCsXKi2nB"></span>
+<br data-page-node-id="dHmtRtQJulBHCX0dh62mXS"><span class="hl" data-page-node-id="wDRUwjdEjbxtgmURx52UaO">每股风险距离</span> = 买入价 − 止损价
+<br data-page-node-id="5XUpgf6jaX9F7UAaEWgQbS"><span class="hl" data-page-node-id="UQEBO5jv6DOZBTBfVMp76H">建议数量</span> = ⌊ 单笔最大亏损 ÷ 每股风险距离 ⌋ （按 100 股取整）
+<br data-page-node-id="UrulHpCg8YirFyHmwHj7Cf"><span class="hl" data-page-node-id="ktvOcF89GGdGoWA4C27DZu">建议金额</span> = 建议数量 × 买入价
+<br data-page-node-id="8VEY7EyvdBEYmtO42QCetC"><span class="hl" data-page-node-id="tAvnum6LZ3QUtuKYOvNDC7">仓位占比</span> = 建议金额 ÷ 总资金（上限 40%，超出需压缩）
+<br data-page-node-id="lnBBDR8OxG9BGuAnVwXTvL"><span class="hl" data-page-node-id="82LuMzSVK0gdlAkOb1kdJN">盈亏比</span> = (目标价 − 买入价) ÷ (买入价 − 止损价)，≥2 才值得出手
           </div>
         </div>
-        <div class="card">
-          <h3>⚠️ 风控纪律（你的铁律）</h3>
-          <div class="ok-box">✅ 单标的 ≤ 总资金 40% ｜ 现金 ≥ 20% ｜ 单笔亏损 ≤ 1,500 元 ｜ 破线无条件执行<br>
+        <div class="card" data-page-node-id="kB681b1No6tS37GKyMLbfG">
+          <h3 data-page-node-id="G8VzeHMU8ybsJGCwokHYfz">⚠️ 风控纪律（你的铁律）</h3>
+          <div class="ok-box" data-page-node-id="c7INtGz0MJLcZAThmIxvsl">✅ 单标的 ≤ 总资金 40% ｜ 现金 ≥ 20% ｜ 单笔亏损 ≤ 1,500 元 ｜ 破线无条件执行<br data-page-node-id="HLiwub2J4NNu3HUDwvjwYC">
           ✅ 建议同时持仓 ≤ 3 只，避免过度分散与精力透支</div>
         </div>
       </div>
@@ -620,113 +709,113 @@ label.f b{color:var(--text2);font-weight:600}
   </section>
 
   <!-- ============ 主力资金 · 板块进攻地图 ============ -->
-  <section class="tab" id="tab-flow">
-    <div class="page-head">
-      <h2>💰 主力资金 · 板块进攻地图</h2>
-      <span class="desc">全市场主力净流入排行 → 点开板块看个股 → 自动标注龙头 / 中军 / 补涨卡位 → 颜色区分你是否可买（数据源：东财，收盘后为当日终值）</span>
+  <section class="tab" id="tab-flow" data-page-node-id="AXzHRxioIhL92r3rn4mN2L">
+    <div class="page-head" data-page-node-id="9Fq2w5QvbUGYvv4FxIiW3q">
+      <h2 data-page-node-id="KR96dAUECluCwfTNfubyM3">💰 主力资金 · 板块进攻地图</h2>
+      <span class="desc" data-page-node-id="gCjnWfZPssNGYuev1Zdm7j">全市场主力净流入排行 → 点开板块看个股 → 自动标注龙头 / 中军 / 补涨卡位 → 颜色区分你是否可买（数据源：东财，收盘后为当日终值）</span>
     </div>
 
-    <div class="flow-toolbar">
-      <div class="seg" id="flowTypeSeg">
-        <button data-ft="2" class="active">🏭 行业板块</button>
-        <button data-ft="3">🧩 概念题材</button>
+    <div class="flow-toolbar" data-page-node-id="mXX5el8NwXw2U6Wtk31XEc">
+      <div class="seg" id="flowTypeSeg" data-page-node-id="CAIELcnBF3pw3AY1V3DduL">
+        <button data-ft="2" class="active" data-page-node-id="7Gwr8z1PXfhkC0cjxjqptD">🏭 行业板块</button>
+        <button data-ft="3" data-page-node-id="pXFexKbDhdpZW3geeuAEN1">🧩 概念题材</button>
       </div>
-      <div class="flow-perms" id="flowPerms" title="勾选你账户已开通的交易权限，决定标的是否标为「可买」（ETF 场内基金无需任何权限）">
-        <span style="color:var(--text3)">我的权限：</span>
-        <label><input type="checkbox" data-perm="main" checked disabled>主板</label>
-        <label><input type="checkbox" data-perm="cyb">创业板</label>
-        <label><input type="checkbox" data-perm="kcb">科创板</label>
-        <label><input type="checkbox" data-perm="bj">北交所</label>
+      <div class="flow-perms" id="flowPerms" title="勾选你账户已开通的交易权限，决定标的是否标为「可买」（ETF 场内基金无需任何权限）" data-page-node-id="D90EeiQtT2K00qucO4xVO3">
+        <span style="color:var(--text3)" data-page-node-id="l9cVlKYbmrS1DA6KhHWK4z">我的权限：</span>
+        <label data-page-node-id="EykZ3HNVwp18QyZWiiaFNm"><input type="checkbox" data-perm="main" checked disabled data-page-node-id="mLxGEqPaRWktcAA7U9Rl9y">主板</label>
+        <label data-page-node-id="k74Cykb7fMDEeByn1bAyS4"><input type="checkbox" data-perm="cyb" data-page-node-id="k9YgCCkx2zuF0cgcwGecF8">创业板</label>
+        <label data-page-node-id="og69kPxdObJhyCqBPWyyF2"><input type="checkbox" data-perm="kcb" data-page-node-id="i7ZxIuM8mNCU8dIbcLqeb7">科创板</label>
+        <label data-page-node-id="fI6CYE0u1ZNsfvUshFZHHC"><input type="checkbox" data-perm="bj" data-page-node-id="zDWAxpNzmAUk47GKOGHmyx">北交所</label>
       </div>
-      <button class="btn ghost sm" id="btnFlowRefresh">🔄 刷新榜单</button>
-      <span class="dim" id="flowStamp" style="font-size:11.5px"></span>
+      <button class="btn ghost sm" id="btnFlowRefresh" data-page-node-id="6eUnqGFxIuPq8d1A0EtGlS">🔄 刷新榜单</button>
+      <span class="dim" id="flowStamp" style="font-size:11.5px" data-page-node-id="qWxRH5lfY0MbnYqenbnjVl"></span>
     </div>
 
-    <div class="flow-legend" id="flowLegend"></div>
+    <div class="flow-legend" id="flowLegend" data-page-node-id="owE9gy4KyjGJWlTPAh1kp4"></div>
 
-    <div id="flowList"><div class="flow-msg">加载板块主力净流入排行中…（首次约 2-5 秒）</div></div>
-    <div id="flowDetail"></div>
+    <div id="flowList" data-page-node-id="ngVTE1lOpV2OFeB12hAbdA"><div class="flow-msg" data-page-node-id="6KqKHBf6HKf1LQd7gu1M7E">加载板块主力净流入排行中…（首次约 2-5 秒）</div></div>
+    <div id="flowDetail" data-page-node-id="PI1Qj3Yp3HjitsfXHhSJq8"></div>
   </section>
 </main>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" data-page-node-id="eHVuba7AqzSqBplyv6Owml"></div>
 
 <!-- ===== 错误日志查看器（定位 iPad/弱网偶发失败） ===== -->
-<div class="kmodal-mask" id="logModal">
-  <div class="kmodal" style="width:min(680px,94vw)">
-    <div class="km-head">
-      <span class="nm">🛠 运行日志</span>
-      <span class="meta" style="font-size:11px">最近 20 条诊断/运行错误 · 复制后发给助手可定位根因</span>
-      <div class="km-right">
-        <button class="btn sm ghost" onclick="clearErrLog()">🗑 清空</button>
-        <button class="btn sm" onclick="closeLogModal()">✕ 关闭</button>
+<div class="kmodal-mask" id="logModal" data-page-node-id="VjeOlCNTGCCSCn4ittkOgr">
+  <div class="kmodal" style="width:min(680px,94vw)" data-page-node-id="2gxOp0q4AKRbrHdGHItCFo">
+    <div class="km-head" data-page-node-id="UyDojytmpyHw6kBDx29FSs">
+      <span class="nm" data-page-node-id="MAumDXyNJFmviEYPVWiUlv">🛠 运行日志</span>
+      <span class="meta" style="font-size:11px" data-page-node-id="uBtELszA82GzyTZSeGFCn7">最近 20 条诊断/运行错误 · 复制后发给助手可定位根因</span>
+      <div class="km-right" data-page-node-id="78bXKJ3ppiQx6Ccp3WIdIJ">
+        <button class="btn sm ghost" onclick="clearErrLog()" data-page-node-id="AyOZx0y19NwbvIfQiSsBdu">🗑 清空</button>
+        <button class="btn sm" onclick="closeLogModal()" data-page-node-id="StC8gk8R4ljB4uHT8nYYYG">✕ 关闭</button>
       </div>
     </div>
-    <div class="km-body" style="max-height:60vh;overflow:auto;padding:10px 14px">
-      <pre id="logBody" style="font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--text2);white-space:pre-wrap;word-break:break-all;margin:0">加载中…</pre>
+    <div class="km-body" style="max-height:60vh;overflow:auto;padding:10px 14px" data-page-node-id="8aiPCWMHOfNsajcePBQHZz">
+      <pre id="logBody" style="font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--text2);white-space:pre-wrap;word-break:break-all;margin:0" data-page-node-id="dsPtPHTDFdtsmq3GETK4re">加载中…</pre>
     </div>
   </div>
 </div>
 
 <!-- ===== K线图模态框 ===== -->
-<div class="kmodal-mask" id="kModal">
-  <div class="kmodal">
-    <div class="km-head">
-      <span class="nm" id="kmName">—</span>
-      <span class="cd" id="kmCode">—</span>
-      <span class="meta" id="kmMeta">日线 · 前复权</span>
-      <div class="km-right">
-        <button class="btn sm ghost" onclick="kChartSwitch()">🔄 最新</button>
-        <button class="btn sm" onclick="closeKModal()">✕ 关闭</button>
+<div class="kmodal-mask" id="kModal" data-page-node-id="E9Ntu2MVx8sk4Pp7jctsEJ">
+  <div class="kmodal" data-page-node-id="4suTj5TobVdWH02CwBNjhV">
+    <div class="km-head" data-page-node-id="nS6MjSloPH16ig2MJO1FBU">
+      <span class="nm" id="kmName" data-page-node-id="Dl0j7iQLuaUbBvGEwY0mQi">—</span>
+      <span class="cd" id="kmCode" data-page-node-id="DQU4CpIgZmF9SdM15xnpWr">—</span>
+      <span class="meta" id="kmMeta" data-page-node-id="y40UUSYvc3OsXZXK4dtLbF">日线 · 前复权</span>
+      <div class="km-right" data-page-node-id="HcteR7Lvrjw6N4JhEyyoJn">
+        <button class="btn sm ghost" onclick="kChartSwitch()" data-page-node-id="NRSlExjQ5slWTuDJFlsvqb">🔄 最新</button>
+        <button class="btn sm" onclick="closeKModal()" data-page-node-id="UICqYxvN9DPc4IS4iasI9W">✕ 关闭</button>
       </div>
     </div>
-    <div class="km-tool">
-      <div class="seg" id="kmSeg">
-        <button data-n="30">30日</button>
-        <button data-n="60" class="on">60日</button>
-        <button data-n="120">120日</button>
-        <button data-n="0">全部</button>
+    <div class="km-tool" data-page-node-id="89bDn5pXaKM02uothiakcz">
+      <div class="seg" id="kmSeg" data-page-node-id="oIcBILE5fihpvpJdX5nq01">
+        <button data-n="30" data-page-node-id="llgL8JicGeFHFQ33piEzJr">30日</button>
+        <button data-n="60" class="on" data-page-node-id="dvSME6hkgHFqHrfdvrFGgi">60日</button>
+        <button data-n="120" data-page-node-id="nP1B4VdBxBqH7CceJVNYS9">120日</button>
+        <button data-n="0" data-page-node-id="GUHNpbsbEBI0UcyOmRLWNu">全部</button>
       </div>
-      <div class="leg">
-        <span><i style="background:#f5484e"></i>阳线</span>
-        <span><i style="background:#22c074"></i>阴线</span>
-        <span><i style="background:#f5b50a"></i>MA5</span>
-        <span><i style="background:#4c8dff"></i>MA10</span>
-        <span><i style="background:#a78bfa"></i>MA20</span>
-        <span><i style="background:#22c074"></i>MA60</span>
-        <span><i style="background:#f5484e"></i>▲B 进场</span>
-        <span><i style="background:#22c074"></i>▼S 离场</span>
-        <span><i style="background:#f5b50a"></i>⚡ 拉升</span>
+      <div class="leg" data-page-node-id="iNekJdLASx8LXKWouwuBq8">
+        <span data-page-node-id="Qg65HyzTUuPerrVN1XiInD"><i style="background:#f5484e" data-page-node-id="Gbk5RlE3FR8NRjyIeISiIC"></i>阳线</span>
+        <span data-page-node-id="VTCXJjWTFjrCHne6NPyBWa"><i style="background:#22c074" data-page-node-id="VIv7rHbHAOfJL1USBJURh1"></i>阴线</span>
+        <span data-page-node-id="HsZ95YjI49ToctavDwtSTI"><i style="background:#f5b50a" data-page-node-id="b1MCMVbs29VQWF6UYFgzAk"></i>MA5</span>
+        <span data-page-node-id="cmIx0qmO18f44VM8H62kMI"><i style="background:#4c8dff" data-page-node-id="ZJGkeqImRDQBIpweowCTYz"></i>MA10</span>
+        <span data-page-node-id="QgiImCAPf9WMUKKlJ8Xvn7"><i style="background:#a78bfa" data-page-node-id="rDM8Tn4H7nmDHnsm0Yqkgf"></i>MA20</span>
+        <span data-page-node-id="Q7g7Jt3ZXHSyTDqpGXcxxf"><i style="background:#22c074" data-page-node-id="vXdtgsLfTAHPWUxG6Ir1mw"></i>MA60</span>
+        <span data-page-node-id="r5UUsQCKY2E7NXt0PHeNbB"><i style="background:#f5484e" data-page-node-id="haxJMEUwUkc4YrLFUbayl9"></i>▲B 进场</span>
+        <span data-page-node-id="SqtXtuxq2TtTN25ef8VT5u"><i style="background:#22c074" data-page-node-id="5a5lTjuDmmokvBDhaJSk1G"></i>▼S 离场</span>
+        <span data-page-node-id="g75kyFQQsR0tHDt9GREIYG"><i style="background:#f5b50a" data-page-node-id="QXAemKg1juBUeqDuxdYFlS"></i>⚡ 拉升</span>
       </div>
     </div>
-    <div class="km-body">
-      <canvas id="kmCanvas"></canvas>
-      <div class="km-load" id="kmLoading"><span class="spin"></span>正在拉取日线数据…</div>
-      <div class="km-no" id="kmNo" style="display:none">⚠️ 日线数据获取失败<br><span style="font-size:11px">请检查网络后点击「🔄 最新」重试</span></div>
+    <div class="km-body" data-page-node-id="UsyAZbzCx67kmNSKAiyKv3">
+      <canvas id="kmCanvas" data-page-node-id="nsT2T2p8ML67sMB9oH0wKi"></canvas>
+      <div class="km-load" id="kmLoading" data-page-node-id="9FmpLGR1cDTzz2UNy6m37t"><span class="spin" data-page-node-id="HvhRVlZgF6AB6FGRr7isF4"></span>正在拉取日线数据…</div>
+      <div class="km-no" id="kmNo" style="display:none" data-page-node-id="MPFC6uniEIHbOUtWVx0ZxA">⚠️ 日线数据获取失败<br data-page-node-id="HFwiaUNmoyiNpYHrLW6Uwz"><span style="font-size:11px" data-page-node-id="SnZhSNFk8eCClrAiKBxTD7">请检查网络后点击「🔄 最新」重试</span></div>
     </div>
-    <div class="km-foot">
-      <span class="hint">主图叠加 BOLL 通道 + SAR 红绿点 + 信号标注（▲B进场 / ▼S离场 / ⚡拉升，悬停K线可看信号明细） · 副图 成交量 / MACD / KDJ / CCI · 涨红跌绿 · 仅供个人研究，不构成投资建议</span>
-      <button class="btn ghost sm" onclick="closeKModal()">关闭</button>
+    <div class="km-foot" data-page-node-id="HiIOSjVs7iGMTBaE04vOfC">
+      <span class="hint" data-page-node-id="BuPLOE8yCvek2VErbZHf9y">主图叠加 BOLL 通道 + SAR 红绿点 + 信号标注（▲B进场 / ▼S离场 / ⚡拉升，悬停K线可看信号明细） · 副图 成交量 / MACD / KDJ / CCI · 涨红跌绿 · 仅供个人研究，不构成投资建议</span>
+      <button class="btn ghost sm" onclick="closeKModal()" data-page-node-id="X0CITplAdCakbfcGIxc4pm">关闭</button>
     </div>
   </div>
 </div>
 
 <!-- 上车确认输入弹窗 -->
-<div class="kmodal-mask" id="eModal">
-  <div class="kmodal" style="width:min(430px,94vw)">
-    <div class="km-head">
-      <span class="nm" id="emName">—</span>
-      <span class="cd" id="emCode">—</span>
-      <span class="meta" id="emMeta">现价 —</span>
-      <div class="km-right"><button class="btn sm" onclick="closeEModal()">✕</button></div>
+<div class="kmodal-mask" id="eModal" data-page-node-id="qq1hsO6DAemyT6GXIjTGwO">
+  <div class="kmodal" style="width:min(430px,94vw)" data-page-node-id="Bs8DUVKqkYCWq2SsZsuvAs">
+    <div class="km-head" data-page-node-id="tvXlPaXOwkf7LtA6XbFCLU">
+      <span class="nm" id="emName" data-page-node-id="Ony7uqt33oBLwaMyUWzk4G">—</span>
+      <span class="cd" id="emCode" data-page-node-id="kOU8Dxe3xGDSDfomvZW8g7">—</span>
+      <span class="meta" id="emMeta" data-page-node-id="8eiBiq2GPN8Hwragod0cf4">现价 —</span>
+      <div class="km-right" data-page-node-id="nmgNF9kuYLBoEEkviEGZXE"><button class="btn sm" onclick="closeEModal()" data-page-node-id="EHeExtKhDMeJlLJVeP25gd">✕</button></div>
     </div>
-    <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
-      <label class="f"><b>上车价格（元）· 按实际成交价填写</b><input type="text" class="num" id="emPrice" placeholder="预填现价，可修改"></label>
-      <label class="f"><b>上车数量（股）· 按 100 股取整</b><input type="text" class="num" id="emQty" placeholder="如 1000"></label>
-      <div style="font-size:11.5px;color:var(--text3);line-height:1.7" id="emHint"></div>
-      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:2px">
-        <button class="btn ghost" onclick="closeEModal()">取消</button>
-        <button class="btn gold" onclick="submitEntry()">🚗 确认上车</button>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:12px" data-page-node-id="ed88y21Ts1yG1K5l6B8CTs">
+      <label class="f" data-page-node-id="v5dCSqkFxgmkjehHXC53sr"><b data-page-node-id="hpScfEnu2IAepZP2eaqnTR">上车价格（元）· 按实际成交价填写</b><input type="text" class="num" id="emPrice" placeholder="预填现价，可修改" data-page-node-id="Q2Zt54ZcMw3w5bmdGkwhHn"></label>
+      <label class="f" data-page-node-id="Zwg41HrTiqOOacJSfQmUcY"><b data-page-node-id="U3UjNATpOGjYYIWYlKAiY4">上车数量（股）· 按 100 股取整</b><input type="text" class="num" id="emQty" placeholder="如 1000" data-page-node-id="Hi0HA0ELQ3l1T5f1X8HV4o"></label>
+      <div style="font-size:11.5px;color:var(--text3);line-height:1.7" id="emHint" data-page-node-id="FhOAj3BoImCj4uCws33q1k"></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:2px" data-page-node-id="PzU7YK9Nq4PfM0045dhDI6">
+        <button class="btn ghost" onclick="closeEModal()" data-page-node-id="iBDHslRJ1YuOo4ELhRomdI">取消</button>
+        <button class="btn gold" onclick="submitEntry()" data-page-node-id="xYe0SlB0qNTqmKBDJ7PdMz">🚗 确认上车</button>
       </div>
     </div>
   </div>
@@ -3475,7 +3564,9 @@ function ndRender(){
   $('#ndStockN').textContent = d ? (ns+' 只') : '--';
   const badge=$('#ndCount');
   if(badge){ badge.textContent=ns; badge.style.display=(d && d.stocks && ns) ? '' : 'none'; }
-  if(!d){ bb.innerHTML=''; sb.innerHTML=''; if(note) note.textContent=''; return; }
+  if(!d){ bb.innerHTML=''; sb.innerHTML='';
+    if(note) note.innerHTML='<b>尚未扫描</b> · 自动刷新窗口：开盘日 14:00-15:00 每 10 分钟（15:00 为收盘终版）· 点右上角「立即扫描」随时可看（非交易时段展示最近一个交易日快照）';
+    return; }
   /* ① 大盘开关 */
   const gt=d.gate;
   const flag = gt.ok ? '<span class="nd-flag ok">✓ 今日适合选股</span>'
