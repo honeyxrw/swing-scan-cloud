@@ -450,7 +450,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
     <div class="dot" data-page-node-id="B64VgY9ICK8alTln10bpl9"></div>
     <div data-page-node-id="qeFHt96hG8fSoj3jG4e3Cx">
       <h1 data-page-node-id="dMewWe7cDY8PVmeuzwwwrn">上车·下车 <em data-page-node-id="ifDluLN1yVtiTPiAUxjcpt">交易辅助台</em></h1>
-      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.20 · 妖股集首板标签 + 次日上涨票 + 板块地图</b></div>
+      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.21 · BOLL三轨反转 + 妖股集首板 + 次日上涨</b></div>
     </div>
   </div>
   <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓；上午收盘(11:30后)与全天收盘(15:00后)各抢刷一次，并抢鲜云端午间/收盘扫描结果（页面需保持打开）" data-page-node-id="xoPPQtPL1X6ATwVoQlbP16">⏱ 盘中10分·开</button>
@@ -542,6 +542,12 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
       <h3 data-page-node-id="YXqAZRwOp8LgfLnryLS1cv">⭐ 今日精选 <span class="tag" id="recPicksN" data-page-node-id="XNKwxZLmQB60mg3pESltLD">0</span></h3>
       <p class="rec-sub" data-page-node-id="wT7ApF9M1KmGnrHo7ml72p">B+ 鱼头优先 → 六联信号多 → 信号分高，每日最多 6 只</p>
       <div class="rec-grid" id="recPicks" data-page-node-id="sM9OFMKMtS4UjVZ3Cz5Zrb"></div>
+    </div>
+
+    <div class="card" data-page-node-id="bollRevBlock">
+      <h3 data-page-node-id="bollRevH3">🧭 BOLL三轨反转 <span class="tag" id="recBollN" data-page-node-id="bollRevN">0</span></h3>
+      <p class="rec-sub" data-page-node-id="bollRevSub">中轨严格连升 ≥7 天 × 上轨/下轨较 7 个交易日前净上行 × 站上中轨 × 脱离底部震荡（近30日最低收盘在7根K线前 · 自底部涨幅 ≥5%）—— 底部震荡结束、趋势反转向上的标的</p>
+      <div class="rec-grid" id="recBoll" data-page-node-id="bollRevGrid"></div>
     </div>
 
     <div class="card" data-page-node-id="66k4D6wnAA3ZPbIvXGmslj">
@@ -878,6 +884,14 @@ function renderRec(){
   $('#recBreakout').innerHTML = n1 ? d.breakout.map(x=>recCardHTML(x,false)).join('') : '<div class="rec-empty">今日无「启动·刚突破确认」标的，耐心等鱼头</div>';
   $('#recTrend').innerHTML = n2 ? d.trend.map(x=>recCardHTML(x,false)).join('') : '<div class="rec-empty">今日无「趋势中」标的</div>';
   $('#recPicks').innerHTML = n3 ? d.picks.map(x=>recCardHTML(x,true)).join('') : '<div class="rec-empty">今日无精选</div>';
+  /* v3.21 BOLL三轨反转：三组去重后取带 bollRev 标记的标的 */
+  const bseen = {}, bollAll = [];
+  [].concat(d.breakout||[], d.trend||[], d.picks||[]).forEach(x=>{
+    if(x.bollRev && !bseen[x.code]){ bseen[x.code]=1; bollAll.push(x); }
+  });
+  $('#recBollN').textContent = bollAll.length+' 只';
+  $('#recBoll').innerHTML = bollAll.length ? bollAll.map(x=>recCardHTML(x,false)).join('')
+    : '<div class="rec-empty">今日推荐中暂无「BOLL三轨反转」标的 —— 需中轨连升≥7天×三轨同向上×站上中轨×脱离底部，条件较严，耐心等形态走出</div>';
   /* v3.18 妖股集（云端全市场扫描直出，量价/技术面已算好，无需浏览器二次判定） */
   const nm = Array.isArray(d.monster) ? d.monster.length : -1;   /* -1=本轮数据未含妖股集 */
   $('#recMonsterN').textContent = (nm<0?'--':nm)+' 只';

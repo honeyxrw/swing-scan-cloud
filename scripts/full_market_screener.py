@@ -44,6 +44,9 @@ FUND_QUALIFIED = ('A', 'B') # 基本面入池资格：A/B档 且无红旗（C档
 REC_TOTAL_TARGET = 20      # 收盘版今日推荐总数目标（trend+breakout+picks 三组严格去重，不足时由 B/A 阶段强标的补足）
 REC_MIDDAY_TOTAL = 10      # 午间快照版（--midday，11:40 上午收盘后跑）今日推荐总数目标
 REC_MIDDAY_PICKS = 1       # 午间快照版精选固定 1 只（精选=两组之外最强信号；午间不用 B/A 硬凑数量）
+BOLL_REV_DAYS = 7          # 「BOLL三轨反转」：中/上/下轨同时连续向上天数门槛
+BOLL_REV_LOOKBACK = 70     # 判定所需最少K线数
+BOLL_REV_FROM_BOTTOM = 5.0 # 脱离底部幅度门槛：自近30日最低收盘涨幅 ≥5%
 
 # ===== v3.12 妖股集（全市场扫描，不受行业/价格/基本面门槛约束）=====
 # 判定口径：短期涨幅极端 + 连板基因 + 高波动；排除 ST/退整/新股/北交所
@@ -390,6 +393,55 @@ def calc_sar(bars, step=0.02, max_step=0.2):
     return sar_l, up_l
 
 
+def boll_reversal_metrics(closes, bars):
+    """BOLL(20,2·样本σ)三轨趋势反转判定（今日推荐「🧭BOLL三轨反转」用）：
+    ① 中轨/上轨/下轨同时连续向上 ≥ BOLL_REV_DAYS 天；
+    ② 收盘站上中轨；
+    ③ 脱离底部震荡：近30日最低收盘出现在 ≥7 根K线之前，且自底部涨幅 ≥5%。
+    返回 (ok, {'days': 三轨同升天数, 'bottomDate': 底部日期, 'fromBottom': 距底涨幅%, 'pos30': 底部距今K线数})"""
+    n = len(closes)
+    if n < BOLL_REV_LOOKBACK:
+        return False, {}
+    c = closes
+    mids, ups, los = [], [], []
+    for i in range(19, n):
+        seg = c[i - 19:i + 1]
+        mid = sum(seg) / 20
+        sd = (sum((x - mid) ** 2 for x in seg) / 19) ** 0.5
+        mids.append(mid)
+        ups.append(mid + 2 * sd)
+        los.append(mid - 2 * sd)
+
+    def rise_days(a):
+        d = 0
+        for i in range(len(a) - 1, 0, -1):
+            if a[i] > a[i - 1]:
+                d += 1
+            else:
+                break
+        return d
+
+    # 中轨严格连续向上 ≥7 天（平滑，可严格判）；上/下轨受 σ 跳动影响，用「较7个交易日前净上行」口径
+    if rise_days(mids) < BOLL_REV_DAYS:
+        return False, {}
+    if not (ups[-1] > ups[-1 - BOLL_REV_DAYS] and los[-1] > los[-1 - BOLL_REV_DAYS]):
+        return False, {}
+    days = rise_days(mids)
+    if c[-1] <= mids[-1]:
+        return False, {}                                   # 需站上中轨
+    seg30 = c[-30:]
+    lo = min(seg30)
+    li = seg30.index(lo)
+    pos30 = len(seg30) - 1 - li
+    if pos30 < 7:
+        return False, {}                                   # 底部就在最近7根内 → 尚未脱离
+    from_bottom = (c[-1] / lo - 1) * 100
+    if from_bottom < BOLL_REV_FROM_BOTTOM:
+        return False, {}                                   # 脱离幅度不足
+    return True, {'days': days, 'bottomDate': bars[-30 + li]['date'],
+                  'fromBottom': round(from_bottom, 1), 'pos30': pos30}
+
+
 def analyze(symbol, code, name, is_etf, sector=''):
     bars = fetch_kline(symbol)
     if len(bars) < 70:
@@ -424,6 +476,7 @@ def analyze(symbol, code, name, is_etf, sector=''):
     gate_vol = GATE_VOL_LO <= avg_amp <= GATE_VOL_HI
     above_ma20 = last['close'] > ma20
     ma20_up = ma20 > ma20_prev5
+    boll_rev = boll_reversal_metrics(closes, bars)   # v3.21：BOLL三轨反转（今日推荐标签）
 
     # ---- 上车5条（含数据依据，供作战台自动勾选）----
     e = {}
@@ -649,6 +702,8 @@ def analyze(symbol, code, name, is_etf, sector=''):
         'm60': m60_note,
         # v3.7：放量突破20日新高（今日推荐"启动刚突破"判定用）
         'breakout20': breakout20, 'breakout_note': breakout_note, 'hi20': hi20_prev,
+        # v3.21：BOLL三轨反转（今日推荐「🧭BOLL三轨反转」子板块用）
+        'boll_rev': boll_rev,
     }
 
 
@@ -1158,6 +1213,8 @@ def build_recommendations(results, today, session='close'):
             reasons.append('A底部·观察区')
         if r['six_cnt'] >= 4:
             reasons.append(f"六联{r['six_cnt']}/5 {r['six_grade']}")
+        if r.get('boll_rev') and r['boll_rev'].get('ok'):
+            reasons.append(f"🧭BOLL三轨同升×{r['boll_rev']['days']}日·底部反转")
         if r['stage_brief'] == 'D':
             reasons.append('⚠️顶部区，仅观察不追')
         reason = '、'.join(reasons) if reasons else (r.get('detail') or '暂无')
@@ -1176,6 +1233,11 @@ def build_recommendations(results, today, session='close'):
             'detail': ('、'.join(k.split('_', 1)[1] for k, v in r['entry'].items() if v) or '暂无'),
             'reason': reason, 'action': r['action'], 'm60': m60_short,
         }
+        if r.get('boll_rev') and r['boll_rev'].get('ok'):
+            item['bollRev'] = True
+            item['bollDays'] = r['boll_rev']['days']
+            item['bollFrom'] = r['boll_rev']['fromBottom']
+            item['bollBottom'] = r['boll_rev']['bottomDate']
         return item
 
     # ① 趋势中 = C 阶段（按 code 去重，再按 score + 涨幅排序；先保留全量列表，收盘/午间按各自名额截取）
