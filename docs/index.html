@@ -145,6 +145,7 @@ label.f b{color:var(--text2);font-weight:600}
 /* ---- v3.18 妖股集卡片 ---- */
 .rec-card.monster{border:1px solid rgba(245,72,78,.45);background:linear-gradient(160deg,rgba(245,72,78,.05),rgba(255,255,255,.01) 55%)}
 .rec-card.monster .m-limit{font-size:10.5px;font-weight:700;color:#fff;background:linear-gradient(135deg,#f5484e,#ff8a3d);padding:1px 7px;border-radius:9px;white-space:nowrap}
+.rec-card.monster .m-limit.m-fb{background:linear-gradient(135deg,#ee8b00,#ffd166)}
 .rec-card.monster .m-spark{width:100%;height:44px;display:block;margin:2px 0 6px}
 .rec-card.monster .m-tech{font-size:11px;color:var(--text2);line-height:1.65;background:rgba(58,71,96,.05);border-left:3px solid var(--gold);padding:4px 8px;border-radius:7px;margin-bottom:6px;word-break:break-all}
 .rec-card.monster .m-warn{font-size:10.5px;color:var(--gold);line-height:1.5;margin-bottom:6px}
@@ -449,7 +450,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
     <div class="dot" data-page-node-id="B64VgY9ICK8alTln10bpl9"></div>
     <div data-page-node-id="qeFHt96hG8fSoj3jG4e3Cx">
       <h1 data-page-node-id="dMewWe7cDY8PVmeuzwwwrn">上车·下车 <em data-page-node-id="ifDluLN1yVtiTPiAUxjcpt">交易辅助台</em></h1>
-      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.19 · 次日上涨票 + 妖股集 + 板块地图</b></div>
+      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.20 · 妖股集首板标签 + 次日上涨票 + 板块地图</b></div>
     </div>
   </div>
   <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓；上午收盘(11:30后)与全天收盘(15:00后)各抢刷一次，并抢鲜云端午间/收盘扫描结果（页面需保持打开）" data-page-node-id="xoPPQtPL1X6ATwVoQlbP16">⏱ 盘中10分·开</button>
@@ -545,7 +546,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
 
     <div class="card" data-page-node-id="66k4D6wnAA3ZPbIvXGmslj">
       <h3 data-page-node-id="jlNDKCXkRcxEugDEqNj62E">😈 妖股集 <span class="tag" id="recMonsterN" data-page-node-id="3SqJAJ5GYXzsbwLHYFUGeA">0</span></h3>
-      <p class="rec-sub" data-page-node-id="TBUBaXYPAW4FHUa4vq8DUv">全市场扫描（不受行业/价位/基本面门槛约束）：短期涨幅极端 + 连板基因，仅作情绪风向标与观察名单 —— <b style="color:var(--red)" data-page-node-id="eSVpyF2apGrktSrMWaiYJl">高风险博弈区，严禁盲目追高</b></p>
+      <p class="rec-sub" data-page-node-id="TBUBaXYPAW4FHUa4vq8DUv">全市场扫描（不受行业/价位/基本面门槛约束）：短期涨幅极端 + 连板基因，仅作情绪风向标与观察名单；<b style="color:var(--gold)" data-page-node-id="fbSubTag">🏷 首板</b>＝近2个交易日内首个涨停（此前20日无板·未连板），妖股可能的起点 —— <b style="color:var(--red)" data-page-node-id="eSVpyF2apGrktSrMWaiYJl">高风险博弈区，严禁盲目追高</b></p>
       <div class="rec-grid" id="recMonster" data-page-node-id="bVk4NmdqcS3R9yt6ckxooM"></div>
     </div>
   </section>
@@ -918,7 +919,8 @@ function monsterCardHTML(x){
     '<div class="hd"><div><span class="nm">'+escHTML(x.name)+'</span> <span class="code">'+escHTML(x.code)+'</span>'+
       '<span class="tag" style="margin-left:4px">'+escHTML(x.board||'')+'</span>'+
       '<span class="tag" style="margin-left:3px">'+escHTML(x.sector||'—')+'</span></div>'+
-      (x.limit10?'<span class="m-limit">'+x.limit10+'板/10日</span>':'')+'</div>'+
+      (x.fb?'<span class="m-limit m-fb">首板 · '+escHTML(x.fbDate||'')+'</span>'
+        :(x.limit10?'<span class="m-limit">'+x.limit10+'板/10日</span>':''))+'</div>'+
     '<div class="px"><b class="'+cls+'">'+(x.close!=null?x.close:'--')+'</b>'+
       '<span class="'+cls+'">'+(x.chg>0?'+':'')+(x.chg!=null?x.chg:'--')+'%</span></div>'+
     sparkSVG(x.spark)+

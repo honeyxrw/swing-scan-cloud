@@ -56,6 +56,9 @@ MONSTER_LIMIT10 = 2         # 且 近10日涨停 ≥ 2 次（主板≥9.8% / 创
 MONSTER_LIMIT10_ALT = 3     # 连板型替代口径：近10日涨停 ≥ 3 次（不要求涨幅门槛）
 MONSTER_AMT20_MIN = 5000e4  # 流动性门槛：20日均成交额 ≥ 5000万（防僵尸股；一字板妖股日成交小，用均值而非当日）
 MONSTER_SPARK = 30          # 页面 mini-K 用的收盘序列长度
+MONSTER_FB_RECENT = 2       # 首板新鲜度：涨停发生在最近2根K线内（今日/昨日）才算"刚刚首板"
+MONSTER_FB_BASE = 20        # 首板确认：该板之前20个交易日内无任何涨停（确属首板，非调整后再板）
+MONSTER_FB_MAX = 6          # 「首板」标签最多输出只数
 
 # ===== 行业板块（腾讯申万一级）=====
 BOARDS = [
@@ -739,6 +742,38 @@ def monster_metrics(bars, code):
                 'limit10': limit10, 'amp20': round(amp20, 1)}
 
 
+def firstboard_metrics(bars, code):
+    """首板判定：最近 MONSTER_FB_RECENT 根K线内出现涨停，且
+    ① 该板之前 MONSTER_FB_BASE 个交易日无任何涨停（确属"首板"）
+    ② 板后未再涨停（连板属于妖股/连板口径，不算首板）
+    返回 (ok, {'barsAgo': 板距今K线数, 'date': 板日})"""
+    n = len(bars)
+    if n < MONSTER_FB_BASE + 20:
+        return False, {}
+    th = _limit_th(code)
+    c = [b['close'] for b in bars]
+    is_lim = [False] * n
+    for i in range(1, n):
+        if c[i - 1] > 0 and (c[i] / c[i - 1] - 1) * 100 >= th:
+            is_lim[i] = True
+    last_lim = None
+    for i in range(n - 1, 0, -1):
+        if is_lim[i]:
+            last_lim = i
+            break
+    if last_lim is None:
+        return False, {}
+    bars_ago = n - 1 - last_lim
+    if bars_ago > MONSTER_FB_RECENT:
+        return False, {}
+    if any(is_lim[i] for i in range(last_lim + 1, n)):
+        return False, {}                                   # 板后再板 → 连板，不算首板
+    base_start = max(0, last_lim - MONSTER_FB_BASE)
+    if any(is_lim[i] for i in range(base_start, last_lim)):
+        return False, {}                                   # 板前20日内已有板 → 非首板
+    return True, {'barsAgo': bars_ago, 'date': bars[last_lim]['date']}
+
+
 def vp_state_py(bars):
     """页面 vpState 六态的 Python 镜像（口径一致：量增≥1.2/量减≤0.8，价涨≥0.5%/跌≤-0.5%，
     位置=近60日收盘分位，高位≥0.66 / 低位≤0.33）"""
@@ -796,18 +831,22 @@ def _board_tag(code):
     return '—'
 
 
-def analyze_monster(symbol, code, info):
-    """妖股单只分析：K线判定 → 复用 analyze() 全套技术面 → 组装页面所需字段。未命中返回 None"""
+def analyze_candidate(symbol, code, info):
+    """单只候选分析：同一份K线同时做妖股判定与首板判定（省一半K线请求）。
+    返回 (kind, item)，kind ∈ ('monster', 'fb', None)"""
     try:
         bars = fetch_kline(symbol)
+        if not bars or len(bars) < 70:
+            return None, None
         ok, m = monster_metrics(bars, code)
-        if not ok:
-            return None
+        fb_ok, fb = (False, {}) if ok else firstboard_metrics(bars, code)
+        if not ok and not fb_ok:
+            return None, None
         r = analyze(symbol, code, info['name'], False, info['industry'])
         if r is None:
-            return None
+            return None, None
         if r['amt20'] < MONSTER_AMT20_MIN:
-            return None                                # 僵尸股过滤（20日均额≥5000万）
+            return None, None                            # 僵尸股过滤（20日均额≥5000万）
         vp = vp_state_py(bars)
         macd_st = '金叉' if r['dif'] > r['dea'] else '死叉'
         tech = (f"{r['stage']}｜六联{r['six_cnt']}/5{r['six_grade']}"
@@ -826,7 +865,7 @@ def analyze_monster(symbol, code, info):
             warn.append('顶部/冷却阶段')
         if info['price'] > PRICE_MAX:
             warn.append(f"超出常买价位({PRICE_MAX:.0f}元)")
-        return {
+        item = {
             'code': code, 'name': info['name'], 'sector': info['industry'],
             'board': board,
             'close': round(r['close'], 3), 'chg': round(r['chg'], 2),
@@ -840,12 +879,17 @@ def analyze_monster(symbol, code, info):
             'spark': [round(b['close'], 3) for b in bars[-MONSTER_SPARK:]],
             'lastDate': r['date'],
         }
+        if ok:
+            return 'monster', item
+        # 首板：打标签 + 板信息（limit10 恒为1：板在近2日内且板前20日无板）
+        item.update({'fb': True, 'fbAgo': fb['barsAgo'], 'fbDate': fb['date'], 'limit10': 1})
+        return 'fb', item
     except Exception:
-        return None
+        return None, None
 
 
 def scan_monsters():
-    """妖股集主流程：全市场榜单 → 候选拉K线判定 → 排序输出"""
+    """妖股集主流程：全市场榜单 → 候选拉K线双判定（妖股+首板）→ 排序输出"""
     t0 = time.time()
     cand = fetch_monster_candidates()
     if not cand:
@@ -856,26 +900,34 @@ def scan_monsters():
     for code, info in cand.items():
         symbol = ('sh' if code.startswith(('6', '5')) else 'sz') + code
         tasks.append((symbol, code, info))
-    items = []
+    items, fbs = [], []
     with ThreadPoolExecutor(max_workers=6) as pool:
-        futs = {pool.submit(analyze_monster, *t): t for t in tasks}
+        futs = {pool.submit(analyze_candidate, *t): t for t in tasks}
         for i, fut in enumerate(as_completed(futs), 1):
             if i % 50 == 0:
                 print(f'  妖股判定进度 {i}/{len(tasks)}...', flush=True)
             try:
-                it = fut.result()
-                if it:
+                kind, it = fut.result()
+                if kind == 'monster':
                     items.append(it)
+                elif kind == 'fb':
+                    fbs.append(it)
             except Exception:
                 pass
     items.sort(key=lambda x: (-x['limit10'], -x['gain10']))
     items = items[:MONSTER_MAX]
-    print(f"  😈 妖股集命中 {len(items)} 只，耗时 {time.time()-t0:.0f}秒", flush=True)
+    fbs.sort(key=lambda x: (x['fbAgo'], -x['gain10']))
+    fbs = fbs[:MONSTER_FB_MAX]
+    print(f"  😈 妖股集命中 {len(items)} 只 · 🏷 首板 {len(fbs)} 只，耗时 {time.time()-t0:.0f}秒", flush=True)
     for it in items:
         print(f"    [{it['sector']}] {it['code']} {it['name']} 收{it['close']} {it['chg']:+.2f}% "
               f"10日{it['gain10']:+.0f}% 涨停{it['limit10']}板 换手{it['turnover'] or '—'}% "
               f"量价[{it['vp']['txt']}]", flush=True)
-    return items
+    for it in fbs:
+        print(f"    [首板·{it['sector']}] {it['code']} {it['name']} 板日{it['fbDate']}({it['fbAgo']}根前) "
+              f"收{it['close']} {it['chg']:+.2f}% 10日{it['gain10']:+.0f}% 换手{it['turnover'] or '—'}% "
+              f"量价[{it['vp']['txt']}]", flush=True)
+    return items + fbs
 
 
 def main():
@@ -883,7 +935,7 @@ def main():
     session = 'midday' if '--midday' in sys.argv else 'close'
     sess_tag = ' · 午间快照版（今日推荐10只·精选1只）' if session == 'midday' else ''
     print("=" * 90, flush=True)
-    print(f"喵喵全市场波段选股扫描 v3.12（+妖股集） · {datetime.date.today().strftime('%Y-%m-%d')}{sess_tag}")
+    print(f"喵喵全市场波段选股扫描 v3.13（妖股集+首板标签） · {datetime.date.today().strftime('%Y-%m-%d')}{sess_tag}")
     print(f"框架：账户可买(主板00/60) · 科技+有色 · ≤{PRICE_MAX:.0f}元 · 基本面资格赛(A/B档无红旗) → 技术面5阶段 | ETF独立池")
     print("=" * 90, flush=True)
 
@@ -1366,7 +1418,7 @@ def generate_html(results, failed, techs, metals, qualified, rejected_c, rejecte
                     f"{'、'.join(rejected_c[:40])}{'…' if len(rejected_c) > 40 else ''}</div>")
 
     html = f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
-<title>全市场波段选股扫描 v3.4 · {today}</title><style>
+<title>全市场波段选股扫描 v3.13 · {today}</title><style>
 body{{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#f7f6f3;color:#2c2c2a;margin:0;padding:24px;line-height:1.6}}
 .c{{max-width:1180px;margin:0 auto}}
 h1{{font-size:22px;color:#26215c;border-bottom:3px solid #534ab7;padding-bottom:8px}}
@@ -1382,7 +1434,7 @@ ul{{margin:6px 0}} li{{font-size:13px}}
 .pool-tag.etf{{background:#1d6a52}}
 .footer{{text-align:center;color:#888;font-size:12px;margin-top:24px}}
 </style></head><body><div class="c">
-<h1>全市场波段选股扫描 v3.4 · {today}</h1>
+<h1>全市场波段选股扫描 v3.13 · {today}</h1>
 <p style="font-size:13px;color:#666">逻辑框架：<b>账户权限定范围（主板00/60）→ 行业聚焦（科技+有色）→ 硬性预筛 → 基本面资格赛（A/B档且无红旗才有入池资格）→ 技术面定阶段（上车临近/底部/趋势/顶部/冷却）</b>。ETF 不做基本面筛选，独立成池。<br>准入闸门：个股 20日均额≥2亿，ETF≥3000万；250日振幅≥35%；日振幅1%~5.5%</p>
 <div class="note">{funnel_html}</div>
 
