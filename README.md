@@ -25,3 +25,5 @@ GitHub Pages：`https://<用户名>.github.io/<仓库名>/`
 
 本地 `monitoring/scripts/full_market_screener.py` 与本仓库 `scripts/` 是同一份脚本的两份拷贝：
 **改完本地脚本后，必须复制到本仓库并推送**，否则云端仍跑旧逻辑。
+
+- 当前版本 v3.21.1（2026-09-13）：妖股集卡片补加入股票池按钮；BOLL三轨反转量价回填修复（fillRecVP 纳入 recBoll 容器）
