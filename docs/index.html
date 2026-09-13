@@ -943,7 +943,8 @@ function monsterCardHTML(x){
     (v.txt?'<div class="vp-line" style="border-left-color:'+vpc+'"><b style="color:'+vpc+'">🔀 '+escHTML(v.txt)+'</b>'+
       (v.vr!=null?'<span style="opacity:.62;margin-left:2px">量比 '+v.vr+' · 位置分位 '+Math.round((v.pos||0)*100)+'%</span>':'')+'</div>':'')+
     (x.warn?'<div class="m-warn">⚠️ '+escHTML(x.warn)+'</div>':'')+
-    '<div class="ft"><button class="btn sm ghost" onclick="showKChart(\''+x.code+'\',\''+escHTML(x.name||'')+'\')">📈 日K</button></div>'+
+    '<div class="ft"><button class="btn sm ghost" onclick="showKChart(\''+x.code+'\',\''+escHTML(x.name||'')+'\')">📈 日K</button>'+
+      '<button class="btn sm gold" onclick="addRecToPool(\''+x.code+'\',\''+escHTML(x.name||'')+'\',\''+escHTML(x.stage||'')+'\')">＋ 加入股票池</button></div>'+
   '</div>';
 }
 /* ===== 今日推荐 · 量价关系阶段判定（六态）=====
@@ -979,7 +980,7 @@ function vpLineHTML(r){
 async function fillRecVP(epoch){
   try{
     const slots = [];
-    ['recBreakout','recTrend','recPicks'].forEach(id=>{
+    ['recBreakout','recTrend','recPicks','recBoll'].forEach(id=>{
       const box = document.getElementById(id);
       if(!box) return;
       box.querySelectorAll('[data-vpcode]').forEach(el=>slots.push(el));
