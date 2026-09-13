@@ -79,10 +79,11 @@ jobs:
           assert pools, '未生成 pool 文件'
           src = json.load(open(pools[-1], encoding='utf-8'))
           def sig(d):
-              # 内容签名：date+session+各组推荐名单（含 v3.18 妖股集）。
+              # 内容签名：date+session+各组推荐名单（含 v3.18 妖股集 / v3.20 首板 / v3.21 BOLL反转标记）。
               # 只比 date/session 会漏掉「同日新增字段/名单变化」的更新
               r = d.get('recommendations') or {}
-              codes = lambda k: tuple((x or {}).get('code') for x in (r.get(k) or []))
+              codes = lambda k: tuple(((x or {}).get('code'), bool((x or {}).get('bollRev')))
+                                      for x in (r.get(k) or []))
               return (d.get('date'), d.get('session'),
                       codes('trend'), codes('breakout'), codes('picks'), codes('monster'))
           changed = True
