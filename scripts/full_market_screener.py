@@ -1346,10 +1346,26 @@ def build_recommendations(results, today, session='close'):
                 _keep.append(_x)
         _lst[:] = _keep
 
+    # ④ ETF推荐（v3.22）：自选 ETF 池走同一套 analyze() 波段逻辑，按 pick_rank 三维综合评分
+    #    （趋势强·六联共振 × 弹性好·20日均振幅 × 贴近上车·乖离小）取前 5；
+    #    非 D/E（顶部/冷却）优先，D/E 兜底展示但打警示标（顶部不追·冷却等企稳）
+    etf_raw = [r for r in results if r['is_etf']]
+    etf_raw.sort(key=lambda r: (0 if r['stage_brief'] not in ('D', 'E') else 1,
+                                -pick_rank(r), -r['score']))
+    etf5 = []
+    for r in etf_raw[:5]:
+        item = rec_item(r)
+        if r['stage_brief'] == 'E':
+            item['reason'] = '❄️冷却期·等企稳信号｜' + item['reason']
+        elif r['stage_brief'] not in ('D',):
+            item['reason'] = pick_note(r) + '｜' + item['reason']
+        etf5.append(item)
+
     return {
         'date': today, 'generated': now_str, 'session': session,
         'note': note,
         'trend': trend, 'breakout': breakout, 'picks': picks,
+        'etf': etf5,
     }
 
 
