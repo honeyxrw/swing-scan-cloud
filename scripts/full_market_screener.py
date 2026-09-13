@@ -1213,7 +1213,7 @@ def build_recommendations(results, today, session='close'):
             reasons.append('A底部·观察区')
         if r['six_cnt'] >= 4:
             reasons.append(f"六联{r['six_cnt']}/5 {r['six_grade']}")
-        if r.get('boll_rev') and r['boll_rev'].get('ok'):
+        if r.get('boll_rev'):
             reasons.append(f"🧭BOLL三轨同升×{r['boll_rev']['days']}日·底部反转")
         if r['stage_brief'] == 'D':
             reasons.append('⚠️顶部区，仅观察不追')
@@ -1233,7 +1233,7 @@ def build_recommendations(results, today, session='close'):
             'detail': ('、'.join(k.split('_', 1)[1] for k, v in r['entry'].items() if v) or '暂无'),
             'reason': reason, 'action': r['action'], 'm60': m60_short,
         }
-        if r.get('boll_rev') and r['boll_rev'].get('ok'):
+        if r.get('boll_rev'):
             item['bollRev'] = True
             item['bollDays'] = r['boll_rev']['days']
             item['bollFrom'] = r['boll_rev']['fromBottom']
