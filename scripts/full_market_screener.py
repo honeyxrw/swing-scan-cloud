@@ -702,8 +702,8 @@ def analyze(symbol, code, name, is_etf, sector=''):
         'm60': m60_note,
         # v3.7：放量突破20日新高（今日推荐"启动刚突破"判定用）
         'breakout20': breakout20, 'breakout_note': breakout_note, 'hi20': hi20_prev,
-        # v3.21：BOLL三轨反转（今日推荐「🧭BOLL三轨反转」子板块用）
-        'boll_rev': boll_rev,
+        # v3.21：BOLL三轨反转（今日推荐「🧭BOLL三轨反转」子板块用；未命中存 None）
+        'boll_rev': boll_rev[1] if boll_rev and boll_rev[0] else None,
     }
 
 
