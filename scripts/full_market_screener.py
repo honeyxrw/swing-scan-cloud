@@ -577,7 +577,7 @@ def analyze(symbol, code, name, is_etf, sector=''):
     six['L0_MA60不逆势'] = ma60 >= ma60_prev5 * 0.995  # 走平（容忍0.5%下行）或向上
     cci = calc_cci(bars, 14)
     t_ok, t_i = False, None
-    for i in range(max(1, n - 10), n):
+    for i in range(max(1, n - 11), n - 1):  # 拐头日=i+1，i 上限 n-2 防越界
         if cci[i] <= -100 and cci[i + 1] > cci[i]:
             t_ok, t_i = True, i
             break
@@ -1402,14 +1402,14 @@ def build_recommendations(results, today, session='close'):
     etf_raw = [r for r in results if r['is_etf']]
     etf_raw.sort(key=lambda r: (0 if r['stage_brief'] not in ('D', 'E') else 1,
                                 -pick_rank(r), -r['score']))
-    etf5 = []
-    for r in etf_raw[:5]:
+    etf_recs = []
+    for r in etf_raw[:10]:
         item = rec_item(r)
         if r['stage_brief'] == 'E':
             item['reason'] = '❄️冷却期·等企稳信号｜' + item['reason']
         elif r['stage_brief'] not in ('D',):
             item['reason'] = pick_note(r) + '｜' + item['reason']
-        etf5.append(item)
+        etf_recs.append(item)
 
     return {
         'date': today, 'generated': now_str, 'session': session,
