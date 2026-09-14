@@ -450,7 +450,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
     <div class="dot" data-page-node-id="B64VgY9ICK8alTln10bpl9"></div>
     <div data-page-node-id="qeFHt96hG8fSoj3jG4e3Cx">
       <h1 data-page-node-id="dMewWe7cDY8PVmeuzwwwrn">上车·下车 <em data-page-node-id="ifDluLN1yVtiTPiAUxjcpt">交易辅助台</em></h1>
-      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.22 · ETF推荐 + BOLL三轨反转 + 妖股集首板 + 次日上涨</b></div>
+      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.23 · 全市场ETF推荐10只 + BOLL三轨反转 + 妖股集首板 + 次日上涨</b></div>
     </div>
   </div>
   <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓；上午收盘(11:30后)与全天收盘(15:00后)各抢刷一次，并抢鲜云端午间/收盘扫描结果（页面需保持打开）" data-page-node-id="xoPPQtPL1X6ATwVoQlbP16">⏱ 盘中10分·开</button>
@@ -552,7 +552,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
 
     <div class="card">
       <h3>📋 ETF推荐 <span class="tag" id="recEtfN">0</span></h3>
-      <p class="rec-sub">自选 ETF 池（16 只场内基金）走同一套波段逻辑，按三维综合评分取前 5：趋势强·六联共振 × 弹性好·20日均振幅 × 贴近上车·乖离小，排除顶部/冷却阶段 —— 可直接点「＋ 加入股票池」</p>
+      <p class="rec-sub">全市场 ETF 扫描（剔除货币/债券/现金类，成交额门槛过滤僵尸盘），走同一套波段逻辑，按三维综合评分取前 10：趋势强·六联共振 × 弹性好·20日均振幅 × 贴近上车·乖离小 —— 可直接点「＋ 加入股票池」</p>
       <div class="rec-grid" id="recEtf"></div>
     </div>
 
@@ -898,7 +898,7 @@ function renderRec(){
   $('#recBollN').textContent = bollAll.length+' 只';
   $('#recBoll').innerHTML = bollAll.length ? bollAll.map(x=>recCardHTML(x,false)).join('')
     : '<div class="rec-empty">今日推荐中暂无「BOLL三轨反转」标的 —— 需中轨连升≥7天×三轨同向上×站上中轨×脱离底部，条件较严，耐心等形态走出</div>';
-  /* v3.22 ETF推荐：云端按三维综合评分从自选ETF池选5只 */
+  /* v3.23 ETF推荐：云端全市场ETF扫描（剔固收/现金类），三维综合评分取10只 */
   const ne = Array.isArray(d.etf) ? d.etf.length : -1;
   $('#recEtfN').textContent = (ne<0?'--':ne)+' 只';
   $('#recEtf').innerHTML = ne>0 ? d.etf.map(x=>recCardHTML(x,false)).join('')

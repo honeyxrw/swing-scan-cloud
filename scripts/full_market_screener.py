@@ -17,7 +17,7 @@
       结构：{date, criteria, stocks:[...], etfs:[...], rejected:{...}}，供波段作战台 v4 导入）
 用法：python full_market_screener.py
 """
-import urllib.request, json, ssl, statistics, sys, io, os, datetime, time
+import urllib.request, json, ssl, statistics, sys, io, os, datetime, time, re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 try:
@@ -98,6 +98,12 @@ GATE_AMT_STOCK = 2e8        # 个股 20日均成交额 ≥ 2亿
 GATE_SWING_MIN = 0.35       # 250日区间振幅 ≥ 35%
 GATE_VOL_LO, GATE_VOL_HI = 0.010, 0.055
 
+# ===== 全市场ETF清单（v3.23：东财 clist b:MK0021 全量拉取后预筛）=====
+ETF_FETCH_MIN_AMT = 1000e4  # 预筛：当日成交额 ≥ 1000万（技术扫描阶段还有 20日均额3000万 的硬闸）
+ETF_FETCH_CAP = 800         # 按成交额降序最多取 800 只（控制日线拉取量；日成交<1000万的多为僵尸ETF）
+ETF_NAME_EXCLUDE = ('货币', '现金', '理财', '债', '短融', '存单', '增利', '同业')  # 趋势波段法对固收/现金类无意义
+ETF_CODE_OK = re.compile(r'^(51|56|58|15)\d{4}$')  # 沪ETF(51/56/58开头) + 深ETF(15开头)；LOF(16开头)流动性差不扫
+
 # ===== 基本面考察阈值（v2.2 新增，仅个股；ETF 无意义跳过）=====
 # 三维度评分（满分30）：盈利质量(隐含ROE=PB/PE) + 估值水平(PE) + 市值规模
 # 档位：A≥24 优质 / B 14~23 合格 / C<14 排雷警示
@@ -115,6 +121,40 @@ def _get_json(url, tries=5, backoff=1.2):
             last_err = ex
             time.sleep(backoff * (attempt + 1))
     raise last_err
+
+
+def fetch_etf_universe(min_amt=ETF_FETCH_MIN_AMT, cap=ETF_FETCH_CAP):
+    """全市场 ETF 清单（v3.23）：东财 clist b:MK0021 全量分页（按当日成交额降序），预筛后返回 [(symbol, code, name), ...]
+    预筛：代码前缀(沪51/56/58 + 深15) + 剔货币/债券/现金类 + 当日成交额门槛。
+    失败时调用方回退到内置 ETF_UNIVERSE。"""
+    out, seen, pn = [], set(), 1
+    while True:
+        url = ("https://push2delay.eastmoney.com/api/qt/clist/get?"
+               f"pn={pn}&pz=200&po=1&np=1&ut=bd1d9ddb04089700cf9c27f6f7426281"
+               "&fltt=2&invt=2&fid=f6&fs=b:MK0021&fields=f12,f14,f6")
+        data = _get_json(url)
+        d = (data.get('data') or {})
+        diff = d.get('diff') or []
+        if not diff:
+            break
+        for it in diff:
+            code = str(it.get('f12', '') or '')
+            name = str(it.get('f14', '') or '')
+            amt = float(it.get('f6', 0) or 0)
+            if not ETF_CODE_OK.match(code):
+                continue
+            if any(k in name for k in ETF_NAME_EXCLUDE):
+                continue
+            if amt < min_amt or code in seen:
+                continue
+            seen.add(code)
+            out.append(('sh' + code if code[0] == '5' else 'sz' + code, code, name))
+        total = int(d.get('total', 0) or 0)
+        if pn * 200 >= total:
+            break
+        pn += 1
+        time.sleep(0.3)
+    return out[:cap]
 
 
 def fetch_board_members(board_code, board_name):
@@ -990,7 +1030,7 @@ def main():
     session = 'midday' if '--midday' in sys.argv else 'close'
     sess_tag = ' · 午间快照版（今日推荐10只·精选1只）' if session == 'midday' else ''
     print("=" * 90, flush=True)
-    print(f"喵喵全市场波段选股扫描 v3.13（妖股集+首板标签） · {datetime.date.today().strftime('%Y-%m-%d')}{sess_tag}")
+    print(f"喵喵全市场波段选股扫描 v3.13（妖股集+首板标签+全市场ETF推荐10只） · {datetime.date.today().strftime('%Y-%m-%d')}{sess_tag}")
     print(f"框架：账户可买(主板00/60) · 科技+有色 · ≤{PRICE_MAX:.0f}元 · 基本面资格赛(A/B档无红旗) → 技术面5阶段 | ETF独立池")
     print("=" * 90, flush=True)
 
@@ -1037,10 +1077,20 @@ def main():
     print(f"  ✅ 基本面合格（A/B档且无红旗）：{len(qualified)} 只 | "
           f"❌ C档淘汰 {len(rejected_c)} 只 · 红旗淘汰 {len(rejected_flag)} 只", flush=True)
 
-    # 第四步：技术扫描队列 = 合格个股 + 全部ETF（ETF独立成池，不做基本面筛选）
+    # 第四步：技术扫描队列 = 合格个股 + 全市场ETF（ETF独立成池，不做基本面筛选）
     targets = [(s['symbol'], s['code'], s['name'], False, s['sector']) for s in qualified]
-    targets += [(sym, code, name, True, 'ETF') for sym, code, name in ETF_UNIVERSE]
-    print(f"[3/5] 技术扫描：合格个股 {len(qualified)} 只 + ETF {len(ETF_UNIVERSE)} 只，并发拉取日线并计算...", flush=True)
+    try:
+        print("[2.6/5] 拉取全市场 ETF 清单（东财 clist，流动性/品类预筛）...", flush=True)
+        etf_list = fetch_etf_universe()
+        print(f"  全市场ETF预筛通过 {len(etf_list)} 只（剔货币/债券/现金类，当日成交额≥{ETF_FETCH_MIN_AMT/1e4:.0f}万）", flush=True)
+    except Exception as ex:
+        print(f"  [警告] 全市场ETF清单拉取失败（{ex}），回退内置自选池 {len(ETF_UNIVERSE)} 只", flush=True)
+        etf_list = list(ETF_UNIVERSE)
+    if not etf_list:
+        print("  [警告] ETF清单为空，回退内置自选池", flush=True)
+        etf_list = list(ETF_UNIVERSE)
+    targets += [(sym, code, name, True, 'ETF') for sym, code, name in etf_list]
+    print(f"[3/5] 技术扫描：合格个股 {len(qualified)} 只 + ETF {len(etf_list)} 只（全市场），并发拉取日线并计算...", flush=True)
 
     results, failed = [], []
     with ThreadPoolExecutor(max_workers=4) as pool:
@@ -1365,7 +1415,7 @@ def build_recommendations(results, today, session='close'):
         'date': today, 'generated': now_str, 'session': session,
         'note': note,
         'trend': trend, 'breakout': breakout, 'picks': picks,
-        'etf': etf5,
+        'etf': etf_recs,
     }
 
 
