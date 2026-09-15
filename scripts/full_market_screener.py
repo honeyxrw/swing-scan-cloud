@@ -1411,11 +1411,35 @@ def build_recommendations(results, today, session='close'):
             item['reason'] = pick_note(r) + '｜' + item['reason']
         etf_recs.append(item)
 
+    # ⑤ 刚反转个股（v3.24）：与盘中定向工具 reversal_scan.py 同口径，三档分档
+    #    S=BOLL三轨反转命中 · A=六联≥4项共振 · B=六联=3酝酿中；要求三闸门通过且排除 D(顶部)/E(冷却)，每档最多8只
+    rev_ok = [r for r in results if not r['is_etf']
+              and r['gate_amt'] and r['gate_swing'] and r['gate_vol']
+              and r['stage_brief'] not in ('D', 'E')]
+    rev_tiers = {'S': [], 'A': [], 'B': []}
+    for r in rev_ok:
+        six = r.get('six_cnt', 0)
+        if r.get('boll_rev'):
+            rev_tiers['S'].append(r)
+        elif six >= 4:
+            rev_tiers['A'].append(r)
+        elif six == 3:
+            rev_tiers['B'].append(r)
+    for k in rev_tiers:
+        rev_tiers[k].sort(key=lambda r: (r['stage_brief'] == 'B', -r['six_cnt'], -r['score']))
+    reversal = []
+    for k in ('S', 'A', 'B'):
+        for r in rev_tiers[k][:8]:
+            item = rec_item(r)
+            item['rtier'] = k
+            reversal.append(item)
+
     return {
         'date': today, 'generated': now_str, 'session': session,
         'note': note,
         'trend': trend, 'breakout': breakout, 'picks': picks,
         'etf': etf_recs,
+        'reversal': reversal,
     }
 
 

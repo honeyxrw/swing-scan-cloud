@@ -450,7 +450,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
     <div class="dot" data-page-node-id="B64VgY9ICK8alTln10bpl9"></div>
     <div data-page-node-id="qeFHt96hG8fSoj3jG4e3Cx">
       <h1 data-page-node-id="dMewWe7cDY8PVmeuzwwwrn">上车·下车 <em data-page-node-id="ifDluLN1yVtiTPiAUxjcpt">交易辅助台</em></h1>
-      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.23 · 全市场ETF推荐10只 + BOLL三轨反转 + 妖股集首板 + 次日上涨</b></div>
+      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.24 · 刚反转个股分档 + 全市场ETF推荐 + BOLL三轨反转 + 妖股集首板</b></div>
     </div>
   </div>
   <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓；上午收盘(11:30后)与全天收盘(15:00后)各抢刷一次，并抢鲜云端午间/收盘扫描结果（页面需保持打开）" data-page-node-id="xoPPQtPL1X6ATwVoQlbP16">⏱ 盘中10分·开</button>
@@ -548,6 +548,12 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
       <h3 data-page-node-id="bollRevH3">🧭 BOLL三轨反转 <span class="tag" id="recBollN" data-page-node-id="bollRevN">0</span></h3>
       <p class="rec-sub" data-page-node-id="bollRevSub">中轨严格连升 ≥7 天 × 上轨/下轨较 7 个交易日前净上行 × 站上中轨 × 脱离底部震荡（近30日最低收盘在7根K线前 · 自底部涨幅 ≥5%）—— 底部震荡结束、趋势反转向上的标的</p>
       <div class="rec-grid" id="recBoll" data-page-node-id="bollRevGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3>🌀 刚反转个股 <span class="tag" id="recRevN">0</span></h3>
+      <p class="rec-sub">「趋势刚刚开始反转」定向分档：<b style="color:var(--green)">🟢 S档</b> BOLL三轨反转成立 · <b style="color:var(--red)">🔴 A档</b> 六联≥4项共振（CCI触底拐头/KDJ低位金叉/SAR转红/站上中轨/MACD金叉/放量）· <b style="color:#6ea8fe">🔵 B档</b> 六联=3酝酿中 —— 全部满足购买条件（主板00/60·≤20元·基本面A/B无红旗），排除顶部/冷却；无信号日宁缺毋滥</p>
+      <div id="recRev"></div>
     </div>
 
     <div class="card">
@@ -904,6 +910,22 @@ function renderRec(){
   $('#recEtf').innerHTML = ne>0 ? d.etf.map(x=>recCardHTML(x,false)).join('')
     : (ne===0 ? '<div class="rec-empty">今日 ETF 池无合适推荐（顶部/冷却阶段居多，观望为主）</div>'
               : '<div class="rec-empty">本轮数据未含 ETF推荐 —— 等云端下一轮扫描（11:31/15:15）后自动出现</div>');
+  /* v3.24 刚反转个股：云端三档分档（S=BOLL三轨反转 / A=六联≥4 / B=六联=3） */
+  const rv = Array.isArray(d.reversal) ? d.reversal : null;
+  $('#recRevN').textContent = (rv===null?'--':rv.length)+' 只';
+  if(rv===null){
+    $('#recRev').innerHTML = '<div class="rec-empty">本轮数据未含「刚反转个股」—— 等云端下一轮扫描（11:31/15:15）后自动出现</div>';
+  }else{
+    const RT = {S:['🟢 S档 · BOLL三轨反转成立','var(--green)'], A:['🔴 A档 · 六联≥4项共振刚确认','var(--red)'], B:['🔵 B档 · 六联=3 反转酝酿中','#6ea8fe']};
+    let rh = '';
+    for(const k of ['S','A','B']){
+      const lst = rv.filter(x=>x.rtier===k);
+      if(!lst.length) continue;
+      rh += '<div style="margin:10px 0 8px;font-size:12px;font-weight:700;color:'+RT[k][1]+'">'+RT[k][0]+' · '+lst.length+' 只</div>'
+          + '<div class="rec-grid">'+lst.map(x=>recCardHTML(x,false)).join('')+'</div>';
+    }
+    $('#recRev').innerHTML = rh || '<div class="rec-empty">今日无「刚反转」标的（三档信号均未触发）—— 无信号不硬凑，也是一种纪律</div>';
+  }
   /* v3.18 妖股集（云端全市场扫描直出，量价/技术面已算好，无需浏览器二次判定） */
   const nm = Array.isArray(d.monster) ? d.monster.length : -1;   /* -1=本轮数据未含妖股集 */
   $('#recMonsterN').textContent = (nm<0?'--':nm)+' 只';
@@ -992,7 +1014,7 @@ function vpLineHTML(r){
 async function fillRecVP(epoch){
   try{
     const slots = [];
-    ['recBreakout','recTrend','recPicks','recBoll','recEtf'].forEach(id=>{
+    ['recBreakout','recTrend','recPicks','recBoll','recRev','recEtf'].forEach(id=>{
       const box = document.getElementById(id);
       if(!box) return;
       box.querySelectorAll('[data-vpcode]').forEach(el=>slots.push(el));
