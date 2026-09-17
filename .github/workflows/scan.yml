@@ -85,8 +85,9 @@ jobs:
               codes = lambda k: tuple(((x or {}).get('code'), bool((x or {}).get('bollRev')))
                                       for x in (r.get(k) or []))
               revs = tuple((x or {}).get('code') for x in (r.get('reversal') or []))
+              lts = tuple((x or {}).get('code') for x in (r.get('longterm') or []))
               return (d.get('date'), d.get('session'),
-                      codes('trend'), codes('breakout'), codes('picks'), codes('monster'), codes('etf'), revs)
+                      codes('trend'), codes('breakout'), codes('picks'), codes('monster'), codes('etf'), revs, lts)
           changed = True
           if os.path.exists('docs/pool.json'):
               dst = json.load(open('docs/pool.json', encoding='utf-8'))

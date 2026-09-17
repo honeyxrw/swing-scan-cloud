@@ -450,7 +450,7 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
     <div class="dot" data-page-node-id="B64VgY9ICK8alTln10bpl9"></div>
     <div data-page-node-id="qeFHt96hG8fSoj3jG4e3Cx">
       <h1 data-page-node-id="dMewWe7cDY8PVmeuzwwwrn">上车·下车 <em data-page-node-id="ifDluLN1yVtiTPiAUxjcpt">交易辅助台</em></h1>
-      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.24 · 刚反转个股分档 + 全市场ETF推荐 + BOLL三轨反转 + 妖股集首板</b></div>
+      <div class="sub" data-page-node-id="gXmsx54MR7gXzRwb3uQ9V9">CCI · KDJ · SAR · BOLL · MACD 多指标联用 · <b style="color:var(--gold);font-weight:700" data-page-node-id="ogSaRjJzVtpre3aLuveIhd">v3.25 · 稳健长线形态 + 刚反转个股 + 全市场ETF + BOLL三轨反转 + 妖股集首板</b></div>
     </div>
   </div>
   <button class="btn ghost sm" id="btnAuto30" title="自动刷新：交易时段每 10 分钟刷新股票池+持仓；上午收盘(11:30后)与全天收盘(15:00后)各抢刷一次，并抢鲜云端午间/收盘扫描结果（页面需保持打开）" data-page-node-id="xoPPQtPL1X6ATwVoQlbP16">⏱ 盘中10分·开</button>
@@ -554,6 +554,12 @@ input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(76,1
       <h3>🌀 刚反转个股 <span class="tag" id="recRevN">0</span></h3>
       <p class="rec-sub">「趋势刚刚开始反转」定向分档：<b style="color:var(--green)">🟢 S档</b> BOLL三轨反转成立 · <b style="color:var(--red)">🔴 A档</b> 六联≥4项共振（CCI触底拐头/KDJ低位金叉/SAR转红/站上中轨/MACD金叉/放量）· <b style="color:#6ea8fe">🔵 B档</b> 六联=3酝酿中 —— 全部满足购买条件（主板00/60·≤20元·基本面A/B无红旗），排除顶部/冷却；无信号日宁缺毋滥</p>
       <div id="recRev"></div>
+    </div>
+
+    <div class="card">
+      <h3>🛤 稳健长线 <span class="tag" id="recLtN">0</span></h3>
+      <p class="rec-sub">适合长线持有的三段式形态：近期走势呈 <b style="color:var(--green)">稳定上升</b> / <b style="color:var(--red)">稳定下降</b> / <b style="color:#6ea8fe">稳定横盘</b> 的清晰分段（每段20交易日做线性回归，趋势解释度R²≥0.5才算「稳定」），且<b>当前正走上升段</b> —— 已站上MA20/MA60、处于百日区间上半部；形态串如 <b>↓↓·↑↑</b> 表示由降转升。<br><span style="color:var(--muted)">长线口径：不追短线爆发力，看形态的干净程度与当前上升段的斜率</span></p>
+      <div id="recLt"></div>
     </div>
 
     <div class="card">
@@ -910,6 +916,22 @@ function renderRec(){
   $('#recEtf').innerHTML = ne>0 ? d.etf.map(x=>recCardHTML(x,false)).join('')
     : (ne===0 ? '<div class="rec-empty">今日 ETF 池无合适推荐（顶部/冷却阶段居多，观望为主）</div>'
               : '<div class="rec-empty">本轮数据未含 ETF推荐 —— 等云端下一轮扫描（11:31/15:15）后自动出现</div>');
+  /* v3.25 稳健长线：三段式稳定形态 + 当前上升段 */
+  const lt = Array.isArray(d.longterm) ? d.longterm : null;
+  $('#recLtN').textContent = (lt===null?'--':lt.length)+' 只';
+  if(lt===null){
+    $('#recLt').innerHTML = '<div class="rec-empty">本轮数据未含「稳健长线」—— 等云端下一轮扫描（11:31/15:15）后自动出现</div>';
+  }else if(!lt.length){
+    $('#recLt').innerHTML = '<div class="rec-empty">今日无「三段式形态 + 当前上升」标的 —— 形态须呈现清晰的升/降/横交替且当前向上，条件较严</div>';
+  }else{
+    const CL = {'↑':'var(--green)','↓':'var(--red)','→':'#6ea8fe','·':'var(--muted)'};
+    $('#recLt').innerHTML = '<div class="rec-grid">'+lt.map(x=>{
+      const pat = (x.ltPattern||'').split('').map(ch=>'<b style="color:'+(CL[ch]||'var(--muted)')+';letter-spacing:1px">'+ch+'</b>').join('');
+      const card = recCardHTML(x,false);
+      return card.replace('<div class="rec-foot"', '<div class="rec-pat" style="font-size:19px;margin:2px 0 6px">'+pat+
+        '<span style="font-size:11px;color:var(--muted);margin-left:8px;letter-spacing:0">上升段斜率 '+(x.ltSlope>0?'+':'')+x.ltSlope+'%/日 · 百日分位 '+x.ltPos+'%</span></div><div class="rec-foot"');
+    }).join('')+'</div>';
+  }
   /* v3.24 刚反转个股：云端三档分档（S=BOLL三轨反转 / A=六联≥4 / B=六联=3） */
   const rv = Array.isArray(d.reversal) ? d.reversal : null;
   $('#recRevN').textContent = (rv===null?'--':rv.length)+' 只';
@@ -1014,7 +1036,7 @@ function vpLineHTML(r){
 async function fillRecVP(epoch){
   try{
     const slots = [];
-    ['recBreakout','recTrend','recPicks','recBoll','recRev','recEtf'].forEach(id=>{
+    ['recBreakout','recTrend','recPicks','recBoll','recRev','recLt','recEtf'].forEach(id=>{
       const box = document.getElementById(id);
       if(!box) return;
       box.querySelectorAll('[data-vpcode]').forEach(el=>slots.push(el));

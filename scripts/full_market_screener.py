@@ -725,9 +725,57 @@ def analyze(symbol, code, name, is_etf, sector=''):
         'E': '冷却池：禁止抄底',
     }
 
+    # ---- v3.25 稳健长线形态（三段式：稳定上升 / 稳定下降 / 稳定横盘 交替出现，当前正走上升段）----
+    # 段长20根K线，回顾最近5段（100交易日）；每段用「线性回归斜率/段均价」度量方向（%每根），R²≥0.5 才算稳定
+    # 命中条件：含明确下降段(≤-0.4%) + 含明确上升段(≥+0.4%) + 当前段上升 + 站上MA20且价>MA60 + 位于100日区间上半部
+    ltp = None
+    if not is_etf and n >= 100:
+        SEG_LT, SEGS_LT = 20, 5
+        UP_LT, DN_LT, R2_LT = 0.4, -0.4, 0.5
+        segs_lt = []
+        for k in range(SEGS_LT):
+            i1 = n - (SEGS_LT - 1 - k) * SEG_LT
+            ys = closes[i1 - SEG_LT:i1]
+            if len(ys) < 5:
+                segs_lt = []
+                break
+            xs = list(range(len(ys)))
+            mx = sum(xs) / len(ys); my = sum(ys) / len(ys)
+            sxx = sum((x - mx) ** 2 for x in xs)
+            sxy = sum((xs[j] - mx) * (ys[j] - my) for j in range(len(ys)))
+            if sxx == 0 or my == 0:
+                segs_lt.append((0.0, 0.0, my))
+                continue
+            sl = sxy / sxx
+            inter = my - sl * mx
+            ss_tot = sum((y - my) ** 2 for y in ys)
+            ss_res = sum((ys[j] - (inter + sl * xs[j])) ** 2 for j in range(len(ys)))
+            r2 = (1 - ss_res / ss_tot) if ss_tot else 0
+            segs_lt.append((sl / my * 100.0, r2, my))
+        if len(segs_lt) == SEGS_LT:
+            lab = []
+            for sl, r2, _ in segs_lt:
+                if r2 < R2_LT: lab.append('·')
+                elif sl >= UP_LT: lab.append('↑')
+                elif sl <= DN_LT: lab.append('↓')
+                elif abs(sl) <= 0.25: lab.append('→')
+                else: lab.append('·')
+            lo100, hi100 = min(closes[-100:]), max(closes[-100:])
+            pos100 = (closes[-1] - lo100) / (hi100 - lo100) if hi100 > lo100 else 0
+            cur_up = segs_lt[-1][0] >= UP_LT and segs_lt[-1][1] >= R2_LT
+            form_ok = ('↑' in lab) and ('↓' in lab)
+            ltp = {
+                'pattern': ''.join(lab),
+                'upN': lab.count('↑'), 'dnN': lab.count('↓'), 'flatN': lab.count('→'),
+                'lastSlope': round(segs_lt[-1][0], 2),
+                'pos100': round(pos100 * 100),
+                'ok': form_ok and cur_up and above_ma20 and last['close'] > ma60 and pos100 >= 0.5,
+            }
+
     return {
         'code': code, 'name': name, 'is_etf': is_etf, 'sector': sector,
         'date': last['date'],
+        'longterm': ltp,
         'close': last['close'], 'chg': (last['close'] / prev['close'] - 1) * 100,
         'gate_amt': gate_amt, 'gate_swing': gate_swing, 'gate_vol': gate_vol,
         'amt20': amt20, 'rng': rng * 100, 'avg_amp': avg_amp * 100,
@@ -1434,12 +1482,30 @@ def build_recommendations(results, today, session='close'):
             item['rtier'] = k
             reversal.append(item)
 
+    # ⑥ 稳健长线（v3.25）：三段式稳定形态（上升/下降/横盘交替）+ 当前正走上升段 —— 适合长线持有的形态
+    #    形态标识如 "↓↓·↑↑"（每字符=20交易日：↑升 ↓降 →横 ·杂乱），按当前段斜率降序，最多6只
+    lt_raw = [r for r in results if not r['is_etf'] and (r.get('longterm') or {}).get('ok')
+              and r['stage_brief'] not in ('D', 'E')]
+    lt_raw.sort(key=lambda r: (-r['longterm']['lastSlope'], -r['score']))
+    longterm = []
+    for r in lt_raw[:6]:
+        item = rec_item(r)
+        m = r['longterm']
+        item['ltPattern'] = m['pattern']
+        item['ltSlope'] = m['lastSlope']
+        item['ltPos'] = m['pos100']
+        item['reason'] = (f"📈三段式形态 {m['pattern']}（↑升{m['upN']}段·↓降{m['dnN']}段"
+                          f"{'·→横盘' + str(m['flatN']) + '段' if m['flatN'] else ''}）"
+                          f"｜当前上升段 斜率{m['lastSlope']:+.2f}%/日·位于百日区间{m['pos100']}%分位｜" + item['reason'])
+        longterm.append(item)
+
     return {
         'date': today, 'generated': now_str, 'session': session,
         'note': note,
         'trend': trend, 'breakout': breakout, 'picks': picks,
         'etf': etf_recs,
         'reversal': reversal,
+        'longterm': longterm,
     }
 
 
