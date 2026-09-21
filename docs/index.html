@@ -1057,15 +1057,23 @@ async function fillRecVP(epoch){
   }catch(e){ /* 量价判定失败不影响推荐主体展示 */ }
 }
 
-/* 今日推荐数据源（并发请求全部源，取 date 最新的一份；全部失败时回退内嵌数据）：
+/* 今日推荐数据源（并发请求全部源，取「date 最新 → 分项最全」的一份；全部失败时回退内嵌数据）：
  * ① 同源 pool.json —— 部署后读取交易台自己的每日推荐文件（每日收盘自动更新）
- * ② 线上作战台 pool.json —— 追新兜底源（自动化先更新作战台；同源若是旧快照会自动改取最新者）
- * ③ 内嵌 REC_DATA_EMBED —— 最后兜底（断网/file:// 直开可用）
+ * ② 云端扫描器 GitHub Pages pool.json —— v3.25 全量分项的唯一权威源
+ *    （交易日 11:31 / 15:15 由 GitHub Actions 全自动写入，不依赖本机开机）
+ * ③ 线上作战台 pool.json —— 兜底源
+ * ④ 内嵌 REC_DATA_EMBED —— 最后兜底（断网/file:// 直开可用）
  */
 const REC_SOURCES = [
   'pool.json?v=',
+  'https://honeyxrw.github.io/swing-scan-cloud/pool.json?v=',
   'https://2d6c4e56c5cd4e8cabae5edc3e60e481.app.workbuddy.link/pool.json?v='
 ];
+/* 分项完整度：v3.25 起 pool.json 含 reversal/longterm/etf 等分项，旧版只有 trend/breakout/picks。
+ * 若只按 date 排序，同一天的「旧格式快照」会凭源顺序挡住「云端新格式数据」，
+ * 导致 刚反转/稳健长线/ETF推荐 三个新板块常年空白 → 同日期时再按分项数取更全的一份。 */
+const REC_RICH_KEYS = ['trend','breakout','picks','boll','reversal','longterm','etf','monster'];
+function recRichness(r){ return REC_RICH_KEYS.reduce((n,k)=> n + ((Array.isArray(r[k]) && r[k].length) ? 1 : 0), 0); }
 function fmtRecDate(s){ return String(s).replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3'); }
 function fmtTime(t){ const p=n=>String(n).padStart(2,'0'); const hm=p(t.getHours())+':'+p(t.getMinutes());
   const now=new Date();
@@ -1078,15 +1086,14 @@ async function refreshRec(manual){
   if(btn && manual){ btn.disabled = true; btn.innerHTML='<span class="spin"></span>'; }
   const oldDate = String(recData.date||'');
   try{
-    /* 并发请求全部源，取 recommendations.date 最新的一份：
-     * 防止部署目录里残留的旧 pool.json 快照长期挡住更新的线上数据；
-     * 同日期时保持 REC_SOURCES 顺序（同源优先）。 */
-    const settled = await Promise.allSettled(REC_SOURCES.map(async base=>{
+    /* 并发请求全部源，先取 recommendations.date 最新的一份；同日期时取「分项最全」的一份
+     * （防部署目录里残留的旧格式 pool.json 挡住云端 v3.25 全量数据），仍并列则按源顺序（同源优先）。 */
+    const settled = await Promise.allSettled(REC_SOURCES.map(async (base,idx)=>{
       const res = await fetch(base + Date.now(), {cache:'no-store'});
       if(!res.ok) throw new Error('HTTP '+res.status);
       const d = await res.json();
       if(!(d && d.recommendations && d.recommendations.trend)) throw new Error('recommendations 字段缺失');
-      return {base, data:d.recommendations, date:String(d.recommendations.date||'')};
+      return {base, idx, data:d.recommendations, date:String(d.recommendations.date||'')};
     }));
     const ok = settled.filter(s=>s.status==='fulfilled').map(s=>s.value);
     if(!ok.length){
@@ -1094,11 +1101,18 @@ async function refreshRec(manual){
       if(manual) toast('在线刷新失败，显示内置数据：'+why,'err');
       return false;
     }
-    ok.sort((a,b)=> a.date>b.date?-1:(a.date<b.date?1:0));  /* 降序：date 最新在前；同日期保持源顺序（同源优先） */
+    ok.sort((a,b)=>{
+      if(a.date!==b.date) return a.date>b.date?-1:1;      /* date 降序：最新在前 */
+      const ra=recRichness(a.data), rb=recRichness(b.data);
+      if(ra!==rb) return rb-ra;                            /* 同日期：分项多者优先 */
+      return a.idx-b.idx;                                  /* 仍并列：源顺序（同源优先） */
+    });
     const best = ok[0];
     const changed = best.date !== oldDate;
     recData = best.data;
-    recSource = best.base.startsWith('pool.json') ? '在线自动同步 · 每日收盘更新' : '线上作战台(自动同步)';
+    recSource = best.base.startsWith('pool.json') ? '在线自动同步 · 每日收盘更新'
+              : (best.base.includes('honeyxrw.github.io') ? '云端扫描器(每日收盘自动更新)'
+                                                          : '线上作战台(自动同步)');
     recUpdatedAt = lastDataRefreshAt = new Date();
     renderRec();
     if(manual){
