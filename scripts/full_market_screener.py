@@ -126,7 +126,24 @@ def _get_json(url, tries=5, backoff=1.2):
 def fetch_etf_universe(min_amt=ETF_FETCH_MIN_AMT, cap=ETF_FETCH_CAP):
     """全市场 ETF 清单（v3.23）：东财 clist b:MK0021 全量分页（按当日成交额降序），预筛后返回 [(symbol, code, name), ...]
     预筛：代码前缀(沪51/56/58 + 深15) + 剔货币/债券/现金类 + 当日成交额门槛。
-    失败时调用方回退到内置 ETF_UNIVERSE。"""
+    v3.25.2：外层加重试 —— 健康拉取应得数百只（实测 ~669）；若单次结果 <100 只视为
+    接口抽风（2026-09-21 22:08 那轮曾在夜间整段失败，静默回退到内置 16 只，
+    ETF 推荐质量骤降且无任何告警），间隔 5s 重试，最多 3 次，仍失败才交调用方回退。"""
+    for attempt in range(1, 4):
+        try:
+            out = _fetch_etf_universe_once(min_amt=min_amt, cap=cap)
+        except Exception:
+            out = []
+        if len(out) >= 100:
+            return out
+        print(f'  [warn] ETF 全市场清单第 {attempt}/3 次仅得 {len(out)} 只（疑似接口异常），5s 后重试...', flush=True)
+        time.sleep(5)
+    print(f'  [warn] ETF 全市场清单 3 次均异常，回退内置池', flush=True)
+    return out if out else []
+
+
+def _fetch_etf_universe_once(min_amt, cap):
+    """单次完整分页拉取（供 fetch_etf_universe 重试调用）"""
     out, seen, pn = [], set(), 1
     while True:
         url = ("https://push2delay.eastmoney.com/api/qt/clist/get?"
